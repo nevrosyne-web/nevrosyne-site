@@ -1,24 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import showsData from "../content/concerts.json";
 
-const shows = [
-  { date: "2025-12-12", city: "Marseille",         venue: "Le Molotov", link: "#" },
-  { date: "2026-01-30", city: "Aix-en-Provence",   venue: "6MIC",        link: "#" },
-];
+const today = new Date().toISOString().slice(0,10);
+const shows = showsData
+  .filter(s => s.date >= today)
+  .sort((a,b) => a.date.localeCompare(b.date));
 ---
 <BaseLayout title="Concerts — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Prochains concerts</h1>
-  <ul class="space-y-4">
-    {shows.map(s => (
-      <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex items-center justify-between backdrop-blur">
-        <div>
-          <div class="font-semibold">{s.date}</div>
-          <div class="opacity-80">{s.city} — {s.venue}</div>
-        </div>
-        <a href={s.link} class="px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">
-          Infos / Billets
-        </a>
-      </li>
-    ))}
-  </ul>
+
+  {shows.length === 0 ? (
+    <p class="opacity-80">Aucune date annoncée pour le moment. Abonne-toi à la <a class="underline underline-offset-4" href="/newsletter">newsletter</a>.</p>
+  ) : (
+    <ul class="space-y-4">
+      {shows.map(s => (
+        <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex items-center justify-between backdrop-blur">
+          <div>
+            <div class="font-semibold">{s.date}</div>
+            <div class="opacity-80">{s.city} — {s.venue}</div>
+          </div>
+          <a href={s.link} class="px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">
+            Infos
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>

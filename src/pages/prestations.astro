@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ClientsGrid from "../components/ClientsGrid.astro";
+import clients from "../content/clients.json";
+import SetlistTable from "../components/SetlistTable.astro";
+import { loadSetlist } from "../lib/readSetlist";
+
+// Charge le fichier Excel à la build
+const setlist = loadSetlist(new URL("../content/setList.xlsx", import.meta.url));
+
+const services = [
+  {
+    title: "Concerts / Live",
+    desc: "Set rock/reprises et adaptations musicales. Scènes, festivals, événements privés.",
+    points: ["Backline autonome possible", "Balance rapide", "Facture/contractualisation OK"],
+    cta: { label: "Demander un devis", href: "/contact" }
+  },
+  {
+    title: "Événementiel",
+    desc: "Show adapté à votre événement (ouverture, afterwork, gala, lancement).",
+    points: ["Setlist personnalisable", "Habillage visuel & logo", "Coordination régie"],
+    cta: { label: "Parler de votre projet", href: "/contact" }
+  }
+];
+---
+<BaseLayout title="Prestations — Nevrosyne">
+  <section class="mb-10">
+    <h1 class="text-3xl font-bold mb-3">Prestations</h1>
+    <p class="opacity-80">Vous êtes programmateur·rice, agence ou production ? Voici ce que nous proposons. Pour toute demande spécifique, <a class="underline underline-offset-4" href="/contact">contactez-nous</a>.</p>
+  </section>
+
+  <section class="grid md:grid-cols-2 gap-6">
+    {services.map(s => (
+      <div class="p-5 rounded-xl bg-coal-800/60 border border-zinc-800">
+        <h2 class="text-xl font-semibold mb-2">{s.title}</h2>
+        <p class="opacity-85 mb-4">{s.desc}</p>
+        <ul class="list-disc list-inside space-y-1 mb-5 opacity-85">
+          {s.points.map(p => <li>{p}</li>)}
+        </ul>
+        <a href={s.cta.href} class="inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">
+          {s.cta.label}
+        </a>
+      </div>
+    ))}
+  </section>
+
+  <section class="mt-12">
+    <h3 class="text-lg font-semibold mb-3">Informations techniques</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
+        <h4 class="font-semibold mb-2">Fiche technique (exemple)</h4>
+        <ul class="list-disc list-inside opacity-85 space-y-1">
+          <li>Line-up : chant, 2 guitares, basse, batterie</li>
+          <li>Besoin scène : 6×4 m min, 4 retours</li>
+          <li>Patch : 8–12 entrées</li>
+          <li>Puissance façade adaptée à la salle</li>
+        </ul>
+      </div>
+      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
+        <h4 class="font-semibold mb-2">Logistique</h4>
+        <ul class="list-disc list-inside opacity-85 space-y-1">
+          <li>Rider & contrat fournis</li>
+          <li>Déplacement PACA & national</li>
+          <li>Assurance RC pro</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h3 class="text-lg font-semibold mb-3">Ils nous ont fait confiance</h3>
+    <p class="opacity-80 mb-4">Quelques structures, salles et organismes avec lesquels nous avons collaboré.</p>
+    <ClientsGrid items={clients} />
+  </section>
+
+  <section class="mt-12">
+    <h3 class="text-lg font-semibold mb-3">Setlist</h3>
+    <p class="opacity-80 mb-4">
+      Exemple de set (évolutif selon l’événement). Autres morceaux sur demande.
+    </p>
+    <SetlistTable rows={setlist} />
+  </section>  
+</BaseLayout>

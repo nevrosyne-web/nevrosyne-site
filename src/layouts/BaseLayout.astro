@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import SocialLinks from "../components/SocialLinks.astro";
+import Seo from "../components/Seo.astro";
 const { title = "Nevrosyne — Site officiel" } = Astro.props;
 ---
 <html lang="fr" class="scroll-smooth">
@@ -10,7 +11,10 @@ const { title = "Nevrosyne — Site officiel" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content="Groupe de rock Nevrosyne : concerts, clips, contact et newsletter." />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0b0e14">
+    <Seo title={title} />
 
     <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

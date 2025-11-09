@@ -1,29 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import YouTube from "../components/YouTube.astro";
+
+// 👉 Remplace par tes VRAIS IDs YouTube
+const videos = [
+  { id: "YE6cIhBlYJU", title: "Tainted Nevro Love" },
+  { id: "JsVPydqa_LQ", title: "Class vioc 2024" },
+];
 ---
 <BaseLayout title="Médias — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Médias</h1>
 
   <section class="space-y-10">
     <div>
-      <h2 class="text-xl font-semibold mb-3">Écouter</h2>
-      <!-- Bandcamp / SoundCloud embed -->
-      <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless>
-        <a href="https://...">Écouter sur Bandcamp</a>
-      </iframe>
-    </div>
-
-    <div>
       <h2 class="text-xl font-semibold mb-3">Clips</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="aspect-video rounded-xl overflow-hidden border border-zinc-800">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/XXXXXXXX"
-            title="Clip 1" allowfullscreen></iframe>
-        </div>
-        <div class="aspect-video rounded-xl overflow-hidden border border-zinc-800">
-          <iframe class="w-full h-full" src="https://www.youtube.com/embed/YYYYYYYY"
-            title="Clip 2" allowfullscreen></iframe>
-        </div>
+        {videos.map(v => <YouTube id={v.id} title={v.title} />)}
       </div>
     </div>
   </section>

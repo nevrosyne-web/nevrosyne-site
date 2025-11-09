@@ -1,0 +1,16 @@
+---
+const { id, title = "Clip" } = Astro.props;
+// Options utiles : no-cookie + modestbranding + rel=0
+const src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+---
+<div class="aspect-video rounded-xl overflow-hidden border border-zinc-800">
+  <iframe
+    class="w-full h-full"
+    src={src}
+    title={title}
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
