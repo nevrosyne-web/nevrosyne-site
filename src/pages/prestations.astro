@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ClientsGrid from "../components/ClientsGrid.astro";
 import clients from "../content/clients.json";
-import SetlistTable from "../components/SetListTable.astro";
+import SetListTable from "../components/SetListTable.astro";
 import { loadSetlist } from "../lib/readSetlist";
 
 // Charge le fichier Excel à la build
@@ -78,6 +78,6 @@ const services = [
     <p class="opacity-80 mb-4">
       Exemple de set (évolutif selon l’événement). Autres morceaux sur demande.
     </p>
-    <SetlistTable rows={setlist} />
+    <SetListTable rows={setlist} />
   </section>  
 </BaseLayout>
