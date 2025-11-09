@@ -1,0 +1,27 @@
+---
+const { rows = [] } = Astro.props as { rows: any[] };
+
+const columns = [
+  { key: "num",    label: "num" },
+  { key: "Titre",  label: "Titre" },
+  { key: "Artiste",    label: "Artistes" }
+].filter(col => rows.some(r => r[col.key] !== undefined));
+---
+<div class="overflow-x-auto border border-zinc-800 rounded-xl">
+  <table class="min-w-full text-sm">
+    <thead class="bg-coal-800/60">
+      <tr>
+        {columns.map(col => <th class="text-left px-4 py-3 font-semibold">{col.label}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr class="border-t border-zinc-800 hover:bg-coal-800/30">
+          {columns.map(col => (
+            <td class="px-4 py-2">{String(r[col.key] ?? "")}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
