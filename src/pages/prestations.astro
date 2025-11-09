@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ClientsGrid from "../components/ClientsGrid.astro";
 import clients from "../content/clients.json";
 import SetListTable from "../components/SetListTable.astro";
-import { loadSetlist } from "../lib/readSetlist";
+import { loadSetlist } from "../lib/readSetList.ts";
 
 // Charge le fichier Excel à la build
 const setList = loadSetlist(new URL("../content/setList.xlsx", import.meta.url));
