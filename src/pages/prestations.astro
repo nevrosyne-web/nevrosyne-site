@@ -6,7 +6,7 @@ import SetListTable from "../components/SetListTable.astro";
 import { loadSetlist } from "../lib/readSetlist";
 
 // Charge le fichier Excel à la build
-const setlist = loadSetlist(new URL("../content/setList.xlsx", import.meta.url));
+const setList = loadSetlist(new URL("../content/setList.xlsx", import.meta.url));
 
 const services = [
   {
@@ -78,6 +78,6 @@ const services = [
     <p class="opacity-80 mb-4">
       Exemple de set (évolutif selon l’événement). Autres morceaux sur demande.
     </p>
-    <SetListTable rows={setlist} />
+    <SetListTable rows={setList} />
   </section>  
 </BaseLayout>
