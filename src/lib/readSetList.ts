@@ -1,21 +1,43 @@
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import * as XLSX from "xlsx";
 
 export type SetItem = {
   Titre?: string;
   Artiste?: string;
-  Durée?: string;  // ex "3:45"
+  Durée?: string;
   BPM?: number | string;
   Tonalité?: string;
   Notes?: string;
   [key: string]: any;
 };
 
-export function loadSetlist(fileUrl: URL): SetItem[] {
-  const buf = fs.readFileSync(fileUrl);
+export function loadSetlist(): SetItem[] {
+  // 1) Construis une liste de chemins candidats (source + public), avec les deux casses possibles.
+  const root = process.cwd();
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    // Relatif au fichier source (quand ça marche)
+    path.resolve(here, "../content/setList.xlsx"),
+    path.resolve(here, "../content/setlist.xlsx"),
+    // Relatif à la racine du projet (build/prerender, Netlify)
+    path.resolve(root, "src/content/setList.xlsx"),
+    path.resolve(root, "src/content/setlist.xlsx"),
+    // Option: si tu préfères mettre le fichier dans /public
+    path.resolve(root, "public/setList.xlsx"),
+    path.resolve(root, "public/setlist.xlsx"),
+  ];
+
+  const found = candidates.find((p) => fs.existsSync(p));
+  if (!found) {
+    throw new Error(
+      "Setlist XLSX introuvable. Chemins testés:\n" + candidates.join("\n")
+    );
+  }
+
+  const buf = fs.readFileSync(found);
   const wb = XLSX.read(buf, { type: "buffer" });
   const ws = wb.Sheets[wb.SheetNames[0]];
-  // defval garde les cellules vides en chaîne vide
-  const rows = XLSX.utils.sheet_to_json<SetItem>(ws, { defval: "" });
-  return rows;
+  return XLSX.utils.sheet_to_json(ws, { defval: "" });
 }
