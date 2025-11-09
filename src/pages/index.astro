@@ -1,24 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="Nevrosyne 5ch — Rock approximatif">
+<BaseLayout title="Nevrosyne — Rock metal Marseille">
   <section class="grid md:grid-cols-2 gap-10 items-center">
     <div class="space-y-6">
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-        Nevrosyne
+      <h1 class="font-display text-6xl md:text-7xl leading-none">
+        NEVROSYNE
       </h1>
-      <p class="text-lg opacity-80">
-        Rock / metal aux accents cinématiques. Retrouvez nos prochaines dates,
-        clips et contenus exclusifs.
+      <p class="text-lg opacity-85">
+        Rock / metal aux accents cinématiques. Dates, clips & contenu exclusif.
       </p>
       <div class="flex gap-4">
-        <a href="/concerts" class="px-5 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700">Prochains concerts</a>
-        <a href="/media" class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-zinc-500">Voir les médias</a>
+        <a href="/concerts" class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
+          Prochains concerts
+        </a>
+        <a href="/media" class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
+          Voir les médias
+        </a>
+      </div>
+      <div class="text-sm opacity-70">
+        Marseille — FR • since 2025
       </div>
     </div>
-    <div class="aspect-video rounded-2xl overflow-hidden border border-zinc-800">
-      <!-- Ex: bannière, visuel du groupe -->
-      <img src="/logo 10_sansFond.png" alt="Nevrosyne live" class="h-full object-cover" />
+
+    <div class="relative aspect-video rounded-2xl overflow-hidden border border-zinc-800">
+      <img src="/logo 10_sansFond.png" alt="Nevrosyne live" class="w-full h-full object-cover" />
+      <!-- Effets “néon” discrets -->
+      <div class="pointer-events-none absolute inset-0 ring-1 ring-acid-400/20"></div>
+      <div class="pointer-events-none absolute -inset-1 bg-gradient-to-tr from-acid-400/10 via-transparent to-transparent"></div>
     </div>
   </section>
 </BaseLayout>

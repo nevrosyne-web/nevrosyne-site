@@ -1,0 +1,34 @@
+---
+const links = [
+  { href: "https://facebook.com/nevrosyne",  title: "Facebook",  icon: "facebook" },
+  { href: "https://instagram.com/nevrosyne", title: "Instagram", icon: "instagram" },
+  { href: "https://youtube.com/@nevrosyne",  title: "YouTube",   icon: "youtube" },
+];
+---
+<div class="flex items-center gap-3">
+  {links.map(l => (
+    <a
+      href={l.href}
+      aria-label={l.title}
+      class="p-2 rounded-lg border border-zinc-800 hover:border-acid-400/70 hover:text-acid-400 transition"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {l.icon === "facebook" && (
+        <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true">
+          <path fill="currentColor" d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.6c0-2.4 1.4-3.7 3.5-3.7 1 0 2 .1 2.3.1v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6v2h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z"/>
+        </svg>
+      )}
+      {l.icon === "instagram" && (
+        <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true">
+          <path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 2 .2 2.7.6.7.3 1.2.7 1.7 1.2.5.5.9 1 1.2 1.7.4.7.5 1.5.6 2.7.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 2-.6 2.7-.3.7-.7 1.2-1.2 1.7-.5.5-1 .9-1.7 1.2-.7.4-1.5.5-2.7.6-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-2-.2-2.7-.6a4.6 4.6 0 0 1-1.7-1.2 4.6 4.6 0 0 1-1.2-1.7c-.4-.7-.5-1.5-.6-2.7C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-2 .6-2.7.3-.7.7-1.2 1.2-1.7.5-.5 1-.9 1.7-1.2.7-.4 1.5-.5 2.7-.6C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-2 .4-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1-.2.5-.3 1-.4 2C3 9.3 3 9.7 3 12s0 2.7.1 3.9c.1 1 .2 1.6.4 2 .2.5.4.8.7 1.1.3.3.6.5 1 .7.5.2 1 .3 2 .4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 2-.4.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1 .2-.5.3-1 .4-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-2-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1-.7-.5-.2-1-.3-2-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Zm5.1-2.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/>
+        </svg>
+      )}
+      {l.icon === "youtube" && (
+        <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true">
+          <path fill="currentColor" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41 41 0 0 0 0 12a41 41 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41 41 0 0 0 24 12a41 41 0 0 0-.5-5.8ZM9.8 15.5v-7l6 3.5z"/>
+        </svg>
+      )}
+    </a>
+  ))}
+</div>

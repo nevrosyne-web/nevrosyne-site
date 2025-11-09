@@ -1,3 +1,25 @@
+/* Tailwind v4 core + plugins */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
+
+/* ===== THEME (v4, sans tailwind.config) ===== */
+@theme {
+  /* Fonts */
+  --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
+  --font-display: "Bebas Neue", Impact, sans-serif;
+
+  /* Couleurs “rock sombre” */
+  --color-ink-900: #0b0e14;  /* fond très sombre */
+  --color-coal-800: #20242d; /* panneaux */
+  --color-coal-700: #2a2f3a;
+  --color-acid-400: #4cc9f0; /* néon turquoise */
+  --color-acid-500: #2ec5ff;
+  --color-flame-400: #ff5a54; /* rouge accent */
+  --color-flame-500: #ff3b30;
+}
+
+/* Optionnel: styles globaux */
+html, body {
+  scroll-behavior: smooth;
+}

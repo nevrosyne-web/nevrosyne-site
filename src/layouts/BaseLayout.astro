@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 const { title = "Nevrosyne — Site officiel" } = Astro.props;
 ---
 <html lang="fr" class="scroll-smooth">
@@ -10,16 +11,26 @@ const { title = "Nevrosyne — Site officiel" } = Astro.props;
     <title>{title}</title>
     <meta name="description" content="Groupe de rock Nevrosyne : concerts, clips, contact et newsletter." />
     <link rel="icon" href="/favicon.svg" />
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-zinc-950 text-zinc-100 min-h-screen">
+  <body class="bg-ink-900 text-zinc-100 min-h-screen font-sans">
     <div class="max-w-6xl mx-auto px-4">
       <Nav />
       <main class="py-10">
         <slot />
       </main>
-      <footer class="border-t border-zinc-800 py-6 text-sm opacity-70">
-        © {new Date().getFullYear()} Nevrosyne — Tous droits réservés
+      <footer class="border-t border-zinc-800 py-6 text-sm flex items-center justify-between gap-4 flex-wrap">
+        <span class="opacity-70">© {new Date().getFullYear()} Nevrosyne — Tous droits réservés</span>
+        <SocialLinks />
       </footer>
+
+<!--       <footer class="border-t border-zinc-800 py-6 text-sm opacity-70">
+        © {new Date().getFullYear()} Nevrosyne — Tous droits réservés
+      </footer> -->
     </div>
   </body>
 </html>
