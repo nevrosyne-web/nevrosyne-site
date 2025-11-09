@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Contact — Nevrosyne">
+  <h1 class="text-3xl font-bold mb-6">Contact</h1>
+  <form
+    name="contact"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    class="space-y-4 max-w-xl"
+  >
+    <!-- Champ caché requis pour Netlify -->
+    <input type="hidden" name="form-name" value="contact" />
+    <p class="hidden">
+      <label>Ne pas remplir: <input name="bot-field" /></label>
+    </p>
+
+    <div>
+      <label class="block text-sm mb-1">Nom</label>
+      <input class="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700" type="text" name="name" required />
+    </div>
+    <div>
+      <label class="block text-sm mb-1">Email</label>
+      <input class="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700" type="email" name="email" required />
+    </div>
+    <div>
+      <label class="block text-sm mb-1">Message</label>
+      <textarea class="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700" name="message" rows="6" required></textarea>
+    </div>
+
+    <button class="px-5 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700" type="submit">
+      Envoyer
+    </button>
+  </form>
+</BaseLayout>

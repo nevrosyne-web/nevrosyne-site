@@ -1,0 +1,17 @@
+---
+const links = [
+  { href: "/", label: "Accueil" },
+  { href: "/concerts", label: "Concerts" },
+  { href: "/media", label: "Médias" },
+  { href: "/contact", label: "Contact" },
+  { href: "/newsletter", label: "Newsletter" },
+];
+---
+<nav class="w-full flex items-center justify-between py-4">
+  <a href="/" class="text-xl font-bold tracking-wide">NEVROSYNE</a>
+  <ul class="flex gap-6">
+    {links.map(l => (
+      <li><a class="opacity-80 hover:opacity-100" href={l.href}>{l.label}</a></li>
+    ))}
+  </ul>
+</nav>
