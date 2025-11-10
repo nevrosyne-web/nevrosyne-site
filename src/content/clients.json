@@ -9,5 +9,6 @@
   { "name": "Les épicuriens de Puyloubier", "logo": "/clients/epicuriens.png", "url": "https://www.facebook.com/groups/3223652907682469" },
   { "name": "Domaine Jas Monge", "logo": "/clients/jasMonge.png", "url": "https://jasmonges.com/" },
   { "name": "Saint-Savournin Tennis Club", "logo": "/clients/tennisSaintSav.jpg", "url": "https://www.facebook.com/saintsavournintc/?locale=fr_FR" },
-  { "name": "Pendrillon & Compagnies", "logo": "/clients/pendrillon.png", "url": "https://www.facebook.com/p/Pendrillons-Compagnies-100072324141221/" }
+  { "name": "Pendrillon & Compagnies", "logo": "/clients/pendrillon.png", "url": "https://www.facebook.com/p/Pendrillons-Compagnies-100072324141221/" },
+  { "name": "Le petit colibri", "logo": "/clients/ptitColibri.jpg", "url": "https://www.facebook.com/monptitcolibri/?locale=fr_FR" }
 ]

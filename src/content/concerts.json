@@ -1,3 +1,62 @@
 [
-  { "date": "2025-11-21", "city": "Aix-en-Provence", "venue": "La Scene2", "link": "https://www.lascene-aix.com/" }
+  { "date": "2025-11-21", 
+    "city": "Aix-en-Provence", 
+    "venue": "La Scene2", 
+    "link": "https://www.lascene-aix.com/",
+    "poster": "/affiches/2025_11_21_Scene2.jpg",
+    "posterAlt": "Nevrosyne à la Scene2 — 21 nov. 2025" 
+  },
+  { "date": "2025-07-11", 
+    "city": "Trets", 
+    "venue": "Domaine Jas Monge", 
+    "link": "https://jasmonges.com/"
+  },
+  { "date": "2025-06-21", 
+    "city": "Gréasque", 
+    "venue": "Le Hangar", 
+    "link": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR",
+    "poster": "/affiches/2025_06_21_LeHangar.png",
+    "posterAlt": "Nevrosyne au Hangar — 21 juin 2025" 
+  },
+  { "date": "2025-04-05", 
+    "city": "Gardanne", 
+    "venue": "Maison du peuple", 
+    "link": "https://www.facebook.com/VilledeGardanne?locale=fr_FR",
+    "poster": "/affiches/2025_04_05_GRF3.jpg",
+    "posterAlt": "Nevrosyne au Hangar — 21 juin 2025" 
+  },
+  { "date": "2024-11-01", 
+    "city": "Beine-Nauroy", 
+    "venue": "Chez Gaby", 
+    "link": "",
+    "poster": "/affiches/2024_11_01_chezGaby.png",
+    "posterAlt": "Nevrosyne chez Gaby — 01 nov. 2024" 
+  },
+  { "date": "2024-06-21", 
+    "city": "Trets", 
+    "venue": "Cours Esquiros", 
+    "link": "https://www.trets.fr"
+  },
+  { "date": "2024-06-20", 
+    "city": "Aix-en-Provence", 
+    "venue": "La Scene2", 
+    "link": "https://www.lascene-aix.com/",
+    "poster": "/affiches/2024_06_20_Scene2.jpg",
+    "posterAlt": "Nevrosyne à la Scene2 — 21 nov. 2025" 
+  },
+  { "date": "2024-01-08", 
+    "city": "Roquevaire", 
+    "venue": "Yo's Brew", 
+    "link": "https://www.facebook.com/YosBREWAubagne/?locale=fr_FR"
+  },
+  { "date": "2024-01-21", 
+    "city": "Luynes", 
+    "venue": "Le petit colibri", 
+    "link": "https://www.facebook.com/monptitcolibri/?locale=fr_FR"
+  },
+  { "date": "2024-05-26", 
+    "city": "Gréasque", 
+    "venue": "Le Hangar", 
+    "link": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR"
+  }
 ]
