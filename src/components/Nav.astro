@@ -1,24 +1,54 @@
 ---
 const links = [
-  { href: "/concerts",  label: "Concerts" },
-  { href: "/media",     label: "Médias" },
-  { href: "/galerie",   label: "Galerie" },
+  { href: "/concerts",    label: "Concerts" },
+  { href: "/media",       label: "Médias" },
+  { href: "/galerie",     label: "Galerie" },
   { href: "/prestations", label: "Prestations" },
-  { href: "/contact",   label: "Contact" }
-  //{ href: "/newsletter",label: "Newsletter" },
+  { href: "/contact",     label: "Contact" },
+  { href: "/newsletter",  label: "Newsletter" },
 ];
 ---
-<nav class="w-full py-4 flex items-center justify-between">
-  <a href="/" class="text-3xl font-extrabold tracking-wide font-display leading-none">
-    NEVROSYNE
-  </a>
-  <ul class="hidden md:flex gap-6 text-sm">
-    {links.map(l => (
-      <li>
+<header class="sticky top-0 z-50 bg-ink-900/85 backdrop-blur border-b border-zinc-800">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo / titre -->
+    <a href="/" class="text-3xl font-extrabold tracking-wide font-display leading-none">
+      NEVROSYNE
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex gap-6 text-sm">
+      {links.map(l => (
         <a class="opacity-80 hover:opacity-100 hover:underline underline-offset-4" href={l.href}>
           {l.label}
         </a>
-      </li>
-    ))}
-  </ul>
-</nav>
+      ))}
+    </nav>
+
+    <!-- Mobile toggle -->
+    <details class="md:hidden">
+      <summary
+        class="list-none p-2 rounded-lg border border-zinc-800 hover:border-acid-400/70 hover:text-acid-400 cursor-pointer"
+        aria-label="Ouvrir le menu"
+      >
+        <!-- Icône burger -->
+        <svg viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
+          <path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
+        </svg>
+      </summary>
+      <div
+        class="mt-3 absolute right-4 left-4 rounded-xl border border-zinc-800 bg-coal-800/95 shadow-lg"
+      >
+        <nav class="flex flex-col py-2">
+          {links.map(l => (
+            <a
+              href={l.href}
+              class="px-4 py-3 border-b border-zinc-800/60 last:border-b-0 hover:bg-coal-700/60"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
