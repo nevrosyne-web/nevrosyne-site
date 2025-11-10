@@ -25,12 +25,26 @@
     "poster": "/affiches/2025_04_05_GRF3.jpg",
     "posterAlt": "Nevrosyne au Hangar — 21 juin 2025" 
   },
+  { "date": "2025-02-15", 
+    "city": "Aix-en-Provence", 
+    "venue": "La Scene2", 
+    "link": "https://www.lascene-aix.com/",
+    "poster": "/affiches/2025_02_15_Scene2Restos.jpg",
+    "posterAlt": "Nevrosyne à la Scene2, Restos du coeur — 15 fev. 2025" 
+  },
   { "date": "2024-11-01", 
     "city": "Beine-Nauroy", 
     "venue": "Chez Gaby", 
     "link": "",
     "poster": "/affiches/2024_11_01_chezGaby.png",
     "posterAlt": "Nevrosyne chez Gaby — 01 nov. 2024" 
+  },
+  { "date": "2024-10-03", 
+    "city": "Gardanne", 
+    "venue": "Maison du peuple", 
+    "link": "",
+    "poster": "/affiches/2024_10_03_BiereGardanne.jpg",
+    "posterAlt": "Nevrosyne à la fête de la bière — 02 oct. 2024" 
   },
   { "date": "2024-06-21", 
     "city": "Trets", 
@@ -41,22 +55,71 @@
     "city": "Aix-en-Provence", 
     "venue": "La Scene2", 
     "link": "https://www.lascene-aix.com/",
-    "poster": "/affiches/2024_06_20_Scene2.jpg",
-    "posterAlt": "Nevrosyne à la Scene2 — 21 nov. 2025" 
+    "poster": "/affiches/2024_06_20_festicalAmis.jpg",
+    "posterAlt": "Nevrosyne à la Scene2 — 20 juin. 2024" 
+  },
+  { "date": "2024-02-10", 
+    "city": "Aix-en-Provence", 
+    "venue": "La Scene2", 
+    "link": "https://www.lascene-aix.com/",
+    "poster": "/affiches/2024_02_10_Scene2Openning.jpg",
+    "posterAlt": "Nevrosyne à la Scene2, RéOuverture — 10 fev. 2024" 
+  },
+  { "date": "2024-01-20", 
+    "city": "Luynes", 
+    "venue": "Le petit colibri", 
+    "link": "https://www.facebook.com/monptitcolibri/?locale=fr_FR"
   },
   { "date": "2024-01-08", 
     "city": "Roquevaire", 
     "venue": "Yo's Brew", 
     "link": "https://www.facebook.com/YosBREWAubagne/?locale=fr_FR"
   },
-  { "date": "2024-01-21", 
-    "city": "Luynes", 
-    "venue": "Le petit colibri", 
-    "link": "https://www.facebook.com/monptitcolibri/?locale=fr_FR"
+  { "date": "2023-11-29", 
+    "city": "Aix-en-Provence", 
+    "venue": "Aix'Qui? Final Class'Viock", 
+    "link": "https://www.facebook.com/Classviock",
+    "poster": "/affiches/2023_11_29_finalClassViock.jpg",
+    "posterAlt": "Névrosyne en finale de Class'Viock — 11 nov. 2023" 
   },
-  { "date": "2024-05-26", 
+  { "date": "2023-10-20", 
+    "city": "Auriol", 
+    "venue": "Joke'R Bar Ambiant", 
+    "link": "https://www.facebook.com/jokerbarambiant/?locale=fr_FR",
+    "poster": "/affiches/2023_10_20_jocker.jpg",
+    "posterAlt": "Nevrosyne au Joke'R — 20 oct. 2023" 
+  },
+  { "date": "2023-09-26", 
+    "city": "Aix La Duranne", 
+    "venue": "Arbois Duranne Espace Polyvalent", 
+    "link": "https://www.facebook.com/events/856263762809346/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22external_search_engine%22%7D%2C%7B%22mechanism%22%3A%22attachment%22%2C%22surface%22%3A%22newsfeed%22%7D]%2C%22ref_notif_type%22%3Anull%7D"
+  },
+  { "date": "2023-07-10", 
+    "city": "Trets", 
+    "venue": "Cours Esquiros", 
+    "link": "",
+    "poster": "/affiches/2023_07_13_trets.jpg",
+    "posterAlt": "Nevrosyne à Trets pour la fête nationale — 13 juil. 2023"     
+  },
+  { "date": "2023-07-01", 
     "city": "Gréasque", 
     "venue": "Le Hangar", 
     "link": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR"
+  },
+  { "date": "2023-06-16", 
+    "city": "Aix-en-Provence", 
+    "venue": "Le 6mic", 
+    "link": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR",
+    "poster": "/affiches/2023_06_16_6MIC.jpg",
+    "posterAlt": "Nevrosyne au 6mic — 16 juin 2023" 
+  },
+  { "date": "2023-04-01", 
+    "city": "Gardanne", 
+    "venue": "Maison du peuple", 
+    "link": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR",
+    "poster": "/affiches/2023_04_01_GRF2.jpg",
+    "posterAlt": "Nevrosyne aux GRF3 — 01 avr. 2023" 
   }
 ]
+
+
