@@ -1,17 +1,23 @@
 ---
 import { withBase } from "../utils/paths";
-const items = Astro.props.items || [];
-const norm = items.map(it => ({
-  ...it,
-  // si chemin local (pas http), on préfixe avec base
-  src: /^(https?:)?\/\//i.test(it.src) ? it.src : withBase(String(it.src).replace(/^\//,'')),
-}));
+const items = Array.isArray(Astro.props.items) ? Astro.props.items : [];
+
+// Préfixe la base si le logo n'est pas une URL absolue
+const norm = items.map((it) => {
+  const raw = String(it?.src || "").trim();
+  const isExternal = /^(https?:)?\/\//i.test(raw) || /^[a-z]+:/i.test(raw);
+  return {
+    ...it,
+    src: isExternal ? raw : withBase(raw.replace(/^\//, "")),
+  };
+});
 ---
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-  {norm.map(c => (
+  {norm.map((c) => (
     <div class="rounded-lg border border-zinc-800 bg-coal-800/40 px-3 py-4 flex items-center justify-center">
       <a href={c.href} target="_blank" rel="noopener noreferrer" aria-label={c.alt} class="w-full">
-        <img src={c.src} alt={c.alt} loading="lazy"
+        <img src={c.src} alt={c.alt}
+             loading="lazy"
              class="max-h-12 mx-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition" />
       </a>
     </div>
