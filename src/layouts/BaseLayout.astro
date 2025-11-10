@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 import Seo from "../components/Seo.astro";
-const { title = "Nevrosyne — Site officiel" } = Astro.props;
+const { title = "Nevrosyne 5ch — Site officiel" } = Astro.props;
 ---
 <html lang="fr" class="scroll-smooth">
   <head>
@@ -13,24 +13,16 @@ const { title = "Nevrosyne — Site officiel" } = Astro.props;
     <meta name="description" content="Groupe de rock Nevrosyne : concerts, clips, contact et newsletter." />
     
     <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
+    <link rel="icon" href="/favicon.v5.ico" sizes="any">
+    <link rel="shortcut icon" href="/favicon.v5.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.v5.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.v5.png">
+    <link rel="icon" type="image/png" href="/favicon.v5.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.v5.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.v5.svg" color="#ffd60a">
 
-    <!-- Favicon super-compatible -->
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="shortcut icon" href="/favicon.ico?v=3" />
+    <link rel="manifest" href="/site.webmanifest?v=5">
 
-    <!-- Variantes PNG -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3" />
-
-    <link rel="icon" type="image/png" href="/favicon.png?v=3">
-
-    <!-- Apple/iOS -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-    
-    <!-- Pinned tab (barre latérale / favoris Safari) -->
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#ffd60a">
-
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0b0e14">
     <Seo title={title} />
 
