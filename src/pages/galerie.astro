@@ -1,6 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import photos from "../content/gallery.json";
+import { withBase } from "../utils/paths";
+
+// Normalise les chemins (local → withBase, externe → inchangé)
+const items = (Array.isArray(photos) ? photos : []).map((p) => {
+  const raw = String(p?.src || "").trim();
+  const isExternal = /^(https?:)?\/\//i.test(raw) || /^[a-z]+:/i.test(raw);
+  const src = isExternal ? raw : withBase(raw.replace(/^\//, ""));
+  return {
+    src,
+    alt: p?.alt || "Nevrosyne — photo",
+  };
+});
 ---
 <BaseLayout title="Galerie — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Galerie</h1>
@@ -9,14 +21,20 @@ import photos from "../content/gallery.json";
 
   <!-- Grille responsive -->
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    {photos.map((p) => (
+    {items.map((p) => (
       <button
+        type="button"
         class="group relative rounded-lg overflow-hidden border border-zinc-800 focus:outline-none focus:ring-2 focus:ring-acid-400"
         data-full={p.src}
         aria-label={`Agrandir ${p.alt}`}
       >
-        <img src={p.src} alt={p.alt}
-             class="w-full h-40 md:h-48 object-cover transition-transform group-hover:scale-105" />
+        <img
+          src={p.src}
+          alt={p.alt}
+          loading="lazy"
+          decoding="async"
+          class="w-full h-40 md:h-48 object-cover transition-transform group-hover:scale-105"
+        />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
       </button>
     ))}
@@ -27,13 +45,14 @@ import photos from "../content/gallery.json";
     <div class="relative">
       <img id="lightbox-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] object-contain" />
       <button id="lightbox-close"
+              type="button"
               class="absolute top-2 right-2 px-3 py-1 rounded-md bg-coal-800/80 border border-zinc-700 hover:bg-coal-700">
         Fermer
       </button>
     </div>
   </dialog>
 
-  <!-- Script minimal (client:load) -->
+  <!-- Script minimal -->
   <script is:raw>
     document.addEventListener("DOMContentLoaded", () => {
       const dlg = document.getElementById("lightbox");
@@ -45,18 +64,13 @@ import photos from "../content/gallery.json";
           const src = btn.getAttribute("data-full");
           const alt = btn.querySelector("img")?.getAttribute("alt") || "";
           img.src = src; img.alt = alt;
-          // @ts-ignore
           dlg.showModal?.();
         });
       });
 
       closeBtn.addEventListener("click", () => dlg.close());
-      dlg.addEventListener("click", (e) => {
-        if (e.target === dlg) dlg.close(); // clic en dehors
-      });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && dlg.open) dlg.close();
-      });
+      dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && dlg.open) dlg.close(); });
     });
   </script>
 </BaseLayout>

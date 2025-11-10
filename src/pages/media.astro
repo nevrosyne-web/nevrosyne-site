@@ -3,31 +3,70 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTube from "../components/YouTube.astro";
 import Bandcamp from "../components/Bandcamp.astro";
 import media from "../content/media.json";
+import { withBase } from "../utils/paths";
 
 // sécurité minimale
 const audios = Array.isArray(media.audios) ? media.audios : [];
 const videos = Array.isArray(media.videos) ? media.videos : [];
+
+// Normalisation: YouTube inchangé ; fichier local → src préfixé par la base
+const normVideos = videos.map((v) => {
+  if (v?.provider === "file" || v?.provider === "local") {
+    const raw = String(v.src || "").trim();
+    return { ...v, src: withBase(raw.replace(/^\//, "")) };
+  }
+  return v; // youtube, vimeo, etc.
+});
+
+// (Optionnel) audios si un jour tu ajoutes des fichiers audio locaux
+const normAudios = audios.map((a) => {
+  if (a?.provider === "file" || a?.provider === "local") {
+    const raw = String(a.src || "").trim();
+    return { ...a, src: withBase(raw.replace(/^\//, "")) };
+  }
+  return a; // bandcamp, etc.
+});
 ---
 <BaseLayout title="Médias — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Médias</h1>
 
-<!--   {audios.length > 0 && (
+  <!--
+  {normAudios.length > 0 && (
     <section class="space-y-4 mb-10">
       <h2 class="text-xl font-semibold">Écouter</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {audios.map((a) => (
-          a.provider === "bandcamp" && <Bandcamp embedUrl={a.embedUrl} title={a.title} />
+        {normAudios.map((a) => (
+          a.provider === "bandcamp"
+            ? <Bandcamp embedUrl={a.embedUrl} title={a.title} />
+            : a.provider === "file" || a.provider === "local"
+              ? (
+                <audio controls preload="metadata" class="w-full rounded-xl border border-zinc-800">
+                  <source src={a.src} type={a.mime || "audio/mpeg"} />
+                  Votre navigateur ne supporte pas l’audio.
+                </audio>
+              )
+              : null
         ))}
       </div>
     </section>
-  )} -->
+  )}
+  -->
 
-  {videos.length > 0 && (
+  {normVideos.length > 0 && (
     <section class="space-y-4">
       <h2 class="text-xl font-semibold">Extraits concerts live</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {videos.map((v) => (
-          v.provider === "youtube" && <YouTube id={v.id} title={v.title} />
+        {normVideos.map((v) => (
+          v.provider === "youtube"
+            ? <YouTube id={v.id} title={v.title} />
+            : (v.provider === "file" || v.provider === "local")
+              ? (
+                <video controls preload="metadata" class="w-full rounded-xl border border-zinc-800">
+                  <source src={v.src} type={v.mime || "video/mp4"} />
+                  Votre navigateur ne supporte pas la vidéo.
+                </video>
+              )
+              : null
         ))}
       </div>
     </section>

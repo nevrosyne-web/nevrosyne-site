@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
 ---
 <BaseLayout title="Contact — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Contact</h1>
   <form
     name="contact"
     method="POST"
-    action="/contact-success"
+    action={withBase("contact-success")}
     data-netlify="true"
     netlify-honeypot="bot-field"
     class="space-y-4 max-w-xl"

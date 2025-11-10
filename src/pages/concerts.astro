@@ -1,16 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import showsData from "../content/concerts.json";
+import { withBase } from "../utils/paths";
 
 // util: sécurise une chaîne (espaces/() etc.)
-const enc = (s) => typeof s === "string" ? encodeURI(s) : s;
+const enc = (s) => (typeof s === "string" ? encodeURI(s) : s);
+const isExternal = (u) => typeof u === "string" && /^(https?:)?\/\//i.test(u || "");
 
-const today = new Date().toISOString().slice(0,10);
-const fallbackPoster = "/affiches/default.png";
+// liens internes → avec base, externes → inchangés
+const hrefWithBase = (u, fallback = "") => {
+  if (!u) return withBase(fallback);
+  return isExternal(u) ? u : withBase(String(u).replace(/^\//, ""));
+};
+
+const today = new Date().toISOString().slice(0, 10);
+const fallbackPoster = withBase("affiches/default.png");
 
 // normalise les champs utiles
 const allShows = (Array.isArray(showsData) ? showsData : []).map((s) => {
-  const poster = s.poster && String(s.poster).trim().length ? enc(s.poster) : "";
+  // poster: si chemin local → withBase, si externe (http/https) → inchangé
+  const rawPoster = s.poster && String(s.poster).trim();
+  const poster =
+    rawPoster
+      ? (isExternal(rawPoster) ? enc(rawPoster) : withBase(String(rawPoster).replace(/^\//, "")))
+      : "";
+
   return {
     date: s.date,
     city: s.city,
@@ -46,18 +60,17 @@ const pastYears = Object.keys(pastByYear).sort((a, b) => b.localeCompare(a)); //
   {upcoming.length === 0 ? (
     <p class="opacity-80">
       Aucune date annoncée pour le moment. Abonne-toi à la
-      <a class="underline underline-offset-4" href="/newsletter">newsletter</a>.
+      <a class="underline underline-offset-4" href={withBase("newsletter")}>newsletter</a>.
     </p>
   ) : (
     <ul class="space-y-4 mb-12">
       {upcoming.map((s) => {
-        const hasPoster = !!s.poster;
-        const posterSrc = hasPoster ? s.poster : fallbackPoster;
+        const posterSrc = s.poster || fallbackPoster;
         return (
           <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex gap-4">
             <div class="w-32 md:w-40 flex-shrink-0 rounded-lg overflow-hidden border border-zinc-800 bg-black/40">
               <img
-                src={(s.poster && enc(s.poster)) || fallbackPoster}
+                src={posterSrc}
                 alt={s.posterAlt}
                 loading="lazy"
                 decoding="async"
@@ -73,13 +86,13 @@ const pastYears = Object.keys(pastByYear).sort((a, b) => b.localeCompare(a)); //
 
               <div class="mt-3 flex flex-wrap gap-2">
                 {s.link && (
-                  <a href={s.link}
+                  <a href={hrefWithBase(s.link, "concerts")}
                      class="px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">
                     Infos
                   </a>
                 )}
                 {s.ticketUrl && (
-                  <a href={s.ticketUrl}
+                  <a href={hrefWithBase(s.ticketUrl)}
                      class="px-4 py-2 rounded-lg border border-acid-400/60 hover:border-acid-400">
                     Billetterie
                   </a>
@@ -111,13 +124,12 @@ const pastYears = Object.keys(pastByYear).sort((a, b) => b.localeCompare(a)); //
             <ul class="px-4 pb-4 space-y-4">
               {
                 pastByYear[year].map((s) => {
-                  const hasPoster = !!s.poster;
-                  const posterSrc = hasPoster ? s.poster : fallbackPoster;
+                  const posterSrc = s.poster || fallbackPoster;
                   return (
                     <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex gap-4">
                       <div class="w-24 md:w-32 flex-shrink-0 rounded-lg overflow-hidden border border-zinc-800 bg-black/40">
                         <img
-                          src={(s.poster && enc(s.poster)) || fallbackPoster}
+                          src={posterSrc}
                           alt={s.posterAlt}
                           loading="lazy"
                           decoding="async"
@@ -133,7 +145,7 @@ const pastYears = Object.keys(pastByYear).sort((a, b) => b.localeCompare(a)); //
 
                         <div class="mt-3 flex flex-wrap gap-2">
                           {s.link && (
-                            <a href={s.link}
+                            <a href={hrefWithBase(s.link, "concerts")}
                                class="px-3 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700 text-sm">
                               Infos
                             </a>
