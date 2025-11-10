@@ -1,56 +1,33 @@
-/* Tailwind v4 core + plugins */
+/* Tailwind v4 core + plugins (ordre important) */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
 
-/* ===== THEME (v4, sans tailwind.config) ===== */
+/* Thème (génère bg-ink-900, bg-coal-800, etc.) */
 @theme {
-  /* Fonts */
   --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
   --font-display: "Bebas Neue", Impact, sans-serif;
 
-  /* Couleurs “rock sombre” */
-  --color-ink-900: #0b0e14;  /* fond très sombre */
-  --color-coal-800: #20242d; /* panneaux */
+  --color-ink-900: #0b0e14;
+  --color-coal-800: #20242d;
   --color-coal-700: #2a2f3a;
-  --color-acid-400: #4cc9f0; /* néon turquoise */
+  --color-acid-400: #4cc9f0;
   --color-acid-500: #2ec5ff;
-  --color-flame-400: #ff5a54; /* rouge accent */
+  --color-flame-400: #ff5a54;
   --color-flame-500: #ff3b30;
 }
 
-/* Optionnel: styles globaux */
-html, body {
-  scroll-behavior: smooth;
-}
+/* Scroll doux global */
+html, body { scroll-behavior: smooth; }
 
-/* === Bande galerie horizontale scrollable === */
+/* Bande galerie */
 .gallery-scroll{
-  display:flex;
-  gap:1rem;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scroll-behavior:smooth;
-  -webkit-overflow-scrolling:touch;
-  /* Était: scroll-snap-type:x mandatory;  → Safari peut “bloquer” */
-  scroll-snap-type:x proximity;
-  padding-bottom:0.25rem;
+  display:flex; gap:1rem; overflow-x:auto; overflow-y:hidden;
+  scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity; padding-bottom:.25rem;
 }
-.gallery-scroll.is-auto{
-  /* on coupe le snap pendant l'auto-scroll pour éviter le frein Safari */
-  scroll-snap-type: none;
-  scroll-behavior: auto; /* on coupe aussi le smooth pendant l’auto */
-}
-
+.gallery-scroll.is-auto{ scroll-snap-type:none; scroll-behavior:auto; }
 .gallery-scroll::-webkit-scrollbar{ display:none; }
 .gallery-scroll{ scrollbar-width:none; }
-
-.gallery-item{
-  width:300px;
-  aspect-ratio:16/9;
-  flex-shrink:0;           /* important pour Safari */
-  scroll-snap-align:start;
-}
-@media (min-width:768px){
-  .gallery-item{ width:420px; }
-}
+.gallery-item{ width:300px; aspect-ratio:16/9; flex-shrink:0; scroll-snap-align:start; }
+@media (min-width:768px){ .gallery-item{ width:420px; } }
