@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 512 512"
-     fill="currentColor">
-  <!-- Cercle de fond -->
-  <circle cx="256" cy="256" r="240" stroke="none" />
-
-  <!-- Symbole central inspiré de Nevrosyne -->
-  <path d="M180 380 L180 130 L240 130 L320 280 L320 130 L370 130 L370 380 L310 380 L230 230 L230 380 Z" />
-
-  <!-- Accent décoratif -->
-  <path d="M120 260 Q256 80 392 260 Q256 440 120 260 Z" fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icône monochrome (Safari applique la couleur via 'mask-icon' -->
+  <!-- Contour cercle -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round" />
+  <!-- Spirale "dessinée" épaisse -->
+  <path fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"
+        d="M256 150
+           c-85 0-150 65-150 140
+           c0 55 45 100 100 100
+           c50 0 90-35 90-80
+           c0-40-35-70-75-70
+           c-32 0-58 22-58 50
+           c0 24 18 42 42 42
+           c18 0 32-12 32-28
+           c0-14-12-26-26-26" />
+  <!-- Petit tourbillon central -->
+  <path fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"
+        d="M256 256
+           c22 0 40 18 40 36
+           c0 18-16 32-34 32
+           c-20 0-34-14-34-30
+           c0-18 14-38 38-38" />
 </svg>
