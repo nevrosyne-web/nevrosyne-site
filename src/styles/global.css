@@ -24,44 +24,33 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* === Bandeau galerie défilant === */
-.strip-marquee {
-  --speed: 60s;       /* + long = + lent, ajuste selon le nombre d’images */
-  --gap: 1rem;
-  overflow: hidden;
-  position: relative;
+/* === Bande galerie horizontale scrollable === */
+.gallery-scroll{
+  display:flex;
+  gap:1rem;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  /* Était: scroll-snap-type:x mandatory;  → Safari peut “bloquer” */
+  scroll-snap-type:x proximity;
+  padding-bottom:0.25rem;
+}
+.gallery-scroll.is-auto{
+  /* on coupe le snap pendant l'auto-scroll pour éviter le frein Safari */
+  scroll-snap-type: none;
+  scroll-behavior: auto; /* on coupe aussi le smooth pendant l’auto */
 }
 
-.strip-marquee::before,
-.strip-marquee::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(to right, #0b0e14, transparent 8%, transparent 92%, #0b0e14);
-}
+.gallery-scroll::-webkit-scrollbar{ display:none; }
+.gallery-scroll{ scrollbar-width:none; }
 
-.marquee-track {
-  display: flex;
-  gap: var(--gap);
-  width: max-content;
-  animation: strip-slide var(--speed) linear infinite;
+.gallery-item{
+  width:300px;
+  aspect-ratio:16/9;
+  flex-shrink:0;           /* important pour Safari */
+  scroll-snap-align:start;
 }
-.strip-marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-
-@keyframes strip-slide {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+@media (min-width:768px){
+  .gallery-item{ width:420px; }
 }

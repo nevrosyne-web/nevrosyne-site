@@ -46,7 +46,7 @@ const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
           Voir les médias
         </a>
         <a href="/galerie" class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400/80">
-          Gallerie
+          Galerie
         </a>
       </div>
 
@@ -69,16 +69,15 @@ const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
     </div>
   </section>
 
-<!-- STRIP GALERIE — toutes les images, défilement infini -->
-{galleryStrip.length > 0 && (
-  <section class="mt-14">
-    <div class="strip-marquee">
-      <div class="marquee-track">
-        {galleryStrip.concat(galleryStrip).map((p, i) => (
+  <!-- GALERIE — bande scrollable (souris / doigt) -->
+  {galleryStrip.length > 0 && (
+    <section class="mt-14">
+      <div id="gallery-scroll" class="gallery-scroll">
+        {galleryStrip.map((p, i) => (
           <a
             href="/galerie"
             key={i}
-            class="group relative block flex-shrink-0 aspect-[16/9] w-[300px] md:w-[420px] rounded-xl overflow-hidden border border-zinc-800"
+            class="gallery-item group relative block flex-shrink-0 rounded-xl overflow-hidden border border-zinc-800"
           >
             <img
               src={p.src}
@@ -90,9 +89,92 @@ const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
           </a>
         ))}
       </div>
-    </div>
-  </section>
-)}
+    </section>
+
+<script is:raw>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("gallery-scroll");
+    if (!el) return;
+
+    // Réglages
+    const IDLE_MS = 2000;       // délai d'inactivité avant auto
+    const STEP_PX = 1.5;        // vitesse (px / tick)
+    const TICK_MS = 16;         // ~60 fps
+    const RESUME_MS = 900;      // petite fenêtre de calme avant reprise
+    const RESPECT_REDUCED = false; // mets true si tu veux respecter la préférence système
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let auto = null;    // setInterval id
+    let idle = null;    // setTimeout id
+    let lastUser = 0;
+
+    const canScroll = () => el.scrollWidth > el.clientWidth;
+    const startAuto = () => {
+      if (auto || !canScroll()) return;
+      if (RESPECT_REDUCED && reduced) return;
+
+      // coupe le snap/smooth pendant l’auto pour éviter les “freins” Safari
+      el.classList.add("is-auto");
+
+      auto = setInterval(() => {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max <= 0) return;
+        if (el.scrollLeft >= max - STEP_PX) {
+          el.scrollLeft = 0;  // retour sans smooth
+          return;
+        }
+        el.scrollLeft += STEP_PX;
+      }, TICK_MS);
+    };
+
+    const stopAuto = () => {
+      if (auto) { clearInterval(auto); auto = null; }
+      // on remet le snap/smooth pour l’utilisateur
+      el.classList.remove("is-auto");
+    };
+
+    const scheduleAuto = () => {
+      if (idle) clearTimeout(idle);
+      idle = setTimeout(startAuto, IDLE_MS);
+    };
+
+    const userInteracted = () => {
+      lastUser = Date.now();
+      stopAuto();
+      // évite de relancer trop vite après un geste
+      if (idle) clearTimeout(idle);
+      idle = setTimeout(() => {
+        // si l'utilisateur n'a pas retouché depuis RESUME_MS, on redémarre
+        if (Date.now() - lastUser >= RESUME_MS) startAuto();
+      }, IDLE_MS);
+    };
+
+    // Molette verticale → scroll horizontal
+    el.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+      userInteracted();
+    }, { passive: false });
+
+    // Touch / drag / clavier
+    ["touchstart","touchmove","pointerdown","pointermove","keydown"].forEach(evt => {
+      el.addEventListener(evt, userInteracted, { passive: true });
+    });
+
+    // Visibilité onglet
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { stopAuto(); }
+      else { scheduleAuto(); }
+    });
+
+    // Démarrage
+    scheduleAuto();
+  });
+</script>
+    
+  )}
 
   <!-- PROCHAINES DATES (3) -->
   <section class="mt-14">
@@ -155,4 +237,5 @@ const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
       Nous écrire
     </a>
   </section>
+
 </BaseLayout>
