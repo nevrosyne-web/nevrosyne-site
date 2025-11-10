@@ -19,14 +19,14 @@ export function loadSetlist(): SetItem[] {
   const here = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
     // Relatif au fichier source (quand ça marche)
-    path.resolve(here, "../content/setList.xlsx"),
-    path.resolve(here, "../content/setlist.xlsx"),
+    path.resolve(here, "../content/setListNevro.xlsx"),
+    path.resolve(here, "../content/setListNevro.xlsx"),
     // Relatif à la racine du projet (build/prerender, Netlify)
-    path.resolve(root, "src/content/setList.xlsx"),
-    path.resolve(root, "src/content/setlist.xlsx"),
+    path.resolve(root, "src/content/setListNevro.xlsx"),
+    path.resolve(root, "src/content/setListNevro.xlsx"),
     // Option: si tu préfères mettre le fichier dans /public
-    path.resolve(root, "public/setList.xlsx"),
-    path.resolve(root, "public/setlist.xlsx"),
+    path.resolve(root, "public/setListNevro.xlsx"),
+    path.resolve(root, "public/setListNevro.xlsx"),
   ];
 
   const found = candidates.find((p) => fs.existsSync(p));

@@ -6,7 +6,7 @@ import SetListTable from "../components/SetListTable.astro";
 import { loadSetlist } from "../lib/readSetList";
 
 // Charge le fichier Excel à la build
-const setList = loadSetlist(new URL("../content/setList.xlsx", import.meta.url));
+const setList = loadSetlist(new URL("../content/setListNevro.xlsx", import.meta.url));
 
 const services = [
   {
@@ -56,14 +56,14 @@ const services = [
           <li>Puissance façade adaptée à la salle</li>
         </ul>
       </div>
-      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
+<!--       <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
         <h4 class="font-semibold mb-2">Logistique</h4>
         <ul class="list-disc list-inside opacity-85 space-y-1">
           <li>Rider & contrat fournis</li>
           <li>Déplacement PACA & national</li>
           <li>Assurance RC pro</li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </section>
 

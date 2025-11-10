@@ -1,0 +1,17 @@
+{
+  "audios": [
+    {
+      "provider": "bandcamp",
+      "title": "EP — Nevrosyne",
+      "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/"
+    }
+  ],
+  "videos": [
+    { "provider": "youtube", "title": "Tainted Nevro Love", "id": "YE6cIhBlYJU" },
+    { "provider": "youtube", "title": "Class vioc 2024",  "id": "4ZEvCSdgBQw" },
+    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" },
+    { "provider": "youtube", "title": "Zombie Nevro",  "id": "MiEKBNBHBj4" },
+    { "provider": "youtube", "title": "Shadow without you",  "id": "nqyZ5uRnS_M" },
+    { "provider": "youtube", "title": "Shadow without you",  "id": "lP1GlWq0AkU" }
+  ]
+}

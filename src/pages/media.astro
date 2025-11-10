@@ -1,22 +1,35 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTube from "../components/YouTube.astro";
+import Bandcamp from "../components/Bandcamp.astro";
+import media from "../content/media.json";
 
-// 👉 Remplace par tes VRAIS IDs YouTube
-const videos = [
-  { id: "YE6cIhBlYJU", title: "Tainted Nevro Love" },
-  { id: "JsVPydqa_LQ", title: "Class vioc 2024" },
-];
+// sécurité minimale
+const audios = Array.isArray(media.audios) ? media.audios : [];
+const videos = Array.isArray(media.videos) ? media.videos : [];
 ---
 <BaseLayout title="Médias — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Médias</h1>
 
-  <section class="space-y-10">
-    <div>
-      <h2 class="text-xl font-semibold mb-3">Clips</h2>
+<!--   {audios.length > 0 && (
+    <section class="space-y-4 mb-10">
+      <h2 class="text-xl font-semibold">Écouter</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {videos.map(v => <YouTube id={v.id} title={v.title} />)}
+        {audios.map((a) => (
+          a.provider === "bandcamp" && <Bandcamp embedUrl={a.embedUrl} title={a.title} />
+        ))}
       </div>
-    </div>
-  </section>
+    </section>
+  )} -->
+
+  {videos.length > 0 && (
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold">Extraits concerts live</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {videos.map((v) => (
+          v.provider === "youtube" && <YouTube id={v.id} title={v.title} />
+        ))}
+      </div>
+    </section>
+  )}
 </BaseLayout>

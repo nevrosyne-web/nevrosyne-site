@@ -1,5 +1,11 @@
 [
   { "name": "La scene 2", "logo": "/clients/laScene.jpeg", "url": "https://www.lascene-aix.com/" },
   { "name": "Ville de Trets", "logo": "/clients/trets.png", "url": "https://www.trets.fr" },
-  { "name": "Le hangar Gréasque", "logo": "/clients/hangar.png", "url": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR" }
+  { "name": "Le hangar Gréasque", "logo": "/clients/hangar.png", "url": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR" },
+  { "name": "Yo's Brew Roquevaire", "logo": "/clients/YosBrew.png", "url": "https://www.facebook.com/YosBREWAubagne/?locale=fr_FR" },
+  { "name": "Ville de Gardanne", "logo": "/clients/gardanne.jpg", "url": "https://www.ville-gardanne.fr/" },
+  { "name": "Joke'R BAr Ambiant Auriol", "logo": "/clients/jocker.png", "url": "https://www.facebook.com/jokerbarambiant/?locale=fr_FR" },
+  { "name": "Les épicuriens de Puyloubier", "logo": "/clients/epicuriens.png", "url": "https://www.facebook.com/groups/3223652907682469" },
+  { "name": "Domaine Jas Monge", "logo": "/clients/jasMonge.png", "url": "https://jasmonges.com/" },
+  { "name": "Saint-Savournin Tennis Club", "logo": "/clients/tennisSaintSav.jpg", "url": "https://www.facebook.com/saintsavournintc/?locale=fr_FR" }
 ]
