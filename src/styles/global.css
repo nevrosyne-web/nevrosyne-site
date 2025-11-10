@@ -23,3 +23,45 @@
 html, body {
   scroll-behavior: smooth;
 }
+
+/* === Bandeau galerie défilant === */
+.strip-marquee {
+  --speed: 60s;       /* + long = + lent, ajuste selon le nombre d’images */
+  --gap: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.strip-marquee::before,
+.strip-marquee::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to right, #0b0e14, transparent 8%, transparent 92%, #0b0e14);
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--gap);
+  width: max-content;
+  animation: strip-slide var(--speed) linear infinite;
+}
+.strip-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes strip-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
