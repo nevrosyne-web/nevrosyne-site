@@ -1,34 +1,30 @@
 ---
-import { withBase } from "../utils/paths.ts";
+import { withBase } from "../utils/paths";
+
 const links = [
-  { href: withBase("concerts"),    label: "Concerts" },
-  { href: withBase("media"),       label: "Médias" },
-  { href: withBase("galerie"),     label: "Galerie" },
-  { href: withBase("prestations"), label: "Prestations" },
-  { href: withBase("contact"),     label: "Contact" }//,
-  //{ href: "/newsletter",  label: "Newsletter" },
+  { href: "concerts",    label: "Concerts" },
+  { href: "media",       label: "Médias" },
+  { href: "galerie",     label: "Galerie" },
+  { href: "prestations", label: "Prestations" },
+  { href: "contact",     label: "Contact" },
 ];
 ---
 <header class="sticky top-0 z-50 bg-ink-900/85 backdrop-blur border-b border-zinc-800">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <!-- Logo / titre -->
-<!--     <a href={withBase("")} class="text-3xl font-extrabold tracking-wide font-display leading-none">
-      NEVROSYNE 5CH
-    </a> -->
-    <!-- Logo image -->
     <a href={withBase("")} class="flex items-center gap-3 group" aria-label="Accueil — Nevrosyne">
       <img
         src={withBase("logo 10_sansFond.png")}
         alt="Nevrosyne"
         width="176" height="40"
-        class="h-14 w-auto transition-transform group-hover:scale-105 drop-shadow-[0_0_6px_rgba(76,201,240,0.45)]"
-      />
+        class="h-14 w-auto transition-transform group-hover:scale-105 drop-shadow-[0_0_6px_rgba(76,201,240,0.45)]" />
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex gap-6 text-sm">
       {links.map(l => (
-        <a class="opacity-80 hover:opacity-100 hover:underline underline-offset-4" href={l.href}>
+        <a class="opacity-80 hover:opacity-100 hover:underline underline-offset-4"
+           href={withBase(l.href)}>
           {l.label}
         </a>
       ))}
@@ -36,24 +32,15 @@ const links = [
 
     <!-- Mobile toggle -->
     <details class="md:hidden">
-      <summary
-        class="list-none p-2 rounded-lg border border-zinc-800 hover:border-acid-400/70 hover:text-acid-400 cursor-pointer"
-        aria-label="Ouvrir le menu"
-      >
-        <!-- Icône burger -->
+      <summary class="list-none p-2 rounded-lg border border-zinc-800 hover:border-acid-400/70 hover:text-acid-400 cursor-pointer" aria-label="Ouvrir le menu">
         <svg viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
           <path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
         </svg>
       </summary>
-      <div
-        class="mt-3 absolute right-4 left-4 rounded-xl border border-zinc-800 bg-coal-800/95 shadow-lg"
-      >
+      <div class="mt-3 absolute right-4 left-4 rounded-xl border border-zinc-800 bg-coal-800/95 shadow-lg">
         <nav class="flex flex-col py-2">
           {links.map(l => (
-            <a
-              href={l.href}
-              class="px-4 py-3 border-b border-zinc-800/60 last:border-b-0 hover:bg-coal-700/60"
-            >
+            <a href={withBase(l.href)} class="px-4 py-3 border-b border-zinc-800/60 last:border-b-0 hover:bg-coal-700/60">
               {l.label}
             </a>
           ))}
