@@ -1,14 +1,60 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
 ---
-<BaseLayout title="404 — Page introuvable">
-  <section class="min-h-[50vh] grid place-items-center text-center">
-    <div class="space-y-4">
-      <h1 class="font-display text-7xl">404</h1>
-      <p class="opacity-80">Oups, cette page n’existe pas.</p>
-      <a href="/" class="inline-block px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
-        Revenir à l’accueil
-      </a>
+
+<BaseLayout title="404 — Rock perdu dans le vide">
+  <section
+    class="relative flex flex-col items-center justify-center text-center min-h-[75vh] overflow-hidden"
+  >
+    <!-- Fond animé -->
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900 via-coal-800 to-ink-900">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,201,240,0.08)_0%,transparent_70%)] animate-pulse"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[url('/textures/noise.png')] opacity-10 mix-blend-overlay"
+      ></div>
     </div>
+
+    <!-- Image centrale -->
+    <img
+      src={withBase("gallery/404_quesako.jpg")}
+      alt="Guitare électrique — Erreur 404"
+      class="relative z-10 w-60 md:w-80 animate-[wiggle_2s_infinite] drop-shadow-[0_0_25px_rgba(76,201,240,0.4)]"
+      loading="lazy"
+    />
+
+    <!-- Texte -->
+    <h1 class="relative z-10 mt-8 text-5xl md:text-6xl font-display text-acid-400 drop-shadow-[0_0_10px_rgba(76,201,240,0.6)]">
+      Erreur 404
+    </h1>
+    <p class="relative z-10 mt-2 text-lg text-zinc-300 max-w-md">
+      Même nos amplis à fond n’ont pas trouvé cette page.<br />
+      Elle s’est peut-être perdue dans le brouillard du rock.
+    </p>
+
+    <!-- Bouton retour -->
+    <a
+      href={withBase("")}
+      class="relative z-10 inline-block mt-8 px-6 py-3 rounded-xl border border-acid-400 text-acid-400 hover:bg-acid-400 hover:text-ink-900 transition font-semibold"
+    >
+      Retour à l’accueil
+    </a>
+
+    <!-- Éclairs décoratifs -->
+    <svg class="absolute top-10 left-16 w-16 h-16 text-acid-400/30 rotate-12" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7 2v11h3v9l7-12h-4l3-8z" />
+    </svg>
+    <svg class="absolute bottom-10 right-16 w-20 h-20 text-acid-400/25 -rotate-12" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7 2v11h3v9l7-12h-4l3-8z" />
+    </svg>
   </section>
+
+  <style>
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-2deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.02); }
+    }
+  </style>
 </BaseLayout>
