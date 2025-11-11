@@ -19,6 +19,7 @@
     { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" }
   ],
   "repets": [
-    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "akJbNe0xp0E" }
+    { "provider": "youtube", "title": "repet1",  "id": "akJbNe0xp0E" },
+    { "provider": "youtube", "title": "repet2",  "id": "ArK5deKn9Gw" }
   ]
 }
