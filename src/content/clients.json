@@ -1,6 +1,7 @@
 [
   { "name": "Le hangar Gréasque", "logo": "clients/hangar.png", "url": "https://www.facebook.com/profile.php?id=100057219649468&locale=fr_FR" },
   { "name": "La scene 2", "logo": "clients/laScene.jpeg", "url": "https://www.lascene-aix.com/" },
+  { "name": "Le 6mic", "logo": "clients/6mic.png", "url": "https://www.6mic-aix.fr/" },
   { "name": "Ville de Trets", "logo": "clients/trets.png", "url": "https://www.trets.fr" },
   { "name": "Ville d'Aix-en-Provence", "logo": "clients/aix.png", "url": "https://www.aixenprovence.fr/" },
   { "name": "Yo's Brew Roquevaire", "logo": "clients/YosBrew.png", "url": "https://www.facebook.com/YosBREWAubagne/?locale=fr_FR" },
