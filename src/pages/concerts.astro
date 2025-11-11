@@ -171,7 +171,8 @@ const pastYears = Object.keys(pastByYear).sort((a, b) => b.localeCompare(a)); //
     document.addEventListener("DOMContentLoaded", () => {
       const dlg = document.getElementById("poster-lightbox");
       const img = document.getElementById("poster-lightbox-img");
-      document.querySelectorAll('img[alt*="Nevrosyne"], img[alt*="—"]').forEach(el => {
+      // Ne cible que les images à l'intérieur du contenu principal (pas le header/nav)
+      document.querySelectorAll('main img[alt*="Nevrosyne"], main img[alt*="—"]').forEach(el => {
         el.style.cursor = "zoom-in";
         el.addEventListener("click", () => {
           img.src = el.src;
