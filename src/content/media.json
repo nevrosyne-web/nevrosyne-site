@@ -6,12 +6,19 @@
       "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/"
     }
   ],
-  "videos": [
+  "lives": [
     { "provider": "youtube", "title": "Tainted Nevro Love", "id": "YE6cIhBlYJU" },
-    { "provider": "youtube", "title": "Class vioc 2024",  "id": "4ZEvCSdgBQw" },
-    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" },
+    { "provider": "youtube", "title": "GRF3 Nevro Boys", "id": "kVXLtiuWbNY" },
+    { "provider": "youtube", "title": "Class vioc 2024",  "id": "JsVPydqa_LQ" },
     { "provider": "youtube", "title": "Zombie Nevro",  "id": "MiEKBNBHBj4" },
     { "provider": "youtube", "title": "Shadow without you",  "id": "nqyZ5uRnS_M" },
-    { "provider": "youtube", "title": "Shadow without you",  "id": "lP1GlWq0AkU" }
+    { "provider": "youtube", "title": "J't'emmene Nevro version",  "id": "L4l7QOMDLFI" },
+    { "provider": "youtube", "title": "Mix la Scene2",  "id": "lP1GlWq0AkU" }
+  ],
+  "compos": [
+    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" }
+  ],
+  "repets": [
+    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "akJbNe0xp0E" }
   ]
 }

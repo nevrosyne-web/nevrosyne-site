@@ -7,16 +7,22 @@ import { withBase } from "../utils/paths";
 
 // sécurité minimale
 const audios = Array.isArray(media.audios) ? media.audios : [];
-const videos = Array.isArray(media.videos) ? media.videos : [];
+const lives  = Array.isArray(media.lives)  ? media.lives  : [];
+const compos  = Array.isArray(media.compos)  ? media.compos  : [];
+const repets = Array.isArray(media.repets) ? media.repets : [];
 
-// Normalisation: YouTube inchangé ; fichier local → src préfixé par la base
-const normVideos = videos.map((v) => {
-  if (v?.provider === "file" || v?.provider === "local") {
-    const raw = String(v.src || "").trim();
-    return { ...v, src: withBase(raw.replace(/^\//, "")) };
-  }
-  return v; // youtube, vimeo, etc.
-});
+// Normalise les chemins pour les fichiers locaux (mp4/jpg dans /public)
+function normalize(list) {
+  return list.map((v) => {
+    if (v?.provider === "file" || v?.provider === "local") {
+      const raw = String(v.src || "").trim();
+      const src = withBase(raw.replace(/^\//, ""));
+      const poster = v.poster ? withBase(String(v.poster).replace(/^\//, "")) : undefined;
+      return { ...v, src, poster };
+    }
+    return v; // youtube, vimeo, etc.
+  });
+}
 
 // (Optionnel) audios si un jour tu ajoutes des fichiers audio locaux
 const normAudios = audios.map((a) => {
@@ -26,6 +32,10 @@ const normAudios = audios.map((a) => {
   }
   return a; // bandcamp, etc.
 });
+
+const normLives  = normalize(lives);
+const normCompo  = normalize(compos);
+const normRepets = normalize(repets);
 ---
 <BaseLayout title="Médias — Nevrosyne">
   <h1 class="text-3xl font-bold mb-6">Médias</h1>
@@ -52,16 +62,74 @@ const normAudios = audios.map((a) => {
   )}
   -->
 
-  {normVideos.length > 0 && (
-    <section class="space-y-4">
-      <h2 class="text-xl font-semibold">Extraits concerts live</h2>
+  <!-- ===== LIVES ===== -->
+  {normLives.length > 0 && (
+    <section class="space-y-4 mb-12" id="lives">
+      <h2 class="text-xl font-semibold">Nevro Lives</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {normVideos.map((v) => (
+        {normLives.map((v) => (
           v.provider === "youtube"
             ? <YouTube id={v.id} title={v.title} />
             : (v.provider === "file" || v.provider === "local")
               ? (
-                <video controls preload="metadata" class="w-full rounded-xl border border-zinc-800">
+                <video
+                  controls
+                  preload="metadata"
+                  poster={v.poster}
+                  class="w-full rounded-xl border border-zinc-800"
+                >
+                  <source src={v.src} type={v.mime || "video/mp4"} />
+                  Votre navigateur ne supporte pas la vidéo.
+                </video>
+              )
+              : null
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ===== COMPOS ===== -->
+  {normCompo.length > 0 && (
+    <section class="space-y-4 mb-12" id="clips">
+      <h2 class="text-xl font-semibold">Nevro compos</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {normCompo.map((v) => (
+          v.provider === "youtube"
+            ? <YouTube id={v.id} title={v.title} />
+            : (v.provider === "file" || v.provider === "local")
+              ? (
+                <video
+                  controls
+                  preload="metadata"
+                  poster={v.poster}
+                  class="w-full rounded-xl border border-zinc-800"
+                >
+                  <source src={v.src} type={v.mime || "video/mp4"} />
+                  Votre navigateur ne supporte pas la vidéo.
+                </video>
+              )
+              : null
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ===== REPETS ===== -->
+  {normRepets.length > 0 && (
+    <section class="space-y-4" id="repets">
+      <h2 class="text-xl font-semibold">Nevro Répéts</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {normRepets.map((v) => (
+          v.provider === "youtube"
+            ? <YouTube id={v.id} title={v.title} />
+            : (v.provider === "file" || v.provider === "local")
+              ? (
+                <video
+                  controls
+                  preload="metadata"
+                  poster={v.poster}
+                  class="w-full rounded-xl border border-zinc-800"
+                >
                   <source src={v.src} type={v.mime || "video/mp4"} />
                   Votre navigateur ne supporte pas la vidéo.
                 </video>
