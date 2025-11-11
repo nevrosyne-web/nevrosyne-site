@@ -1,45 +1,112 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../utils/paths";
+
+const successUrl = withBase("contact-success");
+
+// ⚠️ remplace bien par tes IDs Google Forms :
+const FORM_RESPONSE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfJjgT1u9m1VeLQzY_UIZs4qI3U9_553JfseTGmJjiJmM384w/formResponse";
+const ENTRY_NAME    = "entry.31609229";
+const ENTRY_EMAIL   = "entry.1537897944";
+const ENTRY_MESSAGE = "entry.1740234325";
 ---
-<BaseLayout title="Contact — Nevrosyne">
+<BaseLayout title="Contact — Nevrosyne 5ch">
   <h1 class="text-3xl font-bold mb-6">Contact</h1>
+
+  <!-- Iframe invisible: cible du POST ; on écoute son "load" pour rediriger -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
   <form
-    name="contact"
+    id="contact-form"
+    action={FORM_RESPONSE_URL}
     method="POST"
-    action={withBase("contact-success")}
-    data-netlify="true"
-    netlify-honeypot="bot-field"
+    target="hidden_iframe"
+    referrerpolicy="no-referrer"
+    data-success={successUrl}
     class="space-y-4 max-w-xl"
   >
-    <!-- Champs requis Netlify -->
-    <input type="hidden" name="form-name" value="contact" />
-    <p class="hidden">
-      <label>Ne pas remplir: <input name="bot-field" /></label>
+    <!-- Honeypot anti-bot (champ non mappé) -->
+    <p class="hidden" aria-hidden="true">
+      <label>Ne pas remplir: <input name="honeypot" autocomplete="off" /></label>
     </p>
 
+    <!-- CHAMPS VISIBLES (nommés directement avec les entry.* Google) -->
     <div>
-      <label class="block text-sm mb-1">Nom</label>
-      <input class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700" type="text" name="name" required />
+      <label class="block text-sm mb-1" for="name">Nom</label>
+      <input
+        id="name"
+        name={ENTRY_NAME}
+        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+        type="text"
+        required
+      />
     </div>
+
     <div>
-      <label class="block text-sm mb-1">Email</label>
-      <input class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700" type="email" name="email" required />
+      <label class="block text-sm mb-1" for="email">Email</label>
+      <input
+        id="email"
+        name={ENTRY_EMAIL}
+        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+        type="email"
+        required
+      />
     </div>
+
     <div>
-      <label class="block text-sm mb-1">Message</label>
-      <textarea class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700" name="message" rows="6" required></textarea>
+      <label class="block text-sm mb-1" for="message">Message</label>
+      <textarea
+        id="message"
+        name={ENTRY_MESSAGE}
+        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+        rows="6"
+        required
+      ></textarea>
     </div>
+
+    <!-- Champs structurels Google (facultatifs) -->
+    <input type="hidden" name="fvv" value="1" />
+    <input type="hidden" name="draftResponse" value="[]" />
+    <input type="hidden" name="pageHistory" value="0" />
+    <input type="hidden" name="submit" value="Submit" />
 
     <button class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700" type="submit">
       Envoyer
     </button>
+
+    <p id="form-status" class="text-sm opacity-85"></p>
   </form>
 
-  <p class="mb-6">
-    Vous pouvez aussi nous écrire directement à
+  <p class="mt-6">
+    Tu peux aussi nous écrire directement à
     <a href="mailto:nevrosyne@gmail.com" class="underline hover:text-acid-400">
       nevrosyne@gmail.com
-    </a>
+    </a>.
   </p>
+
+  <!-- Script sans interpolation Astro: on lit data-success depuis le DOM -->
+  <script is:raw>
+    (function () {
+      const form   = document.getElementById("contact-form");
+      const iframe = document.getElementById("hidden_iframe");
+      const status = document.getElementById("form-status");
+
+      if (!form || !iframe) return;
+
+      let submitted = false;
+
+      form.addEventListener("submit", () => {
+        submitted = true;
+        if (status) status.textContent = "Envoi en cours…";
+      });
+
+      // Quand Google a répondu dans l'iframe → on redirige
+      iframe.addEventListener("load", () => {
+        if (!submitted) return; // ignore le premier load (montage)
+        try { form.reset(); } catch {}
+        const successUrl = form.dataset.success || "/";
+        window.location.href = successUrl;
+      });
+    })();
+  </script>
 </BaseLayout>
