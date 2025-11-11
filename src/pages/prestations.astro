@@ -5,6 +5,7 @@ import clients from "../content/clients.json";
 import SetListTable from "../components/SetListTable.astro";
 import { loadSetlist } from "../lib/readSetList";
 import { withBase } from "../utils/paths";
+import TechSheet from "../components/TechSheet.astro";
 
 // Charge le fichier Excel à la build (ok tel quel)
 const setList = loadSetlist(new URL("../content/setListNevro.xlsx", import.meta.url));
@@ -49,20 +50,42 @@ const services = [
     ))}
   </section>
 
-  <section class="mt-12">
-    <h3 class="text-lg font-semibold mb-3">Informations techniques</h3>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
-        <h4 class="font-semibold mb-2">Fiche technique (exemple)</h4>
-        <ul class="list-disc list-inside opacity-85 space-y-1">
-          <li>Line-up : chant, 2 guitares, basse, batterie</li>
-          <li>Besoin scène : 6×4 m min, 4 retours</li>
-          <li>Patch : 8–12 entrées</li>
-          <li>Puissance façade adaptée à la salle</li>
-        </ul>
-      </div>
+<section class="mt-12">
+  <h3 class="text-lg font-semibold mb-3">Informations techniques</h3>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- Encadré gauche : fiche technique texte -->
+    <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
+      <h4 class="font-semibold mb-3">Fiche technique</h4>
+      <ul class="list-disc list-inside opacity-85 space-y-1">
+        <li>Line-up : chant, 2 guitares, basse, batterie</li>
+        <li>Besoin scène : voir fiche technique</li>
+        <li>Patch : 16 voix min</li>
+        <li>Puissance façade adaptée à la salle</li>
+        <a
+          href={withBase("docs/ft-nevrosyne-5ch-2.0-3.pdf")}
+          target="_blank"
+          class="mt-4 inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700"
+        >
+        Télécharger la fiche technique en pdf
+      </a>
+      </ul>
     </div>
-  </section>
+
+    <!-- Encadré droit : vignette et lien PDF -->
+    <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800 flex flex-col items-center justify-center text-center">
+      <a href={withBase("docs/ft-nevrosyne-5ch-2.0-3.pdf")} target="_blank" class="group">
+        <img
+          src={withBase("docs/ft-nevrosyne-5ch-2.0-3-thumb.jpg")}
+          alt="Fiche technique Nevrosyne 5ch"
+          class="w-80 md:w-80 rounded-lg border border-zinc-700 shadow-lg group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+      </a>
+
+    </div>
+  </div>
+</section>
 
   <section class="mt-12">
     <h3 class="text-lg font-semibold mb-3">Ils nous ont fait confiance</h3>
