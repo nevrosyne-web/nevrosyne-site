@@ -7,6 +7,8 @@
     }
   ],
   "lives": [
+    { "provider": "youtube", "title": "Girls just want the Nevros !", "id": "ZDQRBLLRx6k" },
+    { "provider": "youtube", "title": "Born to be toi !", "id": "naLPKGXbDd8" },
     { "provider": "youtube", "title": "Tainted Nevro Love", "id": "YE6cIhBlYJU" },
     { "provider": "youtube", "title": "GRF3 Nevro Boys", "id": "kVXLtiuWbNY" },
     { "provider": "youtube", "title": "Class vioc 2024",  "id": "JsVPydqa_LQ" },
