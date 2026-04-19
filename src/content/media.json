@@ -7,21 +7,21 @@
     }
   ],
   "lives": [
-    { "provider": "youtube", "title": "Tainted Nevro Love", "id": "YE6cIhBlYJU" },
-    { "provider": "youtube", "title": "GRF3 Nevro Boys", "id": "kVXLtiuWbNY" },
-    { "provider": "youtube", "title": "Class vioc 2024",  "id": "JsVPydqa_LQ" },
-    { "provider": "youtube", "title": "Zombie Nevro",  "id": "MiEKBNBHBj4" },
-    { "provider": "youtube", "title": "Shadow without you",  "id": "nqyZ5uRnS_M" },
-    { "provider": "youtube", "title": "J't'emmene Nevro version",  "id": "L4l7QOMDLFI" },
-    { "provider": "youtube", "title": "Mix la Scene2",  "id": "lP1GlWq0AkU" },
-    { "provider": "youtube", "title": "Girls just want the Nevros !", "id": "ZDQRBLLRx6k" },
-    { "provider": "youtube", "title": "Born to be toi !", "id": "naLPKGXbDd8" }
+    { "provider": "youtube", "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Tainted Love version", "id": "YE6cIhBlYJU" },
+    { "provider": "youtube", "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Boys Don't Cry version", "id": "kVXLtiuWbNY" },
+    { "provider": "youtube", "title": "Nevrosyne – Final du Class'viock à Aix-en-Provence (2024) - War Pig / Paranoid version",  "id": "JsVPydqa_LQ" },
+    { "provider": "youtube", "title": "Nevrosyne – Live au 6MIC à Aix-en-Provence (2023) – Zombie version",  "id": "MiEKBNBHBj4" },
+    { "provider": "youtube", "title": "Nevrosyne – Live à la Scene2 à Aix-en-Provence (2023) – Shadow of the Day / With or Yithout You version",  "id": "nqyZ5uRnS_M" },
+    { "provider": "youtube", "title": "Nevrosyne – Mariage live à Puyloubier (2024) – J't'emmene au vent version",  "id": "L4l7QOMDLFI" },
+    { "provider": "youtube", "title": "Nevrosyne – Live à la Scene2 à Aix-en-Provence (2023) – Killing in the Name",  "id": "lP1GlWq0AkU" },
+    { "provider": "youtube", "title": "Nevrosyne – Anniversaire Cowboy live à Allauch (2026) – Girls just want to have Fun version", "id": "ZDQRBLLRx6k" },
+    { "provider": "youtube", "title": "Nevrosyne – Anniversaire Cowboy live à Allauch (2026) – Ca c'est vraiment toi version", "id": "naLPKGXbDd8" }
   ],
   "compos": [
-    { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" }
+    { "provider": "youtube", "title": "Nevrosyne - Composition live (2022) - Goldfish",  "id": "9pPMCILFVOI" }
   ],
   "repets": [
-    { "provider": "youtube", "title": "repet1",  "id": "akJbNe0xp0E" },
-    { "provider": "youtube", "title": "repet2",  "id": "ArK5deKn9Gw" }
+    { "provider": "youtube", "title": "Nevrosyne – Répétition rock (2020) – extrait studio Muse",  "id": "akJbNe0xp0E" },
+    { "provider": "youtube", "title": "Nevrosyne – Répétition rock (2023) – extrait studio Personnal Jesus",  "id": "ArK5deKn9Gw" }
   ]
 }
