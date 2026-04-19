@@ -14,35 +14,56 @@ const nextShows = (Array.isArray(showsData) ? showsData : [])
   .sort((a,b) => a.date.localeCompare(b.date))
   .slice(0, 3);
 
-// Normalise les chemins d’images de la galerie avec la base
+// Galerie strip
 const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
   src: withBase(String(p.src || "").replace(/^\//, "")),
   alt: p.alt || "Nevrosyne 5ch en concert - groupe de rock à Marseille, Aix-en-Provence et en PACA",
 }));
 
-// Helper lien “Infos” (si s.link est externe on garde tel quel)
+// Lien infos
 const hrefInfos = (s) => {
   if (s?.link && /^(https?:)?\/\//i.test(s.link)) return s.link;
   return withBase(String(s?.link || "concerts").replace(/^\//, ""));
 };
 ---
+
 <BaseLayout 
   title="Nevrosyne 5ch — Groupe de rock approximatif à Marseille, Aix-en-Provence et en PACA" 
-  description="Nevrosyne 5ch est un groupe de rock approximatif basé entre Marseille et Aix-en-Provence. Reprises, adaptations, compositions originales et concerts live en région PACA.">
+  description="Nevrosyne 5ch est un groupe de rock approximatif basé entre Marseille et Aix-en-Provence. Reprises, adaptations, compositions originales et concerts live en région PACA."
+>
+
   <!-- HERO -->
   <section class="grid md:grid-cols-2 gap-10 items-center">
     <div class="space-y-6">
-      <p class="text-sm tracking-widest uppercase opacity-70">Groupe de rock approximatif • Marseille • Aix-en-Provence • PACA</p>
+      <p class="text-sm tracking-widest uppercase opacity-70">
+        Groupe de rock approximatif • Marseille • Aix-en-Provence • PACA
+      </p>
+
       <h1 class="font-display text-6xl md:text-7xl leading-none">
         NEVROSYNE 5CH
         <span class="sr-only">, groupe de rock approximatif à Marseille, Aix-en-Provence et en région PACA</span>
       </h1>
+<!-- 
       <p class="text-lg opacity-85">
-        Le seul et l'unique groupe officiel de rock approximatif de l'univers !
+        Le seul et l’unique groupe officiel de rock approximatif de l’univers !
       </p>
+
       <p class="text-lg opacity-85">
-        Toute l'énergie du live à travers des reprises, des adaptations musicales et des compositions originales pour lutter contre la sinistrose. Découvre les clips, les dates de concert et l'univers de Nevrosyne 5ch, groupe de rock basé entre Marseille et Aix-en-Provence.
+        Retrouve toute l’énergie du live à travers des reprises, des adaptations musicales et des compositions originales pour lutter contre la sinistrose.
+        Découvre les clips, les dates de concert et l’univers de Nevrosyne 5ch, groupe de rock basé entre Marseille et Aix-en-Provence.
+      </p> -->
+
+      <p class="text-lg opacity-85">
+        Du rock, du vrai (enfin… à peu près).
       </p>
+
+      <p class="text-lg opacity-85">
+        Reprises revisitées, adaptations improbables et compos originales :
+        Nevrosyne 5ch balance un live énergique, décalé et jamais vraiment sous contrôle.
+        Basé entre Marseille et Aix-en-Provence, le groupe joue en concert,
+        festival, mariage ou événement privé — bref, partout où il faut du son
+        pour réveiller les gens.
+      </p>      
 
       <div class="flex flex-wrap gap-3">
         <a href={withBase("concerts")} class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
@@ -56,7 +77,6 @@ const hrefInfos = (s) => {
         </a>
       </div>
 
-      <!-- Mini bar infos -->
       {nextShows.length > 0 && (
         <div class="mt-2 text-sm rounded-lg border border-zinc-800 bg-coal-800/50 p-3">
           <span class="opacity-70 mr-2">Prochaine date publique :</span>
@@ -67,7 +87,7 @@ const hrefInfos = (s) => {
       )}
     </div>
 
-    <!-- Clip en vedette -->
+    <!-- Clip -->
     <div class="relative">
       <YouTube id="YE6cIhBlYJU" title="Nevrosyne 5ch - clip officiel du groupe de rock" />
       <div class="pointer-events-none absolute inset-0 ring-1 ring-acid-400/15 rounded-xl"></div>
@@ -78,18 +98,41 @@ const hrefInfos = (s) => {
   <section class="mt-14">
     <div class="space-y-4">
       <p class="text-sm tracking-widest uppercase opacity-70">Qui sommes-nous ?</p>
-      <h2 class="text-2xl md:text-3xl font-bold">Nevrosyne 5ch, groupe de rock basé entre Marseille et Aix-en-Provence</h2>
+
+      <h2 class="text-2xl md:text-3xl font-bold">
+        Nevrosyne 5ch, groupe de rock basé entre Marseille et Aix-en-Provence
+      </h2>
+
       <p class="text-lg opacity-85">
-        Nevrosyne est un groupe de reprises, d’adaptations et de compositions aux influences rock, punk et alternatives, basé entre Marseille et Aix-en-Provence, actif sur toute la région PACA.
+        Nevrosyne 5ch, c’est un groupe de rock basé entre Marseille et Aix-en-Provence,
+        qui mélange reprises, adaptations et compositions avec une seule règle :
+        faire bouger les gens.
       </p>
+
       <p class="opacity-80">
-        Sur scène, Nevrosyne 5ch propose un univers énergique, décalé et festif, pensé pour faire bouger le public. Le groupe se produit en concert à Marseille, Aix-en-Provence et dans les environs, à l’occasion de festivals, soirées, événements publics ou privés. Et comme on aime le dire : pour lutter contre la sinistrose, prends ta dose de Nevrosyne 5ch.
+        Sur scène, c’est de l’énergie, du second degré et une bonne dose d’imprévu.
+        Le groupe joue en concert, festival, soirée ou événement privé dans toute la région PACA.
       </p>
+
+      <p class="opacity-80">
+        Et si tu te demandes à quoi t’attendre… nous non plus.
+      </p>
+
+<!--       <p class="text-lg opacity-85">
+        Nevrosyne est un groupe de reprises, d’adaptations et de compositions aux influences rock, punk et alternatives,
+        basé entre Marseille et Aix-en-Provence, actif sur toute la région PACA.
+      </p>
+
+      <p class="opacity-80">
+        Sur scène, Nevrosyne 5ch te propose un univers énergique, décalé et festif, pensé pour faire bouger le public.
+        Le groupe se produit en concert à Marseille, Aix-en-Provence et dans les environs, lors de festivals,
+        soirées, événements publics ou privés. Et comme on aime le dire : pour lutter contre la sinistrose,
+        prends ta dose de Nevrosyne 5ch.
+      </p> -->
     </div>
   </section>
 
-
-  <!-- GALERIE — bande scrollable (souris / doigt) -->
+  <!-- GALERIE -->
   {galleryStrip.length > 0 && (
     <section class="mt-14">
       <div id="gallery-scroll" class="gallery-scroll">
@@ -112,17 +155,21 @@ const hrefInfos = (s) => {
     </section>
   )}
 
-  <!-- PROCHAINES DATES (3) -->
+  <!-- CONCERTS -->
   <section class="mt-14">
     <div class="flex items-end justify-between mb-4">
       <h2 class="text-2xl font-bold">Prochains concerts</h2>
-      <a href={withBase("concerts")} class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">Toutes les dates</a>
+      <a href={withBase("concerts")} class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">
+        Toutes les dates
+      </a>
     </div>
 
     {nextShows.length === 0 ? (
       <p class="opacity-80">
-        Aucune date n'est annoncée pour le moment.
-        <a class="underline underline-offset-4" href={withBase("newsletter")}>Abonne-toi</a> pour être prévenu·e des prochaines dates de Nevrosyne 5ch à Marseille, Aix-en-Provence et en PACA.
+        Pas encore de date ? Mauvais timing.
+        <a class="underline underline-offset-4" href={withBase("newsletter")}>
+          Abonne-toi
+        </a> et on te prévient dès que ça rejoue près de chez toi.
       </p>
     ) : (
       <ul class="grid md:grid-cols-3 gap-4">
@@ -142,93 +189,51 @@ const hrefInfos = (s) => {
     )}
   </section>
 
-  <!-- ILS NOUS ONT FAIT CONFIANCE -->
+  <!-- CLIENTS -->
   {Array.isArray(clients) && clients.length > 0 && (
     <section class="mt-16">
-      <h2 class="text-2xl font-bold mb-4">Ils ont fait confiance à Nevrosyne 5ch</h2>
+      <h2 class="text-2xl font-bold mb-4">Ils nous ont fait confiance</h2>
       <ClientsGrid items={clients} />
     </section>
   )}
 
-  <!-- CONTACT TEASER -->
+  <!-- CONTACT -->
   <section class="mt-12 text-center">
-    <p class="opacity-85 mb-3">Programmation, concert, événement privé, festival ou demande presse ?</p>
-    <p class="max-w-2xl mx-auto opacity-80 mb-4">
-      Nevrosyne 5ch propose des prestations live pour les salles, festivals, bars, événements associatifs, soirées privées et manifestations culturelles à Marseille, Aix-en-Provence et dans toute la région PACA.
+    <p class="opacity-85 mb-3">
+      Tu organises un concert, un événement, un festival ou une soirée ?
     </p>
+
+    <p class="max-w-2xl mx-auto opacity-80 mb-4">
+      On joue en live à Marseille, Aix-en-Provence et partout en PACA : salles, festivals, bars, mariages, événements privés, associatifs… Si tu veux du rock (même approximatif), on est là.
+    </p>
+
     <a href={withBase("prestations")} class="inline-block px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
       Voir nos prestations
     </a>
+
     <span class="opacity-60 mx-2">ou</span>
+
     <a href={withBase("contact")} class="inline-block px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
-      Nous écrire
+      Écris-nous
     </a>
   </section>
 
-  <!-- Script d’auto-scroll pour la galerie (version Safari-safe) -->
-  <script is:raw>
-    document.addEventListener("DOMContentLoaded", () => {
-      const el = document.getElementById("gallery-scroll");
-      if (!el) return;
-
-      const IDLE_MS = 2000;
-      const STEP_PX = 1.5;
-      const TICK_MS = 16;
-      const RESUME_MS = 900;
-      const RESPECT_REDUCED = false;
-
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let auto = null;
-      let idle = null;
-      let lastUser = 0;
-
-      const canScroll = () => el.scrollWidth > el.clientWidth;
-      const startAuto = () => {
-        if (auto || !canScroll()) return;
-        if (RESPECT_REDUCED && reduced) return;
-        el.classList.add("is-auto");
-        auto = setInterval(() => {
-          const max = el.scrollWidth - el.clientWidth;
-          if (max <= 0) return;
-          if (el.scrollLeft >= max - STEP_PX) { el.scrollLeft = 0; return; }
-          el.scrollLeft += STEP_PX;
-        }, TICK_MS);
-      };
-      const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } el.classList.remove("is-auto"); };
-      const scheduleAuto = () => { if (idle) clearTimeout(idle); idle = setTimeout(startAuto, IDLE_MS); };
-      const userInteracted = () => {
-        lastUser = Date.now();
-        stopAuto();
-        if (idle) clearTimeout(idle);
-        idle = setTimeout(() => { if (Date.now() - lastUser >= RESUME_MS) startAuto(); }, IDLE_MS);
-      };
-
-      el.addEventListener("wheel", (e) => {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); el.scrollLeft += e.deltaY; }
-        userInteracted();
-      }, { passive: false });
-      ["touchstart","touchmove","pointerdown","pointermove","keydown"].forEach(evt => {
-        el.addEventListener(evt, userInteracted, { passive: true });
-      });
-      document.addEventListener("visibilitychange", () => { if (document.hidden) { stopAuto(); } else { scheduleAuto(); } });
-      scheduleAuto();
-    });
-  </script>
-
+  <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "Nevrosyne 5ch",
-  "genre": ["Rock", "Punk", "Rock alternatif"],
-  "description": "Nevrosyne 5ch est un groupe de reprises, d’adaptations et de compositions originales basé entre Marseille et Aix-en-Provence, actif en région PACA.",
-  "areaServed": "Provence-Alpes-Côte d'Azur",
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Marseille"
-  },
-  "sameAs": [
-    "https://www.facebook.com/Nevrosyne/", "https://www.youtube.com/@Nevrosyne5CH"
-  ]
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Nevrosyne 5ch",
+    "genre": ["Rock", "Punk", "Rock alternatif"],
+    "description": "Nevrosyne 5ch est un groupe de reprises, d’adaptations et de compositions originales basé entre Marseille et Aix-en-Provence, actif en région PACA.",
+    "areaServed": "Provence-Alpes-Côte d'Azur",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Marseille"
+    },
+    "sameAs": [
+      "https://www.facebook.com/Nevrosyne/",
+      "https://www.youtube.com/@Nevrosyne5CH"
+    ]
   })} />
 
 </BaseLayout>

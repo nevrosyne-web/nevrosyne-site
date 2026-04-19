@@ -5,99 +5,157 @@ import clients from "../content/clients.json";
 import SetListTable from "../components/SetListTable.astro";
 import { loadSetlist } from "../lib/readSetList";
 import { withBase } from "../utils/paths";
-import TechSheet from "../components/TechSheet.astro";
 
-// Charge le fichier Excel à la build (ok tel quel)
+// Charge le fichier Excel à la build
 const setList = loadSetlist(new URL("../content/setListNevro.xlsx", import.meta.url));
 
 const services = [
   {
     title: "Concerts / Live",
-    desc: "Set rock/reprises et adaptations musicales. Scènes, festivals, événements privés.",
-    points: ["Backline autonome possible", "Balance rapide", "Facturation/contractualisation OK"],
+    desc: "Set rock, reprises revisitées et adaptations musicales pour scènes, festivals, bars et événements live.",
+    points: [
+      "Backline autonome possible",
+      "Balance rapide",
+      "Facturation et contractualisation possibles"
+    ],
     cta: { label: "Demander un devis", href: "/contact" }
   },
   {
     title: "Événementiel",
-    desc: "Show adapté à votre événement (ouverture, afterwork, gala, mariage, anniversaire, lancement).",
-    points: ["Setlist personnalisable", "Habillage visuel & logo", "Coordination régie"],
-    cta: { label: "Parler de votre projet", href: "/contact" }
+    desc: "Show adapté à ton événement : afterwork, gala, mariage, anniversaire, soirée privée, lancement ou animation musicale.",
+    points: [
+      "Setlist personnalisable",
+      "Adaptation au format de l’événement",
+      "Coordination technique possible"
+    ],
+    cta: { label: "Parler de ton projet", href: "/contact" }
   }
 ];
 ---
-<BaseLayout title="Prestations — Nevrosyne">
-  <section class="mb-10">
-    <h1 class="text-3xl font-bold mb-3">Prestations</h1>
-    <p class="opacity-80">
-      Vous êtes programmateur·rice, collectivité, agence ou production ? Voici ce que nous proposons.
-      Pour toute demande spécifique, <a class="underline underline-offset-4" href={withBase("contact")}>contactez-nous</a>.
+
+<BaseLayout
+  title="Prestations — Nevrosyne"
+  description="Concerts live, soirées privées, mariages, festivals et événements en Provence : découvre les prestations de Nevrosyne, groupe de rock basé entre Aix-en-Provence et Marseille."
+>
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Concerts live, soirées privées, mariages, festivals et événements en Provence : découvre les prestations de Nevrosyne, groupe de rock basé entre Aix-en-Provence et Marseille."
+    />
+  </Fragment>
+
+  <section class="mb-10 space-y-4">
+    <h1 class="text-3xl font-bold">Prestations</h1>
+    <p class="text-zinc-300 leading-relaxed">
+      Tu organises un concert, une soirée, un festival, un mariage ou un événement privé ?
+      Nevrosyne propose des prestations live en Provence, entre Aix-en-Provence, Marseille et les environs,
+      avec un set rock énergique, décalé et adaptable selon le contexte.
+    </p>
+    <p class="text-zinc-400 leading-relaxed">
+      Tu trouveras ici un aperçu de ce qu’on propose, quelques infos techniques, des références
+      et un exemple de setlist. Pour toute demande spécifique,
+      <a class="underline underline-offset-4 hover:text-zinc-200" href={withBase("contact")}> contacte-nous</a>.
     </p>
   </section>
 
-  <section class="grid md:grid-cols-2 gap-6">
-    {services.map(s => (
-      <div class="p-5 rounded-xl bg-coal-800/60 border border-zinc-800">
-        <h2 class="text-xl font-semibold mb-2">{s.title}</h2>
-        <p class="opacity-85 mb-4">{s.desc}</p>
-        <ul class="list-disc list-inside space-y-1 mb-5 opacity-85">
-          {s.points.map(p => <li>{p}</li>)}
-        </ul>
-        <a href={withBase(String(s.cta.href).replace(/^\//,''))}
-           class="inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">
-          {s.cta.label}
-        </a>
-      </div>
-    ))}
+  <section class="mb-12 space-y-4">
+    <h2 class="text-2xl font-bold">Ce qu’on propose</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((s) => (
+        <article class="p-5 rounded-xl bg-coal-800/60 border border-zinc-800">
+          <h3 class="text-xl font-semibold mb-2">{s.title}</h3>
+          <p class="opacity-85 mb-4">{s.desc}</p>
+          <ul class="list-disc list-inside space-y-1 mb-5 opacity-85">
+            {s.points.map((p) => <li>{p}</li>)}
+          </ul>
+          <a
+            href={withBase(String(s.cta.href).replace(/^\//, ""))}
+            class="inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700"
+          >
+            {s.cta.label}
+          </a>
+        </article>
+      ))}
+    </div>
   </section>
 
-<section class="mt-12">
-  <h3 class="text-lg font-semibold mb-3">Informations techniques</h3>
+  <section class="mt-12 space-y-4">
+    <h2 class="text-2xl font-bold">Informations techniques</h2>
+    <p class="text-zinc-400 leading-relaxed">
+      Pour préparer la date dans de bonnes conditions, voici les principales infos techniques.
+      La fiche complète est disponible en téléchargement.
+    </p>
 
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Encadré gauche : fiche technique texte -->
-    <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
-      <h4 class="font-semibold mb-3">Fiche technique</h4>
-      <ul class="list-disc list-inside opacity-85 space-y-1">
-        <li>Line-up : chant, 2 guitares, basse, batterie</li>
-        <li>Besoin scène : voir fiche technique</li>
-        <li>Patch : 16 voix min</li>
-        <li>Puissance façade adaptée à la salle</li>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800">
+        <h3 class="font-semibold mb-3">Fiche technique</h3>
+        <ul class="list-disc list-inside opacity-85 space-y-1 mb-5">
+          <li>Line-up : chant, 2 guitares, basse, batterie</li>
+          <li>Besoin scène : voir fiche technique détaillée</li>
+          <li>Patch : 16 voix minimum</li>
+          <li>Puissance façade adaptée à la salle ou au lieu</li>
+        </ul>
+
         <a
           href={withBase("docs/ft-nevrosyne-5ch-2.0-3.pdf")}
           target="_blank"
-          class="mt-4 inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700"
+          rel="noopener noreferrer"
+          class="inline-block px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700"
         >
-        Télécharger la fiche technique en pdf
-      </a>
-      </ul>
+          Télécharger la fiche technique PDF
+        </a>
+      </div>
+
+      <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800 flex flex-col items-center justify-center text-center">
+        <h3 class="font-semibold mb-4">Aperçu</h3>
+        <a
+          href={withBase("docs/ft-nevrosyne-5ch-2.0-3.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group"
+        >
+          <img
+            src={withBase("docs/ft-nevrosyne-5ch-2.0-3-thumb.jpg")}
+            alt="Fiche technique Nevrosyne 5ch"
+            class="w-72 md:w-80 rounded-lg border border-zinc-700 shadow-lg group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-sm text-zinc-400 mt-4">
+          Clique sur l’aperçu pour ouvrir la fiche technique complète.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <!-- Encadré droit : vignette et lien PDF -->
-    <div class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800 flex flex-col items-center justify-center text-center">
-      <a href={withBase("docs/ft-nevrosyne-5ch-2.0-3.pdf")} target="_blank" class="group">
-        <img
-          src={withBase("docs/ft-nevrosyne-5ch-2.0-3-thumb.jpg")}
-          alt="Fiche technique Nevrosyne 5ch"
-          class="w-80 md:w-80 rounded-lg border border-zinc-700 shadow-lg group-hover:scale-105 transition-transform duration-300"
-          loading="lazy"
-        />
-      </a>
-
-    </div>
-  </div>
-</section>
-
-  <section class="mt-12">
-    <h3 class="text-lg font-semibold mb-3">Ils nous ont fait confiance</h3>
-    <p class="opacity-80 mb-4">Quelques structures, salles et organismes avec lesquels nous avons collaboré.</p>
+  <section class="mt-12 space-y-4">
+    <h2 class="text-2xl font-bold">Ils nous ont fait confiance</h2>
+    <p class="opacity-80">
+      Quelques salles, structures, événements et organismes avec lesquels nous avons déjà collaboré.
+    </p>
     <ClientsGrid items={clients} />
   </section>
 
-  <section class="mt-12">
-    <h3 class="text-lg font-semibold mb-3">Setlist</h3>
-    <p class="opacity-80 mb-4">
-      Exemple de set (évolutif selon l’événement). Autres morceaux sur demande.
+  <section class="mt-12 space-y-4">
+    <h2 class="text-2xl font-bold">Setlist</h2>
+    <p class="opacity-80">
+      Voici un exemple de setlist. Elle peut évoluer selon la date, le lieu, le format et l’ambiance recherchée.
+      D’autres morceaux peuvent être ajoutés sur demande.
     </p>
     <SetListTable rows={setList} />
-  </section>  
+  </section>
+
+  <section class="mt-12 text-zinc-400 leading-relaxed">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
+    <p>
+      Découvre aussi nos
+      <a href={withBase("concerts")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>,
+      nos
+      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>
+      et notre
+      <a href={withBase("contact")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
+      pour nous parler de ton projet.
+    </p>
+  </section>
 </BaseLayout>

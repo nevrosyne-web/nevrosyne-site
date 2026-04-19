@@ -44,16 +44,16 @@ function metaLine(item) {
 
 function sectionDescription(id) {
   if (id === "audios") {
-    return "Écoutez l’EP de Nevrosyne et découvrez l’univers musical du groupe entre compositions, énergie rock et identité scénique.";
+    return "Écoute l’EP de Nevrosyne et plonge dans l’univers du groupe entre compos, énergie rock et identité bien à part.";
   }
   if (id === "lives") {
-    return "Retrouvez Nevrosyne en concert live en Provence : festivals, salles, soirées privées et événements.";
+    return "Retrouve Nevrosyne sur scène : festivals, salles, soirées privées et lives.";
   }
   if (id === "compos") {
-    return "Découvrez les compositions originales de Nevrosyne, entre rock, énergie live et identité musicale propre.";
+    return "Découvre les compos originales de Nevrosyne : du rock, de l’énergie et une petite dose de névrose maison.";
   }
   if (id === "repets") {
-    return "Quelques extraits de répétitions pour entrer dans les coulisses du groupe et voir le travail en amont des concerts.";
+    return "Quelques extraits de répétes pour voir ce qui se passe avant de monter sur scène. Spoiler : ça travaille, mais pas toujours dans le calme.";
   }
   return "";
 }
@@ -95,7 +95,7 @@ const jsonLd = {
   <Fragment slot="head">
     <meta
       name="description"
-      content="Découvrez les vidéos live, compositions et répétitions de Nevrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
+      content="Découvre les vidéos live, compositions et répétitions de Nevrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
     />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
@@ -103,13 +103,13 @@ const jsonLd = {
   <section class="mb-12 space-y-4">
     <h1 class="text-3xl font-bold">Médias</h1>
     <p class="text-zinc-300 leading-relaxed">
-      Retrouvez ici les vidéos live, compositions et extraits de répétitions de Nevrosyne.
-      Groupe de rock basé en Provence, nous jouons en concert, en festival, en mariage et lors
-      d’événements privés à Aix-en-Provence, Marseille, Gardanne, Trets, Allauch et dans les environs.
+      Retrouve ici les vidéos live, compos et extraits de répétitions de Nevrosyne.
+      Du live, du son, un peu de sueur et parfois une légère perte de contrôle.
     </p>
     <p class="text-zinc-400 leading-relaxed">
-      Cette page rassemble quelques captations sur scène, des moments de répétition et des extraits
-      audio pour découvrir l’univers du groupe, son énergie live et son répertoire.
+      Basé en Provence, le groupe joue en concert, en festival, en mariage et lors d’événements privés
+      à Aix-en-Provence, Marseille, Gardanne, Trets, Allauch et dans les environs.
+      Cette page te permet de plonger dans l’univers du groupe, son énergie sur scène et son répertoire.
     </p>
   </section>
 

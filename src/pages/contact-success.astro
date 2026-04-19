@@ -2,12 +2,34 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../utils/paths";
 ---
-<BaseLayout title="Message envoyé — Nevrosyne">
-  <div class="max-w-xl space-y-4">
-    <h1 class="text-3xl font-bold">Merci 🙏</h1>
-    <p class="opacity-85">Ton message a bien été envoyé. Nous revenons vers toi rapidement.</p>
-    <a href={withBase("")} class="inline-block px-4 py-2 rounded-lg bg-coal-800 hover:bg-coal-700 border border-zinc-700">
-      Revenir à l’accueil
-    </a>
-  </div>
+
+<BaseLayout
+  title="Message envoyé — Nevrosyne"
+  description="Ton message a bien été envoyé à Nevrosyne."
+>
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Ton message a bien été envoyé à Nevrosyne."
+    />
+  </Fragment>
+
+  <section class="space-y-4">
+    <h1 class="text-3xl font-bold">Message bien reçu 🤘</h1>
+    <p class="text-zinc-300 leading-relaxed">
+      Ton message est arrivé jusqu’à nous sans fausse note. On revient vers toi dès que possible.
+    </p>
+    <p class="text-zinc-400 leading-relaxed">
+      Merci pour ton message, et à très vite.
+    </p>
+
+    <div class="pt-2">
+      <a
+        href={withBase("")}
+        class="inline-block px-4 py-2 rounded-lg bg-coal-800 hover:bg-coal-700 border border-zinc-700"
+      >
+        Revenir à l’accueil
+      </a>
+    </div>
+  </section>
 </BaseLayout>

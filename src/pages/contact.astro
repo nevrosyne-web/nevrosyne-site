@@ -10,84 +10,146 @@ const ENTRY_NAME    = "entry.31609229";
 const ENTRY_EMAIL   = "entry.1537897944";
 const ENTRY_MESSAGE = "entry.1740234325";
 ---
-<BaseLayout title="Contact — Nevrosyne 5ch">
-  <h1 class="text-3xl font-bold mb-6">Contact</h1>
 
-  <!-- Iframe invisible: cible du POST ; on écoute son "load" pour rediriger -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+<BaseLayout
+  title="Contact — Nevrosyne 5ch"
+  description="Contacte Nevrosyne 5ch pour un concert, un mariage, une soirée privée, un festival ou une demande d’information en Provence."
+>
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Contacte Nevrosyne 5ch pour un concert, un mariage, une soirée privée, un festival ou une demande d’information en Provence."
+    />
+  </Fragment>
 
-  <form
-    id="contact-form"
-    action={FORM_RESPONSE_URL}
-    method="POST"
-    target="hidden_iframe"
-    referrerpolicy="no-referrer"
-    data-success={successUrl}
-    class="space-y-4 max-w-xl"
-  >
-    <!-- Honeypot anti-bot (champ non mappé) -->
-    <p class="hidden" aria-hidden="true">
-      <label>Ne pas remplir: <input name="honeypot" autocomplete="off" /></label>
+  <section class="mb-8 space-y-4">
+    <h1 class="text-3xl font-bold">Contact</h1>
+    <p class="text-zinc-300 leading-relaxed">
+      Tu veux nous faire jouer pour un concert, un festival, un mariage, une soirée privée ou un autre événement ?
+      Tu es au bon endroit.
     </p>
+    <p class="text-zinc-400 leading-relaxed">
+      Envoie-nous un message avec quelques infos sur ton projet, la date, le lieu et le format souhaité.
+      On te répond dès que possible.
+    </p>
+  </section>
 
-    <!-- CHAMPS VISIBLES (nommés directement avec les entry.* Google) -->
+  <section class="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 items-start">
     <div>
-      <label class="block text-sm mb-1" for="name">Nom</label>
-      <input
-        id="name"
-        name={ENTRY_NAME}
-        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
-        type="text"
-        required
-      />
+      <!-- Iframe invisible : cible du POST ; on écoute son "load" pour rediriger -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+      <form
+        id="contact-form"
+        action={FORM_RESPONSE_URL}
+        method="POST"
+        target="hidden_iframe"
+        referrerpolicy="no-referrer"
+        data-success={successUrl}
+        class="space-y-4 max-w-xl"
+      >
+        <!-- Honeypot anti-bot -->
+        <p class="hidden" aria-hidden="true">
+          <label>Ne pas remplir: <input name="honeypot" autocomplete="off" /></label>
+        </p>
+
+        <div>
+          <label class="block text-sm mb-1" for="name">Nom</label>
+          <input
+            id="name"
+            name={ENTRY_NAME}
+            class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1" for="email">Email</label>
+          <input
+            id="email"
+            name={ENTRY_EMAIL}
+            class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm mb-1" for="message">Message</label>
+          <textarea
+            id="message"
+            name={ENTRY_MESSAGE}
+            class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
+            rows="7"
+            required
+            placeholder="Exemple : Bonjour, je cherche un groupe pour une soirée le 12 juillet à Aix-en-Provence, pour environ 150 personnes..."
+          ></textarea>
+          <p class="mt-2 text-sm text-zinc-500">
+            Tu peux préciser la date, le lieu, le type d’événement et toute info utile.
+          </p>
+        </div>
+
+        <!-- Champs structurels Google -->
+        <input type="hidden" name="fvv" value="1" />
+        <input type="hidden" name="draftResponse" value="[]" />
+        <input type="hidden" name="pageHistory" value="0" />
+        <input type="hidden" name="submit" value="Submit" />
+
+        <div class="flex items-center gap-3 pt-2">
+          <button
+            class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700"
+            type="submit"
+          >
+            Envoyer
+          </button>
+
+          <p id="form-status" class="text-sm opacity-85" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <p class="mt-6 text-zinc-400 leading-relaxed">
+        Tu peux aussi nous écrire directement à
+        <a href="mailto:nevrosyne@gmail.com" class="underline hover:text-acid-400">
+          nevrosyne@gmail.com
+        </a>.
+      </p>
     </div>
 
-    <div>
-      <label class="block text-sm mb-1" for="email">Email</label>
-      <input
-        id="email"
-        name={ENTRY_EMAIL}
-        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
-        type="email"
-        required
-      />
-    </div>
+    <aside class="p-5 rounded-xl bg-coal-800/40 border border-zinc-800 space-y-4">
+      <h2 class="text-xl font-semibold">Pour quoi nous contacter ?</h2>
+      <ul class="list-disc list-inside space-y-2 text-zinc-300">
+        <li>Concert live</li>
+        <li>Festival</li>
+        <li>Mariage</li>
+        <li>Soirée privée</li>
+        <li>Événement associatif ou culturel</li>
+        <li>Demande presse ou partenariat</li>
+      </ul>
 
-    <div>
-      <label class="block text-sm mb-1" for="message">Message</label>
-      <textarea
-        id="message"
-        name={ENTRY_MESSAGE}
-        class="w-full px-3 py-2 rounded-lg bg-ink-900 border border-zinc-700"
-        rows="6"
-        required
-      ></textarea>
-    </div>
+      <p class="text-sm text-zinc-500 leading-relaxed">
+        Plus ton message est précis, plus on peut te répondre rapidement.
+      </p>
+    </aside>
+  </section>
 
-    <!-- Champs structurels Google (facultatifs) -->
-    <input type="hidden" name="fvv" value="1" />
-    <input type="hidden" name="draftResponse" value="[]" />
-    <input type="hidden" name="pageHistory" value="0" />
-    <input type="hidden" name="submit" value="Submit" />
+  <section class="mt-12 text-zinc-400 leading-relaxed">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
+    <p>
+      Découvre aussi nos
+      <a href={withBase("prestations")} class="underline underline-offset-4 hover:text-zinc-200"> prestations</a>,
+      nos
+      <a href={withBase("concerts")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>
+      et nos
+      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>.
+    </p>
+  </section>
 
-    <button class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700" type="submit">
-      Envoyer
-    </button>
-
-    <p id="form-status" class="text-sm opacity-85"></p>
-  </form>
-
-  <p class="mt-6">
-    Tu peux aussi nous écrire directement à
-    <a href="mailto:nevrosyne@gmail.com" class="underline hover:text-acid-400">
-      nevrosyne@gmail.com
-    </a>.
-  </p>
-
-  <!-- Script sans interpolation Astro: on lit data-success depuis le DOM -->
   <script is:raw>
     (function () {
-      const form   = document.getElementById("contact-form");
+      const form = document.getElementById("contact-form");
       const iframe = document.getElementById("hidden_iframe");
       const status = document.getElementById("form-status");
 
@@ -97,12 +159,11 @@ const ENTRY_MESSAGE = "entry.1740234325";
 
       form.addEventListener("submit", () => {
         submitted = true;
-        if (status) status.textContent = "Envoi en cours…";
+        if (status) status.textContent = "Envoi en cours...";
       });
 
-      // Quand Google a répondu dans l'iframe → on redirige
       iframe.addEventListener("load", () => {
-        if (!submitted) return; // ignore le premier load (montage)
+        if (!submitted) return;
         try { form.reset(); } catch {}
         const successUrl = form.dataset.success || "/";
         window.location.href = successUrl;
