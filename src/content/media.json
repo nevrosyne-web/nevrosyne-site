@@ -7,15 +7,15 @@
     }
   ],
   "lives": [
-    { "provider": "youtube", "title": "Girls just want the Nevros !", "id": "ZDQRBLLRx6k" },
-    { "provider": "youtube", "title": "Born to be toi !", "id": "naLPKGXbDd8" },
     { "provider": "youtube", "title": "Tainted Nevro Love", "id": "YE6cIhBlYJU" },
     { "provider": "youtube", "title": "GRF3 Nevro Boys", "id": "kVXLtiuWbNY" },
     { "provider": "youtube", "title": "Class vioc 2024",  "id": "JsVPydqa_LQ" },
     { "provider": "youtube", "title": "Zombie Nevro",  "id": "MiEKBNBHBj4" },
     { "provider": "youtube", "title": "Shadow without you",  "id": "nqyZ5uRnS_M" },
     { "provider": "youtube", "title": "J't'emmene Nevro version",  "id": "L4l7QOMDLFI" },
-    { "provider": "youtube", "title": "Mix la Scene2",  "id": "lP1GlWq0AkU" }
+    { "provider": "youtube", "title": "Mix la Scene2",  "id": "lP1GlWq0AkU" },
+    { "provider": "youtube", "title": "Girls just want the Nevros !", "id": "ZDQRBLLRx6k" },
+    { "provider": "youtube", "title": "Born to be toi !", "id": "naLPKGXbDd8" }
   ],
   "compos": [
     { "provider": "youtube", "title": "Goldfish NevroCompo",  "id": "9pPMCILFVOI" }

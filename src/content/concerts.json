@@ -29,7 +29,7 @@
     "venue": "Maison du peuple", 
     "link": "https://www.facebook.com/VilledeGardanne?locale=fr_FR",
     "poster": "affiches/2025_04_05_GRF3.jpg",
-    "posterAlt": "Nevrosyne au Hangar — 21 juin 2025" 
+    "posterAlt": "Nevrosyne à Gardanne — 05 avril 2025" 
   },
   { "date": "2025-02-15", 
     "city": "Aix-en-Provence", 
@@ -41,16 +41,16 @@
   { "date": "2024-11-01", 
     "city": "Beine-Nauroy", 
     "venue": "Chez Gaby", 
-    "link": "",
+    "link": null,
     "poster": "affiches/2024_11_01_chezGaby.png",
     "posterAlt": "Nevrosyne chez Gaby — 01 nov. 2024" 
   },
   { "date": "2024-10-03", 
     "city": "Gardanne", 
     "venue": "Maison du peuple", 
-    "link": "",
+    "link": null,
     "poster": "affiches/2024_10_03_BiereGardanne.jpg",
-    "posterAlt": "Nevrosyne à la fête de la bière — 02 oct. 2024" 
+    "posterAlt": "Nevrosyne à la fête de la bière — 03 oct. 2024" 
   },
   { "date": "2024-06-21", 
     "city": "Trets", 
@@ -86,7 +86,7 @@
     "venue": "Aix'Qui? Final Class'Viock", 
     "link": "https://www.facebook.com/Classviock",
     "poster": "affiches/2023_11_29_finalClassViock.jpg",
-    "posterAlt": "Névrosyne en finale de Class'Viock — 11 nov. 2023" 
+    "posterAlt": "Névrosyne en finale de Class'Viock — 29 nov. 2023" 
   },
   { "date": "2023-10-20", 
     "city": "Auriol", 
@@ -96,14 +96,15 @@
     "posterAlt": "Nevrosyne au Joke'R — 20 oct. 2023" 
   },
   { "date": "2023-09-26", 
-    "city": "Aix La Duranne", 
+    "city": "Aix-en-Provence",
+    "area": "La Duranne", 
     "venue": "Arbois Duranne Espace Polyvalent", 
     "link": "https://www.facebook.com/events/856263762809346/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22external_search_engine%22%7D%2C%7B%22mechanism%22%3A%22attachment%22%2C%22surface%22%3A%22newsfeed%22%7D]%2C%22ref_notif_type%22%3Anull%7D"
   },
   { "date": "2023-07-10", 
     "city": "Trets", 
     "venue": "Cours Esquiros", 
-    "link": "",
+    "link": null,
     "poster": "affiches/2023_07_13_trets.jpg",
     "posterAlt": "Nevrosyne à Trets pour la fête nationale — 13 juil. 2023"     
   },
