@@ -5,13 +5,11 @@ import Bandcamp from "../components/Bandcamp.astro";
 import media from "../content/media.json";
 import { withBase } from "../utils/paths";
 
-// sécurité minimale
 const audios = Array.isArray(media.audios) ? media.audios : [];
-const lives  = Array.isArray(media.lives)  ? media.lives  : [];
-const compos  = Array.isArray(media.compos)  ? media.compos  : [];
+const lives = Array.isArray(media.lives) ? media.lives : [];
+const compos = Array.isArray(media.compos) ? media.compos : [];
 const repets = Array.isArray(media.repets) ? media.repets : [];
 
-// Normalise les chemins pour les fichiers locaux (mp4/jpg dans /public)
 function normalize(list) {
   return list.map((v) => {
     if (v?.provider === "file" || v?.provider === "local") {
@@ -20,121 +18,255 @@ function normalize(list) {
       const poster = v.poster ? withBase(String(v.poster).replace(/^\//, "")) : undefined;
       return { ...v, src, poster };
     }
-    return v; // youtube, vimeo, etc.
+    return v;
   });
 }
 
-// (Optionnel) audios si un jour tu ajoutes des fichiers audio locaux
 const normAudios = audios.map((a) => {
   if (a?.provider === "file" || a?.provider === "local") {
     const raw = String(a.src || "").trim();
     return { ...a, src: withBase(raw.replace(/^\//, "")) };
   }
-  return a; // bandcamp, etc.
+  return a;
 });
 
-const normLives  = normalize(lives);
-const normCompo  = normalize(compos);
+const normLives = normalize(lives);
+const normCompos = normalize(compos);
 const normRepets = normalize(repets);
----
-<BaseLayout title="Médias — Nevrosyne">
-  <h1 class="text-3xl font-bold mb-6">Médias</h1>
 
-  <!--
-  {normAudios.length > 0 && (
-    <section class="space-y-4 mb-10">
-      <h2 class="text-xl font-semibold">Écouter</h2>
+function metaLine(item) {
+  const parts = [];
+  if (item.kind) parts.push(String(item.kind));
+  if (item.location) parts.push(String(item.location));
+  if (item.year) parts.push(String(item.year));
+  return parts.join(" • ");
+}
+
+function sectionDescription(id) {
+  if (id === "audios") {
+    return "Écoutez l’EP de Nevrosyne et découvrez l’univers musical du groupe entre compositions, énergie rock et identité scénique.";
+  }
+  if (id === "lives") {
+    return "Retrouvez Nevrosyne en concert live en Provence : festivals, salles, soirées privées et événements.";
+  }
+  if (id === "compos") {
+    return "Découvrez les compositions originales de Nevrosyne, entre rock, énergie live et identité musicale propre.";
+  }
+  if (id === "repets") {
+    return "Quelques extraits de répétitions pour entrer dans les coulisses du groupe et voir le travail en amont des concerts.";
+  }
+  return "";
+}
+
+const allVideos = [...normLives, ...normCompos, ...normRepets].filter((v) => v?.provider === "youtube" && v?.id);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      name: "Nevrosyne",
+      url: "https://nevrosyne-web.github.io/nevrosyne-site/media",
+      genre: "Rock",
+      description:
+        "Nevrosyne est un groupe de rock basé en Provence, disponible pour concerts, mariages et événements privés."
+    },
+    {
+      "@type": "CollectionPage",
+      name: "Médias — Nevrosyne",
+      url: "https://nevrosyne-web.github.io/nevrosyne-site/media",
+      description:
+        "Vidéos live, compositions, répétitions et extraits audio du groupe de rock Nevrosyne en Provence."
+    },
+    ...allVideos.map((v) => ({
+      "@type": "VideoObject",
+      name: v.title,
+      description: v.description || v.title,
+      uploadDate: v.year ? `${v.year}-01-01` : undefined,
+      contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+      embedUrl: `https://www.youtube.com/embed/${v.id}`,
+      thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`
+    }))
+  ]
+};
+---
+
+<BaseLayout title="Médias — Nevrosyne">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Découvrez les vidéos live, compositions et répétitions de Nevrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <section class="mb-12 space-y-4">
+    <h1 class="text-3xl font-bold">Médias</h1>
+    <p class="text-zinc-300 leading-relaxed">
+      Retrouvez ici les vidéos live, compositions et extraits de répétitions de Nevrosyne.
+      Groupe de rock basé en Provence, nous jouons en concert, en festival, en mariage et lors
+      d’événements privés à Aix-en-Provence, Marseille, Gardanne, Trets, Allauch et dans les environs.
+    </p>
+    <p class="text-zinc-400 leading-relaxed">
+      Cette page rassemble quelques captations sur scène, des moments de répétition et des extraits
+      audio pour découvrir l’univers du groupe, son énergie live et son répertoire.
+    </p>
+  </section>
+
+  <!-- {normAudios.length > 0 && (
+    <section class="space-y-5 mb-14" id="audios">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-semibold">À écouter</h2>
+        <p class="text-zinc-400">
+          {sectionDescription("audios")}
+        </p>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-6">
         {normAudios.map((a) => (
-          a.provider === "bandcamp"
-            ? <Bandcamp embedUrl={a.embedUrl} title={a.title} />
-            : a.provider === "file" || a.provider === "local"
-              ? (
-                <audio controls preload="metadata" class="w-full rounded-xl border border-zinc-800">
-                  <source src={a.src} type={a.mime || "audio/mpeg"} />
-                  Votre navigateur ne supporte pas l’audio.
-                </audio>
-              )
-              : null
+          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4">
+            <header class="space-y-2">
+              <h3 class="text-lg font-semibold leading-snug">{a.title}</h3>
+              {a.description && (
+                <p class="text-sm text-zinc-300 leading-relaxed">{a.description}</p>
+              )}
+              {metaLine(a) && (
+                <p class="text-xs uppercase tracking-wide text-zinc-500">{metaLine(a)}</p>
+              )}
+            </header>
+
+            {a.provider === "bandcamp" ? (
+              <Bandcamp embedUrl={a.embedUrl} title={a.title} />
+            ) : a.provider === "file" || a.provider === "local" ? (
+              <audio controls preload="metadata" class="w-full rounded-xl border border-zinc-800">
+                <source src={a.src} type={a.mime || "audio/mpeg"} />
+                Votre navigateur ne supporte pas l’audio.
+              </audio>
+            ) : null}
+          </article>
         ))}
       </div>
     </section>
-  )}
-  -->
+  )} -->
 
-  <!-- ===== LIVES ===== -->
   {normLives.length > 0 && (
-    <section class="space-y-4 mb-12" id="lives">
-      <h2 class="text-xl font-semibold">Nevro Lives</h2>
+    <section class="space-y-5 mb-14" id="lives">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-semibold">Nevro Lives</h2>
+        <p class="text-zinc-400">
+          {sectionDescription("lives")}
+        </p>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-6">
         {normLives.map((v) => (
-          v.provider === "youtube"
-            ? <YouTube id={v.id} title={v.title} />
-            : (v.provider === "file" || v.provider === "local")
-              ? (
-                <video
-                  controls
-                  preload="metadata"
-                  poster={v.poster}
-                  class="w-full rounded-xl border border-zinc-800"
-                >
-                  <source src={v.src} type={v.mime || "video/mp4"} />
-                  Votre navigateur ne supporte pas la vidéo.
-                </video>
-              )
-              : null
+          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4">
+            <header class="space-y-2">
+              <h3 class="text-lg font-semibold leading-snug">{v.title}</h3>
+              {v.description && (
+                <p class="text-sm text-zinc-300 leading-relaxed">{v.description}</p>
+              )}
+              {metaLine(v) && (
+                <p class="text-xs uppercase tracking-wide text-zinc-500">{metaLine(v)}</p>
+              )}
+            </header>
+
+            {v.provider === "youtube" ? (
+              <YouTube id={v.id} title={v.title} />
+            ) : v.provider === "file" || v.provider === "local" ? (
+              <video
+                controls
+                preload="metadata"
+                poster={v.poster}
+                class="w-full rounded-xl border border-zinc-800"
+              >
+                <source src={v.src} type={v.mime || "video/mp4"} />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            ) : null}
+          </article>
         ))}
       </div>
     </section>
   )}
 
-  <!-- ===== COMPOS ===== -->
-  {normCompo.length > 0 && (
-    <section class="space-y-4 mb-12" id="clips">
-      <h2 class="text-xl font-semibold">Nevro compos</h2>
+  {normCompos.length > 0 && (
+    <section class="space-y-5 mb-14" id="compos">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-semibold">Nevro Compos</h2>
+        <p class="text-zinc-400">
+          {sectionDescription("compos")}
+        </p>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-6">
-        {normCompo.map((v) => (
-          v.provider === "youtube"
-            ? <YouTube id={v.id} title={v.title} />
-            : (v.provider === "file" || v.provider === "local")
-              ? (
-                <video
-                  controls
-                  preload="metadata"
-                  poster={v.poster}
-                  class="w-full rounded-xl border border-zinc-800"
-                >
-                  <source src={v.src} type={v.mime || "video/mp4"} />
-                  Votre navigateur ne supporte pas la vidéo.
-                </video>
-              )
-              : null
+        {normCompos.map((v) => (
+          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4">
+            <header class="space-y-2">
+              <h3 class="text-lg font-semibold leading-snug">{v.title}</h3>
+              {v.description && (
+                <p class="text-sm text-zinc-300 leading-relaxed">{v.description}</p>
+              )}
+              {metaLine(v) && (
+                <p class="text-xs uppercase tracking-wide text-zinc-500">{metaLine(v)}</p>
+              )}
+            </header>
+
+            {v.provider === "youtube" ? (
+              <YouTube id={v.id} title={v.title} />
+            ) : v.provider === "file" || v.provider === "local" ? (
+              <video
+                controls
+                preload="metadata"
+                poster={v.poster}
+                class="w-full rounded-xl border border-zinc-800"
+              >
+                <source src={v.src} type={v.mime || "video/mp4"} />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            ) : null}
+          </article>
         ))}
       </div>
     </section>
   )}
 
-  <!-- ===== REPETS ===== -->
   {normRepets.length > 0 && (
-    <section class="space-y-4" id="repets">
-      <h2 class="text-xl font-semibold">Nevro Répéts</h2>
+    <section class="space-y-5" id="repets">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-semibold">Nevro Répéts</h2>
+        <p class="text-zinc-400">
+          {sectionDescription("repets")}
+        </p>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-6">
         {normRepets.map((v) => (
-          v.provider === "youtube"
-            ? <YouTube id={v.id} title={v.title} />
-            : (v.provider === "file" || v.provider === "local")
-              ? (
-                <video
-                  controls
-                  preload="metadata"
-                  poster={v.poster}
-                  class="w-full rounded-xl border border-zinc-800"
-                >
-                  <source src={v.src} type={v.mime || "video/mp4"} />
-                  Votre navigateur ne supporte pas la vidéo.
-                </video>
-              )
-              : null
+          <article class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4">
+            <header class="space-y-2">
+              <h3 class="text-lg font-semibold leading-snug">{v.title}</h3>
+              {v.description && (
+                <p class="text-sm text-zinc-300 leading-relaxed">{v.description}</p>
+              )}
+              {metaLine(v) && (
+                <p class="text-xs uppercase tracking-wide text-zinc-500">{metaLine(v)}</p>
+              )}
+            </header>
+
+            {v.provider === "youtube" ? (
+              <YouTube id={v.id} title={v.title} />
+            ) : v.provider === "file" || v.provider === "local" ? (
+              <video
+                controls
+                preload="metadata"
+                poster={v.poster}
+                class="w-full rounded-xl border border-zinc-800"
+              >
+                <source src={v.src} type={v.mime || "video/mp4"} />
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
+            ) : null}
+          </article>
         ))}
       </div>
     </section>

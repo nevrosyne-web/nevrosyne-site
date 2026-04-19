@@ -2,26 +2,126 @@
   "audios": [
     {
       "provider": "bandcamp",
-      "title": "EP — Nevrosyne",
-      "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/"
+      "title": "Nevrosyne – EP",
+      "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/",
+      "description": "EP de Nevrosyne disponible à l’écoute sur Bandcamp. Découvrez l’univers rock du groupe entre compositions originales et énergie live.",
+      "location": "Provence",
+      "year": null,
+      "kind": "ep"
     }
   ],
   "lives": [
-    { "provider": "youtube", "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Tainted Love version", "id": "YE6cIhBlYJU" },
-    { "provider": "youtube", "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Boys Don't Cry version", "id": "kVXLtiuWbNY" },
-    { "provider": "youtube", "title": "Nevrosyne – Final du Class'viock à Aix-en-Provence (2024) - War Pig / Paranoid version",  "id": "JsVPydqa_LQ" },
-    { "provider": "youtube", "title": "Nevrosyne – Live au 6MIC à Aix-en-Provence (2023) – Zombie version",  "id": "MiEKBNBHBj4" },
-    { "provider": "youtube", "title": "Nevrosyne – Live à la Scene2 à Aix-en-Provence (2023) – Shadow of the Day / With or Yithout You version",  "id": "nqyZ5uRnS_M" },
-    { "provider": "youtube", "title": "Nevrosyne – Mariage live à Puyloubier (2024) – J't'emmene au vent version",  "id": "L4l7QOMDLFI" },
-    { "provider": "youtube", "title": "Nevrosyne – Live à la Scene2 à Aix-en-Provence (2023) – Killing in the Name",  "id": "lP1GlWq0AkU" },
-    { "provider": "youtube", "title": "Nevrosyne – Anniversaire Cowboy live à Allauch (2026) – Girls just want to have Fun version", "id": "ZDQRBLLRx6k" },
-    { "provider": "youtube", "title": "Nevrosyne – Anniversaire Cowboy live à Allauch (2026) – Ca c'est vraiment toi version", "id": "naLPKGXbDd8" }
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Tainted Love version",
+      "id": "YE6cIhBlYJU",
+      "description": "Reprise live de Tainted Love par Nevrosyne au Gardanne Rock Fest 2025. Un extrait de concert rock en Provence, entre énergie live et univers décalé du groupe.",
+      "location": "Gardanne",
+      "year": 2025,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Boys Don't Cry version",
+      "id": "kVXLtiuWbNY",
+      "description": "Reprise live de Boys Don't Cry par Nevrosyne au Gardanne Rock Fest 2025. Un moment de scène capté lors d’un concert rock en Provence.",
+      "location": "Gardanne",
+      "year": 2025,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Finale du Class'Viock à Aix-en-Provence (2024) – War Pigs / Paranoid version",
+      "id": "JsVPydqa_LQ",
+      "description": "Nevrosyne en finale du Class'Viock à Aix-en-Provence en 2024 avec une reprise live de War Pigs / Paranoid. Une prestation rock marquée par une forte énergie scénique.",
+      "location": "Aix-en-Provence",
+      "year": 2024,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live au 6MIC à Aix-en-Provence (2023) – Zombie version",
+      "id": "MiEKBNBHBj4",
+      "description": "Extrait live de Nevrosyne au 6MIC à Aix-en-Provence en 2023 avec une reprise de Zombie. Une vidéo de concert rock dans une salle emblématique de la région.",
+      "location": "Aix-en-Provence",
+      "year": 2023,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live à La Scène 2 à Aix-en-Provence (2025) – Shadow of the Day / With or Without You version",
+      "id": "nqyZ5uRnS_M",
+      "description": "Nevrosyne en live à La Scène 2 à Aix-en-Provence en 2025 avec un medley autour de Shadow of the Day et With or Without You. Un extrait de concert mêlant émotion et intensité rock.",
+      "location": "Aix-en-Provence",
+      "year": 2025,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live de mariage à Puyloubier (2024) – J't'emmène au vent version",
+      "id": "L4l7QOMDLFI",
+      "description": "Nevrosyne en live lors d’un mariage à Puyloubier en 2024 avec une reprise de J't'emmène au vent. Un aperçu du groupe en prestation privée en Provence.",
+      "location": "Puyloubier",
+      "year": 2024,
+      "kind": "mariage"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live à La Scène 2 à Aix-en-Provence (2025) – Killing in the Name",
+      "id": "lP1GlWq0AkU",
+      "description": "Reprise live de Killing in the Name par Nevrosyne à La Scène 2 à Aix-en-Provence en 2025. Une vidéo de concert rock à l’énergie brute.",
+      "location": "Aix-en-Provence",
+      "year": 2025,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live d'anniversaire cowboy à Allauch (2026) – Girls Just Want to Have Fun version",
+      "id": "ZDQRBLLRx6k",
+      "description": "Nevrosyne en live lors d’un anniversaire à thème cowboy à Allauch en 2026 avec une reprise décalée de Girls Just Want to Have Fun. Une prestation privée festive et rock en Provence.",
+      "location": "Allauch",
+      "year": 2026,
+      "kind": "anniversaire"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Live d'anniversaire cowboy à Allauch (2026) – Ça (c'est vraiment toi) version",
+      "id": "naLPKGXbDd8",
+      "description": "Nevrosyne en live à Allauch en 2026 lors d’un anniversaire à ambiance cowboy avec une reprise de Ça (c'est vraiment toi). Un extrait de soirée privée festive et pleine d’énergie.",
+      "location": "Allauch",
+      "year": 2026,
+      "kind": "anniversaire"
+    }
   ],
   "compos": [
-    { "provider": "youtube", "title": "Nevrosyne - Composition live (2022) - Goldfish",  "id": "9pPMCILFVOI" }
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Composition originale live (2022) – Goldfish",
+      "id": "9pPMCILFVOI",
+      "description": "Goldfish, composition originale interprétée en live par Nevrosyne en 2022. Un extrait qui met en avant l’univers musical personnel du groupe.",
+      "location": "Provence",
+      "year": 2022,
+      "kind": "composition"
+    }
   ],
   "repets": [
-    { "provider": "youtube", "title": "Nevrosyne – Répétition rock (2020) – extrait studio Muse",  "id": "akJbNe0xp0E" },
-    { "provider": "youtube", "title": "Nevrosyne – Répétition rock (2023) – extrait studio Personnal Jesus",  "id": "ArK5deKn9Gw" }
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Répétition rock (2020) – Extrait studio sur Muse",
+      "id": "akJbNe0xp0E",
+      "description": "Extrait de répétition studio de Nevrosyne en 2020 autour d’un morceau de Muse. Une immersion dans le travail du groupe hors scène.",
+      "location": "Gardanne",
+      "year": 2020,
+      "kind": "repetition"
+    },
+    {
+      "provider": "youtube",
+      "title": "Nevrosyne – Répétition rock (2023) – Extrait studio sur Personal Jesus",
+      "id": "ArK5deKn9Gw",
+      "description": "Extrait de répétition studio de Nevrosyne en 2023 autour de Personal Jesus. Une vidéo qui montre le groupe dans une ambiance de travail et de préparation live.",
+      "location": "Saint-Savournin",
+      "year": 2023,
+      "kind": "repetition"
+    }
   ]
 }
