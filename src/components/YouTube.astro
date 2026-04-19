@@ -62,9 +62,11 @@ const iframeTitle = `Lecture vidéo YouTube : ${title}`;
 </div>
 
 <script>
-  document.addEventListener("click", (event) => {
+  document.addEventListener("pointerdown", (event) => {
     const button = event.target.closest("[data-youtube-player] > button");
     if (!button) return;
+
+    event.preventDefault(); // évite le double trigger
 
     const wrapper = button.parentElement;
     if (!wrapper) return;
@@ -86,5 +88,8 @@ const iframeTitle = `Lecture vidéo YouTube : ${title}`;
 
     wrapper.innerHTML = "";
     wrapper.appendChild(iframe);
+
+    //force le focus immédiat pour éviter le 2e clic
+    iframe.focus();
   });
 </script>

@@ -1,20 +1,178 @@
 [
-  { "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-1.jpg", "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - chanteuse à fond" },
-  { "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-2.jpg", "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - bassiste en live" },
-  { "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-3.jpg", "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - batteuse en live" },
-  { "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-1.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste focus" },
-  { "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-2.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste en live" },
-  { "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-3.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - chanteuse en live" },
-  { "src": "gallery/Nevrosyne-live-Aix-en-Provence-La-Duranne-2023.jpg", "alt": "Nevrosyne en live à l'espace polyvalent de l'Arbois à la Duranne à Aix-en-Provence le 26 septembre 2023" },
-  { "src": "gallery/Nevrosyne-mariage-Puyloubier-2024.jpeg", "alt": "Nevrosyne en soirée mariage à Puyloubier en 2024" },
-  { "src": "gallery/Nevrosyne-evenement-Puyloubier-2025.jpg", "alt": "Nevrosyne en soirée privée club eonologie à Puyloubier en 2025" },
-  { "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-1.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - guitariste" },
-  { "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-2.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - bassiste" },
-  { "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-3.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - batteuse" },
-  { "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-4.jpeg", "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - chanteuse" },
-  { "src": "gallery/Nevrosyne-evenement-Fuveau-2025.jpeg", "alt": "Nevrosyne en soirée privée à Fuveau en 2025 " },
-  { "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-4.jpeg", "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - mise en place" },
-  { "src": "gallery/Nevrosyne-anniversaire-Allauch-2026.jpg", "alt": "Nevrosyne en soirée privée à Allauch le 28 mars 2026" },
-  { "src": "gallery/Nevrosyne-live-aix-en-provence-LaScene2-2025.jpg", "alt": "Nevrosyne en live à la Scene 2 à Aix-en-Provence le 21 novembre 2025" },
-  { "src": "gallery/Nevrosyne-concert-Trets-2024.jpg", "alt": "Nevrosyne en concert sur le cours Esquiros à Trets le 21 juin 2024" }
+  {
+    "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-1.jpg",
+    "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - chanteuse à fond",
+    "location": "Aix-en-Provence",
+    "venue": "6MIC",
+    "date": "2023-06-16",
+    "year": 2023,
+    "kind": "concert",
+    "tags": ["concert", "live", "chanteuse"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-2.jpg",
+    "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - bassiste en live",
+    "location": "Aix-en-Provence",
+    "venue": "6MIC",
+    "date": "2023-06-16",
+    "year": 2023,
+    "kind": "concert",
+    "tags": ["concert", "live", "bassiste"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-3.jpg",
+    "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - batteuse en live",
+    "location": "Aix-en-Provence",
+    "venue": "6MIC",
+    "date": "2023-06-16",
+    "year": 2023,
+    "kind": "concert",
+    "tags": ["concert", "live", "batteuse"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-1.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste focus",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2025-04-04",
+    "year": 2025,
+    "kind": "festival",
+    "tags": ["festival", "live", "guitariste"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-2.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste en live",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2025-04-04",
+    "year": 2025,
+    "kind": "festival",
+    "tags": ["festival", "live", "guitariste"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-3.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - chanteuse en live",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2025-04-04",
+    "year": 2025,
+    "kind": "festival",
+    "tags": ["festival", "live", "chanteuse"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-Aix-en-Provence-La-Duranne-2023.jpg",
+    "alt": "Nevrosyne en live à l'espace polyvalent de l'Arbois à la Duranne à Aix-en-Provence le 26 septembre 2023",
+    "location": "Aix-en-Provence",
+    "venue": "Espace polyvalent de l'Arbois",
+    "date": "2023-09-26",
+    "year": 2023,
+    "kind": "concert",
+    "tags": ["concert", "live"]
+  },
+  {
+    "src": "gallery/Nevrosyne-mariage-Puyloubier-2024.jpeg",
+    "alt": "Nevrosyne en soirée mariage à Puyloubier en 2024",
+    "location": "Puyloubier",
+    "date": "2024",
+    "year": 2024,
+    "kind": "mariage",
+    "tags": ["mariage", "live"]
+  },
+  {
+    "src": "gallery/Nevrosyne-evenement-Puyloubier-2025.jpg",
+    "alt": "Nevrosyne en soirée privée club œnologie à Puyloubier en 2025",
+    "location": "Puyloubier",
+    "date": "2025",
+    "year": 2025,
+    "kind": "evenement",
+    "tags": ["evenement", "prive"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-1.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - guitariste",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2023-04-01",
+    "year": 2023,
+    "kind": "festival",
+    "tags": ["festival", "guitariste"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-2.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - bassiste",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2023-04-01",
+    "year": 2023,
+    "kind": "festival",
+    "tags": ["festival", "bassiste"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-3.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - batteuse",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2023-04-01",
+    "year": 2023,
+    "kind": "festival",
+    "tags": ["festival", "batteuse"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-Gardanne-Rock-Fest-2023-4.jpeg",
+    "alt": "Nevrosyne en live au Gardanne Rock Fest le 01 avril 2023 - chanteuse",
+    "location": "Gardanne",
+    "venue": "Gardanne Rock Fest",
+    "date": "2023-04-01",
+    "year": 2023,
+    "kind": "festival",
+    "tags": ["festival", "chanteuse"]
+  },
+  {
+    "src": "gallery/Nevrosyne-evenement-Fuveau-2025.jpeg",
+    "alt": "Nevrosyne en soirée privée à Fuveau en 2025",
+    "location": "Fuveau",
+    "date": "2025",
+    "year": 2025,
+    "kind": "evenement",
+    "tags": ["evenement", "prive"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-4.jpeg",
+    "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - mise en place",
+    "location": "Aix-en-Provence",
+    "venue": "6MIC",
+    "date": "2023-06-16",
+    "year": 2023,
+    "kind": "concert",
+    "tags": ["concert", "scene"]
+  },
+  {
+    "src": "gallery/Nevrosyne-anniversaire-Allauch-2026.jpg",
+    "alt": "Nevrosyne en soirée privée à Allauch le 28 mars 2026",
+    "location": "Allauch",
+    "date": "2026-03-28",
+    "year": 2026,
+    "kind": "anniversaire",
+    "tags": ["anniversaire", "prive"]
+  },
+  {
+    "src": "gallery/Nevrosyne-live-aix-en-provence-LaScene2-2025.jpg",
+    "alt": "Nevrosyne en live à la Scène 2 à Aix-en-Provence le 21 novembre 2025",
+    "location": "Aix-en-Provence",
+    "venue": "La Scène 2",
+    "date": "2025-11-21",
+    "year": 2025,
+    "kind": "concert",
+    "tags": ["concert", "live"]
+  },
+  {
+    "src": "gallery/Nevrosyne-concert-Trets-2024.jpg",
+    "alt": "Nevrosyne en concert sur le cours Esquiros à Trets le 21 juin 2024",
+    "location": "Trets",
+    "venue": "Cours Esquiros",
+    "date": "2024-06-21",
+    "year": 2024,
+    "kind": "concert",
+    "tags": ["concert", "fete de la musique"]
+  }
 ]

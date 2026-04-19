@@ -3,29 +3,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import photos from "../content/gallery.json";
 import { withBase } from "../utils/paths";
 
-// Normalise les chemins (local → withBase, externe → inchangé)
-const items = (Array.isArray(photos) ? photos : []).map((p) => {
+function formatKind(kind) {
+  const map = {
+    concert: "Concert",
+    festival: "Festival",
+    mariage: "Mariage",
+    evenement: "Événement",
+    anniversaire: "Anniversaire",
+    repetition: "Répétition",
+  };
+  return map[kind] || kind || "";
+}
+
+function formatDate(date, year) {
+  if (!date && year) return String(year);
+  if (!date) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [y, m, d] = date.split("-");
+    return `${d}/${m}/${y}`;
+  }
+  return String(date);
+}
+
+const items = (Array.isArray(photos) ? photos : []).map((p, index) => {
   const raw = String(p?.src || "").trim();
   const isExternal = /^(https?:)?\/\//i.test(raw) || /^[a-z]+:/i.test(raw);
   const src = isExternal ? raw : withBase(raw.replace(/^\//, ""));
+
+  const kindLabel = formatKind(p?.kind);
+  const dateLabel = formatDate(p?.date, p?.year);
+
+  const metaParts = [
+    kindLabel,
+    p?.location || "",
+    p?.venue || "",
+    dateLabel,
+  ].filter(Boolean);
+
   return {
     src,
     alt: p?.alt || "Nevrosyne — photo",
+    width: p?.width,
+    height: p?.height,
+    index,
+    location: p?.location || "",
+    venue: p?.venue || "",
+    date: p?.date || "",
+    year: p?.year || "",
+    kind: p?.kind || "",
+    kindLabel,
+    dateLabel,
+    metaLine: metaParts.join(" • "),
+    tags: Array.isArray(p?.tags) ? p.tags : [],
   };
 });
 ---
+
 <BaseLayout title="Galerie — Nevrosyne">
-  <h1 class="text-3xl font-bold mb-6">Galerie</h1>
+  <section class="mb-8 space-y-4">
+    <h1 class="text-3xl font-bold">Galerie</h1>
+    <p class="text-zinc-300 leading-relaxed">
+      Retrouvez quelques photos de Nevrosyne en concert, en festival, en mariage et lors d’événements privés en Provence.
+      Cette galerie rassemble des images prises sur scène, en répétition et dans les coulisses à Aix-en-Provence, Gardanne,
+      Trets, Puyloubier, Allauch et dans les environs.
+    </p>
+    <p class="text-zinc-400 leading-relaxed">
+      Vous y trouverez des captations live, des moments de scène et quelques images d’ambiances qui reflètent l’énergie
+      du groupe sur différents formats d’événements.
+    </p>
+  </section>
 
-  <p class="opacity-80 mb-6">Quelques images de nos lives, sessions et coulisses.</p>
-
-  <!-- Grille responsive -->
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {items.map((p) => (
-      <button
-        type="button"
+      <a
+        href={p.src}
         class="group relative rounded-lg overflow-hidden border border-zinc-800 focus:outline-none focus:ring-2 focus:ring-acid-400"
         data-full={p.src}
+        data-index={p.index}
+        data-alt={p.alt}
+        data-kind={p.kindLabel}
+        data-location={p.location}
+        data-venue={p.venue}
+        data-date={p.dateLabel}
+        data-metaline={p.metaLine}
         aria-label={`Agrandir ${p.alt}`}
       >
         <img
@@ -33,44 +93,143 @@ const items = (Array.isArray(photos) ? photos : []).map((p) => {
           alt={p.alt}
           loading="lazy"
           decoding="async"
+          width={p.width}
+          height={p.height}
           class="w-full h-40 md:h-48 object-cover transition-transform group-hover:scale-105"
         />
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-      </button>
+
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-70 group-hover:opacity-100 transition"></div>
+
+        {p.kindLabel && (
+          <div class="pointer-events-none absolute top-2 left-2">
+            <span class="inline-flex rounded-full bg-black/70 px-2.5 py-1 text-[11px] font-medium text-zinc-100 border border-white/10">
+              {p.kindLabel}
+            </span>
+          </div>
+        )}
+
+        {(p.location || p.dateLabel) && (
+          <div class="pointer-events-none absolute bottom-0 left-0 right-0 p-3">
+            <p class="text-xs text-zinc-100/90 drop-shadow">
+              {[p.location, p.dateLabel].filter(Boolean).join(" • ")}
+            </p>
+          </div>
+        )}
+      </a>
     ))}
   </div>
 
-  <!-- Lightbox native avec <dialog> -->
-  <dialog id="lightbox" class="backdrop:bg-black/80 rounded-xl p-0 border-0">
-    <div class="relative">
-      <img id="lightbox-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] object-contain" />
-      <button id="lightbox-close"
-              type="button"
-              class="absolute top-2 right-2 px-3 py-1 rounded-md bg-coal-800/80 border border-zinc-700 hover:bg-coal-700">
+  <dialog id="lightbox" class="backdrop:bg-black/80 rounded-xl p-0 border-0 bg-zinc-950 text-zinc-100">
+    <div class="relative max-w-[90vw]">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[80vh] max-w-[90vw] object-contain bg-black"
+      />
+
+      <button
+        id="lightbox-close"
+        type="button"
+        class="absolute top-3 right-3 px-3 py-1 rounded-md bg-zinc-900/80 border border-zinc-700 hover:bg-zinc-800"
+        aria-label="Fermer la galerie"
+      >
         Fermer
       </button>
+
+      <button
+        id="lightbox-prev"
+        type="button"
+        class="absolute left-3 top-1/2 -translate-y-1/2 px-3 py-2 rounded-md bg-zinc-900/80 border border-zinc-700 hover:bg-zinc-800"
+        aria-label="Image précédente"
+      >
+        ←
+      </button>
+
+      <button
+        id="lightbox-next"
+        type="button"
+        class="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-2 rounded-md bg-zinc-900/80 border border-zinc-700 hover:bg-zinc-800"
+        aria-label="Image suivante"
+      >
+        →
+      </button>
+
+      <div class="p-4 border-t border-zinc-800 space-y-2">
+        <p id="lightbox-meta" class="text-xs uppercase tracking-wide text-zinc-500"></p>
+        <p id="lightbox-caption" class="text-sm text-zinc-300 leading-relaxed"></p>
+      </div>
     </div>
   </dialog>
 
-  <!-- Script minimal -->
   <script is:raw>
     document.addEventListener("DOMContentLoaded", () => {
       const dlg = document.getElementById("lightbox");
       const img = document.getElementById("lightbox-img");
+      const caption = document.getElementById("lightbox-caption");
+      const meta = document.getElementById("lightbox-meta");
       const closeBtn = document.getElementById("lightbox-close");
+      const prevBtn = document.getElementById("lightbox-prev");
+      const nextBtn = document.getElementById("lightbox-next");
 
-      document.querySelectorAll("[data-full]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const src = btn.getAttribute("data-full");
-          const alt = btn.querySelector("img")?.getAttribute("alt") || "";
-          img.src = src; img.alt = alt;
+      const links = Array.from(document.querySelectorAll("[data-full]"));
+      let currentIndex = 0;
+
+      function show(index) {
+        const item = links[index];
+        if (!item) return;
+
+        currentIndex = index;
+
+        const src = item.getAttribute("data-full") || "";
+        const alt = item.getAttribute("data-alt") || "";
+        const metaLine = item.getAttribute("data-metaline") || "";
+
+        img.src = src;
+        img.alt = alt;
+        caption.textContent = alt;
+        meta.textContent = metaLine;
+      }
+
+      links.forEach((link, index) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          show(index);
           dlg.showModal?.();
         });
       });
 
-      closeBtn.addEventListener("click", () => dlg.close());
-      dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && dlg.open) dlg.close(); });
+      closeBtn?.addEventListener("click", () => dlg.close());
+
+      prevBtn?.addEventListener("click", () => {
+        const nextIndex = (currentIndex - 1 + links.length) % links.length;
+        show(nextIndex);
+      });
+
+      nextBtn?.addEventListener("click", () => {
+        const nextIndex = (currentIndex + 1) % links.length;
+        show(nextIndex);
+      });
+
+      dlg?.addEventListener("click", (e) => {
+        if (e.target === dlg) dlg.close();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!dlg?.open) return;
+
+        if (e.key === "Escape") dlg.close();
+
+        if (e.key === "ArrowLeft") {
+          const nextIndex = (currentIndex - 1 + links.length) % links.length;
+          show(nextIndex);
+        }
+
+        if (e.key === "ArrowRight") {
+          const nextIndex = (currentIndex + 1) % links.length;
+          show(nextIndex);
+        }
+      });
     });
   </script>
 </BaseLayout>
