@@ -67,6 +67,10 @@ const items = (Array.isArray(photos) ? photos : []).map((p, index) => {
       Cette galerie rassemble des images prises sur scène, en répétition et dans les coulisses à Aix-en-Provence, Gardanne,
       Trets, Puyloubier, Allauch et dans les environs.
     </p>
+  </section>
+
+  <section class="mb-10 space-y-4 text-zinc-400">
+    <h2 class="text-xl font-semibold text-zinc-100">Photos de concerts et événements</h2>
     <p class="text-zinc-400 leading-relaxed">
       Vous y trouverez des captations live, des moments de scène et quelques images d’ambiances qui reflètent l’énergie
       du groupe sur différents formats d’événements.
@@ -161,6 +165,19 @@ const items = (Array.isArray(photos) ? photos : []).map((p, index) => {
       </div>
     </div>
   </dialog>
+
+  <section class="mt-12 text-zinc-400 leading-relaxed">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
+    <p>
+      Découvrez également nos
+      <a href={withBase("concerts")} class="underline underline-offset-4 hover:text-zinc-200"> prochains concerts</a>,
+      nos
+      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>
+      et notre
+      <a href={withBase("contact")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
+      pour vos concerts, mariages et événements privés en Provence.
+    </p>
+  </section>
 
   <script is:raw>
     document.addEventListener("DOMContentLoaded", () => {
