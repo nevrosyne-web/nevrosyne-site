@@ -218,6 +218,56 @@ const hrefInfos = (s) => {
     </a>
   </section>
 
+  <!-- Script d’auto-scroll pour la galerie (version Safari-safe) -->
+  <script is:raw>
+    document.addEventListener("DOMContentLoaded", () => {
+      const el = document.getElementById("gallery-scroll");
+      if (!el) return;
+
+      const IDLE_MS = 2000;
+      const STEP_PX = 1.5;
+      const TICK_MS = 16;
+      const RESUME_MS = 900;
+      const RESPECT_REDUCED = false;
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let auto = null;
+      let idle = null;
+      let lastUser = 0;
+
+      const canScroll = () => el.scrollWidth > el.clientWidth;
+      const startAuto = () => {
+        if (auto || !canScroll()) return;
+        if (RESPECT_REDUCED && reduced) return;
+        el.classList.add("is-auto");
+        auto = setInterval(() => {
+          const max = el.scrollWidth - el.clientWidth;
+          if (max <= 0) return;
+          if (el.scrollLeft >= max - STEP_PX) { el.scrollLeft = 0; return; }
+          el.scrollLeft += STEP_PX;
+        }, TICK_MS);
+      };
+      const stopAuto = () => { if (auto) { clearInterval(auto); auto = null; } el.classList.remove("is-auto"); };
+      const scheduleAuto = () => { if (idle) clearTimeout(idle); idle = setTimeout(startAuto, IDLE_MS); };
+      const userInteracted = () => {
+        lastUser = Date.now();
+        stopAuto();
+        if (idle) clearTimeout(idle);
+        idle = setTimeout(() => { if (Date.now() - lastUser >= RESUME_MS) startAuto(); }, IDLE_MS);
+      };
+
+      el.addEventListener("wheel", (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); el.scrollLeft += e.deltaY; }
+        userInteracted();
+      }, { passive: false });
+      ["touchstart","touchmove","pointerdown","pointermove","keydown"].forEach(evt => {
+        el.addEventListener(evt, userInteracted, { passive: true });
+      });
+      document.addEventListener("visibilitychange", () => { if (document.hidden) { stopAuto(); } else { scheduleAuto(); } });
+      scheduleAuto();
+    });
+  </script>
+
   <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
