@@ -13,6 +13,15 @@
   "lives": [
     {
       "provider": "youtube",
+      "title": "Nevrosyne – Live à La Scène 2 à Aix-en-Provence (2024) – L'Auvergnat / Smells like teen spirit",
+      "id": "bEFTmfcLmTE",
+      "description": "Reprise mix l'auvergnat Brassens et Nirvana Smells like teen spirit à la scène 2 à Aix-en-Provence. Grosse ambiance !",
+      "location": "Aix-en-Provence",
+      "year": 2024,
+      "kind": "concert"
+    },
+    {
+      "provider": "youtube",
       "title": "Nevrosyne – Live au Gardanne Rock Fest (2025) – Tainted Love version",
       "id": "YE6cIhBlYJU",
       "description": "Reprise live de Tainted Love par Nevrosyne au Gardanne Rock Fest 2025. Un extrait de concert rock en Provence, entre énergie live et univers décalé du groupe.",
