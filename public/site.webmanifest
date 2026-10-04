@@ -1,12 +1,12 @@
 {
-  "name": "Nevrosyne 5ch",
-  "short_name": "Nevrosyne",
+  "name": "NÃ©vrosyne 5ch",
+  "short_name": "NÃ©vrosyne",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0b0e14",
   "theme_color": "#0b0e14",
-  "description": "Site officiel du groupe de rock Nevrosyne 5ch — concerts, médias et contact.",
+  "description": "Site officiel du groupe de rock NÃ©vrosyne 5ch — concerts, médias et contact.",
   "icons": [
     {
       "src": "/favicon-192.png",
