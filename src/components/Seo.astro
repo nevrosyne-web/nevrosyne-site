@@ -3,18 +3,27 @@ import { withBase } from "../utils/paths.ts";
 const {
   title = "Nevrosyne 5ch — Site officiel",
   description = "Groupe de rock Nevrosyne : concerts, evenements et contact.",
-  image = "logo 10_sansFond.png",                      // mets ce fichier dans /public
-  url = "https://nevrosyne5ch.netlify.app",   // à remplacer par ton URL
+  image = "logo 10_sansFond.png",                      // chemin relatif à /public
+  noindex = false,                                     // pages à exclure des moteurs (404, confirmation...)
 } = Astro.props;
+
+// Les robots et les réseaux sociaux exigent des URL absolues :
+// on part de `site` (astro.config.mjs) et du chemin de la page, qui contient déjà la base.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = new URL(withBase(image), Astro.site).href;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
+{!noindex && <link rel="canonical" href={canonicalUrl} />}
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="Nevrosyne 5ch" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
-<meta property="og:url" content={url} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:url" content={canonicalUrl} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={imageUrl} />

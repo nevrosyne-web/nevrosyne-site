@@ -91,12 +91,11 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title="Médias — Nevrosyne">
+<BaseLayout
+  title="Médias — Nevrosyne"
+  description="Découvre les vidéos live, compositions et répétitions de Nevrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
+>
   <Fragment slot="head">
-    <meta
-      name="description"
-      content="Découvre les vidéos live, compositions et répétitions de Nevrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
-    />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
