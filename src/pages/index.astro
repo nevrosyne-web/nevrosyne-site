@@ -9,12 +9,34 @@ import { Image } from "astro:assets";
 import { withBase } from "../utils/paths.ts";
 import { assetImage, isExternal } from "../lib/images";
 
-// Prochaine(s) date(s)
+// Prochaine(s) date(s) ; à défaut, les dernières jouées (le site montre l'activité du groupe plutôt qu'un vide)
 const today = new Date().toISOString().slice(0,10);
-const nextShows = (Array.isArray(showsData) ? showsData : [])
+const allShows = Array.isArray(showsData) ? showsData : [];
+const nextShows = allShows
   .filter(s => s.date >= today)
   .sort((a,b) => a.date.localeCompare(b.date))
   .slice(0, 3);
+const lastShows = allShows
+  .filter(s => s.date < today)
+  .sort((a,b) => b.date.localeCompare(a.date))
+  .slice(0, 3);
+
+let showsTitle = "Prochains concerts";
+let showsTag = "#concert";
+let shows = nextShows;
+if (nextShows.length === 0) {
+  showsTitle = "Derniers concerts";
+  showsTag = "#déjà joué";
+  shows = lastShows;
+}
+
+// "2026-06-20" -> "20 juin 2026"
+function formatDate(iso) {
+  const [y, m, d] = String(iso).split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("fr-FR", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  });
+}
 
 // Galerie strip
 const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => {
@@ -180,24 +202,32 @@ const hrefInfos = (s) => {
   <!-- CONCERTS -->
   <section class="mt-14">
     <div class="flex items-end justify-between mb-4">
-      <h2 class="text-2xl font-bold">Prochains concerts</h2>
+      <h2 class="text-2xl font-bold">{showsTitle}</h2>
       <a href={withBase("concerts")} class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">
         Toutes les dates
       </a>
     </div>
 
-    {nextShows.length === 0 ? (
-      <p class="opacity-80">
-        Pas encore de date ? Mauvais timing.
-        Suis-nous sur <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a> :
-        on y annonce les concerts dès que ça rejoue près de chez toi.
-      </p>
-    ) : (
+    {nextShows.length === 0 && (
+      <div class="mb-6 p-4 rounded-xl border border-acid-400/40 bg-coal-800/40">
+        <p class="font-semibold">Prochaines dates en préparation.</p>
+        <p class="mt-1 opacity-85">
+          En attendant, Nevrosyne joue aussi pour des soirées privées, mariages et événements.
+          Tu organises quelque chose ?
+          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact")}>Parle-nous de ton projet</a>.
+        </p>
+        <p class="mt-2 text-sm opacity-70">
+          Pour être prévenu·e des prochains concerts : <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a>.
+        </p>
+      </div>
+    )}
+
+    {shows.length > 0 && (
       <ul class="grid md:grid-cols-3 gap-4">
-        {nextShows.map((s) => (
+        {shows.map((s) => (
           <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex flex-col gap-2">
-            <div class="text-sm opacity-70">#concert</div>
-            <div class="text-lg font-semibold">{s.date}</div>
+            <div class="text-sm opacity-70">{showsTag}</div>
+            <div class="text-lg font-semibold">{formatDate(s.date)}</div>
             <div class="opacity-85">{s.city} — {s.venue}</div>
             <div class="mt-auto">
               <a href={hrefInfos(s)} class="inline-block mt-3 px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700">

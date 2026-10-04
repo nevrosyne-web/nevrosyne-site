@@ -93,11 +93,17 @@ const placeLabel = (s) => {
     <h2 class="text-2xl font-bold mb-4">Prochaines dates</h2>
 
     {upcoming.length === 0 ? (
-      <p class="opacity-80">
-        Aucune date n’est annoncée pour le moment.
-        Suis-nous sur <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a>
-        pour être prévenu·e des prochains concerts.
-      </p>
+      <div class="p-4 rounded-xl border border-acid-400/40 bg-coal-800/40">
+        <p class="font-semibold">Prochaines dates en préparation.</p>
+        <p class="mt-1 opacity-85">
+          En attendant, Nevrosyne joue aussi pour des soirées privées, mariages et événements.
+          Tu organises quelque chose ?
+          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact")}>Parle-nous de ton projet</a>.
+        </p>
+        <p class="mt-2 text-sm opacity-70">
+          Pour être prévenu·e des prochains concerts : <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a>.
+        </p>
+      </div>
     ) : (
       <ul class="space-y-4">
         {upcoming.map((s) => {
