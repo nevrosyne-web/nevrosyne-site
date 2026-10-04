@@ -3,6 +3,10 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  # rebuild hebdomadaire (lundi 05:00 UTC) : les concerts passés basculent
+  # dans « Dates passées », le tri se faisant sur la date du build
+  schedule:
+    - cron: '0 5 * * 1'
 permissions:
   contents: read
   pages: write
