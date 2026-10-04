@@ -2,8 +2,8 @@
 import { getImage } from "astro:assets";
 import { assetImage } from "../lib/images";
 const {
-  title = "NÃ©vrosyne 5ch — Site officiel",
-  description = "Groupe de rock NÃ©vrosyne : concerts, evenements et contact.",
+  title = "Névrosyne 5ch — Site officiel",
+  description = "Groupe de rock Névrosyne : concerts, evenements et contact.",
   image = "logo.png",                                  // chemin relatif à src/assets
   noindex = false,                                     // pages à exclure des moteurs (404, confirmation...)
 } = Astro.props;
@@ -21,7 +21,7 @@ const imageUrl = new URL(ogImage.src, Astro.site).href;
 {!noindex && <link rel="canonical" href={canonicalUrl} />}
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
-<meta property="og:site_name" content="NÃ©vrosyne 5ch" />
+<meta property="og:site_name" content="Névrosyne 5ch" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />

@@ -44,13 +44,13 @@ function metaLine(item) {
 
 function sectionDescription(id) {
   if (id === "audios") {
-    return "Écoute l’EP de NÃ©vrosyne et plonge dans l’univers du groupe entre compos, énergie rock et identité bien à part.";
+    return "Écoute l’EP de Névrosyne et plonge dans l’univers du groupe entre compos, énergie rock et identité bien à part.";
   }
   if (id === "lives") {
-    return "Retrouve NÃ©vrosyne sur scène : festivals, salles, soirées privées et lives.";
+    return "Retrouve Névrosyne sur scène : festivals, salles, soirées privées et lives.";
   }
   if (id === "compos") {
-    return "Découvre les compos originales de NÃ©vrosyne : du rock, de l’énergie et une petite dose de névrose maison.";
+    return "Découvre les compos originales de Névrosyne : du rock, de l’énergie et une petite dose de névrose maison.";
   }
   if (id === "repets") {
     return "Quelques extraits de répétes pour voir ce qui se passe avant de monter sur scène. Spoiler : ça travaille, mais pas toujours dans le calme.";
@@ -65,18 +65,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "MusicGroup",
-      name: "NÃ©vrosyne",
+      name: "Névrosyne",
       url: Astro.site.href,
       genre: "Rock",
       description:
-        "NÃ©vrosyne est un groupe de rock basé en Provence, disponible pour concerts, mariages et événements privés."
+        "Névrosyne est un groupe de rock basé en Provence, disponible pour concerts, mariages et événements privés."
     },
     {
       "@type": "CollectionPage",
-      name: "Médias — NÃ©vrosyne",
+      name: "Médias — Névrosyne",
       url: new URL("media/", Astro.site).href,
       description:
-        "Vidéos live, compositions, répétitions et extraits audio du groupe de rock NÃ©vrosyne en Provence."
+        "Vidéos live, compositions, répétitions et extraits audio du groupe de rock Névrosyne en Provence."
     },
     ...allVideos.map((v) => ({
       "@type": "VideoObject",
@@ -92,8 +92,8 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Médias — NÃ©vrosyne"
-  description="Découvre les vidéos live, compositions et répétitions de NÃ©vrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
+  title="Médias — Névrosyne"
+  description="Découvre les vidéos live, compositions et répétitions de Névrosyne, groupe de rock basé en Provence, pour concerts, mariages et événements privés."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -102,7 +102,7 @@ const jsonLd = {
   <section class="mb-12 space-y-4">
     <h1 class="text-3xl font-bold">Médias</h1>
     <p class="text-zinc-300 leading-relaxed">
-      Retrouve ici les vidéos live, compos et extraits de répétitions de NÃ©vrosyne.
+      Retrouve ici les vidéos live, compos et extraits de répétitions de Névrosyne.
       Du live, du son, un peu de sueur mais tout en contrôle pour le plus grand bonheur de tes oreilles.
     </p>
     <p class="text-zinc-400 leading-relaxed">
