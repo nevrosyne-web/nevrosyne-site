@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nevrosyne-web.github.io/nevrosyne-site/sitemap-index.xml
+Sitemap: https://nevrosyne.fr/sitemap-index.xml

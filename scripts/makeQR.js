@@ -1,7 +1,7 @@
 import QRCode from "qrcode";
 import fs from "fs";
 
-const url = "https://nevrosyne5ch.netlify.app";
+const url = "https://nevrosyne.fr";
 QRCode.toFile("public/qr-nevrosyne.png", url, {
   color: {
     dark: "#FFD60A",   // jaune électrique

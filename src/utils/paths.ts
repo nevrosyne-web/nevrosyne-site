@@ -5,7 +5,7 @@ export function withBase(p: string = ""): string {
   // URLs absolues (http, https, mailto:, tel:, data:, etc.) -> on ne touche pas
   if (/^(https?:)?\/\//i.test(s) || /^[a-z]+:/i.test(s)) return s;
 
-  const base = import.meta.env.BASE_URL ?? "/"; // "/nevrosyne-site/" sur GH Pages
+  const base = import.meta.env.BASE_URL ?? "/"; // "/" avec le domaine nevrosyne.fr (cf. astro.config.mjs)
   if (!s) return base; // lien vers la home
 
   const clean = s.replace(/^\//, "");
