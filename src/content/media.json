@@ -1,15 +1,5 @@
 {
-  "audios": [
-    {
-      "provider": "bandcamp",
-      "title": "Nevrosyne – EP",
-      "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=XXXXXXXX/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/",
-      "description": "EP de Nevrosyne disponible à l’écoute sur Bandcamp. Découvrez l’univers rock du groupe entre compositions originales et énergie live.",
-      "location": "Provence",
-      "year": null,
-      "kind": "ep"
-    }
-  ],
+  "audios": [],
   "lives": [
     {
       "provider": "youtube",

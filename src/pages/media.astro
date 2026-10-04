@@ -112,7 +112,8 @@ const jsonLd = {
     </p>
   </section>
 
-  <!-- {normAudios.length > 0 && (
+  {/* Section masquée tant que media.json ne contient aucun audio (ajouter une entrée "bandcamp" suffit à l'afficher) */}
+  {normAudios.length > 0 && (
     <section class="space-y-5 mb-14" id="audios">
       <div class="space-y-2">
         <h2 class="text-2xl font-semibold">À écouter</h2>
@@ -146,7 +147,7 @@ const jsonLd = {
         ))}
       </div>
     </section>
-  )} -->
+  )}
 
   {normLives.length > 0 && (
     <section class="space-y-5 mb-14" id="lives">
