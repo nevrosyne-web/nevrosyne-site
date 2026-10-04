@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import { withBase } from "../utils/paths";
+import quesako from "../assets/404_quesako.jpg";
 ---
 
 <BaseLayout title="404 — Rock perdu dans le vide" noindex>
@@ -12,17 +14,18 @@ import { withBase } from "../utils/paths";
       <div
         class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,201,240,0.08)_0%,transparent_70%)] animate-pulse"
       ></div>
-      <div
-        class="absolute inset-0 bg-[url('/textures/noise.png')] opacity-10 mix-blend-overlay"
-      ></div>
     </div>
 
     <!-- Image centrale -->
-    <img
-      src={withBase("gallery/404_quesako.jpg")}
+    <Image
+      src={quesako}
       alt="Guitare électrique — Erreur 404"
-      class="relative z-10 w-60 md:w-80 animate-[wiggle_2s_infinite] drop-shadow-[0_0_25px_rgba(76,201,240,0.4)]"
-      loading="lazy"
+      width={640}
+      widths={[320, 640]}
+      sizes="(min-width: 768px) 320px, 240px"
+      format="webp"
+      loading="eager"
+      class="relative z-10 w-60 md:w-80 h-auto animate-[wiggle_2s_infinite] drop-shadow-[0_0_25px_rgba(76,201,240,0.4)]"
     />
 
     <!-- Texte -->
