@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { withBase } from "../utils/paths";
+import logo from "../assets/logo.png";
 
 const links = [
   { href: "",    label: "Accueil" },
@@ -14,10 +16,12 @@ const links = [
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <!-- Logo / titre -->
     <a href={withBase("")} class="flex items-center gap-3 group" aria-label="Accueil — Nevrosyne">
-      <img
-        src={withBase("logo 10_sansFond.png")}
+      <Image
+        src={logo}
         alt="Nevrosyne"
-        width="176" height="40"
+        height={112}
+        format="webp"
+        loading="eager"
         class="h-14 w-auto transition-transform group-hover:scale-105 drop-shadow-[0_0_6px_rgba(76,201,240,0.45)]" />
     </a>
 

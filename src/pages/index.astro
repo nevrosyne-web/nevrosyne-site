@@ -5,7 +5,9 @@ import ClientsGrid from "../components/ClientsGrid.astro";
 import clients from "../content/clients.json";
 import showsData from "../content/concerts.json";
 import photos from "../content/gallery.json";
+import { Image } from "astro:assets";
 import { withBase } from "../utils/paths.ts";
+import { assetImage, isExternal } from "../lib/images";
 
 // Prochaine(s) date(s)
 const today = new Date().toISOString().slice(0,10);
@@ -15,10 +17,17 @@ const nextShows = (Array.isArray(showsData) ? showsData : [])
   .slice(0, 3);
 
 // Galerie strip
-const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => ({
-  src: withBase(String(p.src || "").replace(/^\//, "")),
-  alt: p.alt || "Nevrosyne 5ch en concert - groupe de rock à Marseille, Aix-en-Provence et en PACA",
-}));
+const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => {
+  const src = String(p.src || "").trim();
+  // image locale : optimisée par Astro ; URL externe : affichée telle quelle
+  let img = null;
+  if (!isExternal(src)) img = assetImage(src);
+  return {
+    src,
+    img,
+    alt: p.alt || "Nevrosyne 5ch en concert - groupe de rock à Marseille, Aix-en-Provence et en PACA",
+  };
+});
 
 // Lien infos
 const hrefInfos = (s) => {
@@ -142,12 +151,25 @@ const hrefInfos = (s) => {
             key={i}
             class="gallery-item group relative block flex-shrink-0 rounded-xl overflow-hidden border border-zinc-800"
           >
-            <img
-              src={p.src}
-              alt={p.alt}
-              loading="lazy"
-              class="w-full h-full object-cover transition-transform group-hover:scale-[1.05]"
-            />
+            {p.img ? (
+              <Image
+                src={p.img}
+                alt={p.alt}
+                width={840}
+                widths={[420, 840]}
+                sizes="(min-width: 768px) 420px, 300px"
+                format="webp"
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform group-hover:scale-[1.05]"
+              />
+            ) : (
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform group-hover:scale-[1.05]"
+              />
+            )}
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
           </a>
         ))}

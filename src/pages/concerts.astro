@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import showsData from "../content/concerts.json";
+import { Image, getImage } from "astro:assets";
 import { withBase } from "../utils/paths";
+import { assetImage } from "../lib/images";
 
 // util: sécurise une chaîne (espaces/() etc.)
 const enc = (s) => (typeof s === "string" ? encodeURI(s) : s);
@@ -14,15 +16,27 @@ const hrefWithBase = (u, fallback = "") => {
 };
 
 const today = new Date().toISOString().slice(0, 10);
-const fallbackPoster = withBase("affiches/default.png");
+const fallbackPoster = assetImage("affiches/default.png");
 
 // normalise les champs utiles
-const allShows = (Array.isArray(showsData) ? showsData : []).map((s) => {
+const allShows = await Promise.all((Array.isArray(showsData) ? showsData : []).map(async (s) => {
   const rawPoster = s.poster && String(s.poster).trim();
-  const poster =
-    rawPoster
-      ? (isExternal(rawPoster) ? enc(rawPoster) : withBase(String(rawPoster).replace(/^\//, "")))
-      : "";
+
+  // affiche locale (ou affiche par défaut) : optimisée par Astro, avec une grande
+  // version WebP pour la lightbox ; affiche externe : affichée telle quelle
+  let posterImg = null;
+  let posterFull = "";
+  if (rawPoster && isExternal(rawPoster)) {
+    posterFull = enc(rawPoster);
+  } else {
+    if (rawPoster) {
+      posterImg = assetImage(rawPoster);
+    } else {
+      posterImg = fallbackPoster;
+    }
+    const large = await getImage({ src: posterImg, width: Math.min(posterImg.width, 1200), format: "webp" });
+    posterFull = large.src;
+  }
 
   return {
     date: s.date,
@@ -31,10 +45,11 @@ const allShows = (Array.isArray(showsData) ? showsData : []).map((s) => {
     venue: s.venue,
     link: s.link || "",
     ticketUrl: s.ticketUrl || "",
-    poster,
+    posterImg,
+    posterFull,
     posterAlt: s.posterAlt || `${s.city} — ${s.venue} (${s.date})`,
   };
-});
+}));
 
 // à venir: tri croissant
 const upcoming = allShows
@@ -86,20 +101,35 @@ const placeLabel = (s) => {
     ) : (
       <ul class="space-y-4">
         {upcoming.map((s) => {
-          const posterSrc = s.poster || fallbackPoster;
           return (
             <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex gap-4">
               <div class="w-32 md:w-40 flex-shrink-0 rounded-lg overflow-hidden border border-zinc-800 bg-black/40">
-                <img
-                  data-poster-zoom
-                  src={posterSrc}
-                  alt={s.posterAlt}
-                  loading="lazy"
-                  decoding="async"
-                  width="320"
-                  height="450"
-                  class="w-full h-full object-cover cursor-zoom-in"
-                />
+                {s.posterImg ? (
+                  <Image
+                    data-poster-zoom
+                    data-full={s.posterFull}
+                    src={s.posterImg}
+                    alt={s.posterAlt}
+                    width={320}
+                    widths={[160, 320]}
+                    sizes="160px"
+                    format="webp"
+                    loading="lazy"
+                    class="w-full h-full object-cover cursor-zoom-in"
+                  />
+                ) : (
+                  <img
+                    data-poster-zoom
+                    data-full={s.posterFull}
+                    src={s.posterFull}
+                    alt={s.posterAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width="320"
+                    height="450"
+                    class="w-full h-full object-cover cursor-zoom-in"
+                  />
+                )}
               </div>
 
               <div class="flex-1 min-w-0">
@@ -157,20 +187,35 @@ const placeLabel = (s) => {
 
           <ul class="px-4 pb-4 space-y-4">
             {pastByYear[year].map((s) => {
-              const posterSrc = s.poster || fallbackPoster;
-              return (
+                  return (
                 <li class="p-4 rounded-xl bg-coal-800/60 border border-zinc-800 flex gap-4">
                   <div class="w-24 md:w-32 flex-shrink-0 rounded-lg overflow-hidden border border-zinc-800 bg-black/40">
-                    <img
-                      data-poster-zoom
-                      src={posterSrc}
-                      alt={s.posterAlt}
-                      loading="lazy"
-                      decoding="async"
-                      width="256"
-                      height="360"
-                      class="w-full h-full object-cover cursor-zoom-in"
-                    />
+                    {s.posterImg ? (
+                      <Image
+                        data-poster-zoom
+                        data-full={s.posterFull}
+                        src={s.posterImg}
+                        alt={s.posterAlt}
+                        width={256}
+                        widths={[128, 256]}
+                        sizes="128px"
+                        format="webp"
+                        loading="lazy"
+                        class="w-full h-full object-cover cursor-zoom-in"
+                      />
+                    ) : (
+                      <img
+                        data-poster-zoom
+                        data-full={s.posterFull}
+                        src={s.posterFull}
+                        alt={s.posterAlt}
+                        loading="lazy"
+                        decoding="async"
+                        width="256"
+                        height="360"
+                        class="w-full h-full object-cover cursor-zoom-in"
+                      />
+                    )}
                   </div>
 
                   <div class="flex-1 min-w-0">
@@ -227,7 +272,7 @@ const placeLabel = (s) => {
 
       document.querySelectorAll('main img[data-poster-zoom]').forEach((el) => {
         el.addEventListener("click", () => {
-          img.src = el.src;
+          img.src = el.dataset.full || el.src;
           img.alt = el.alt || "Affiche de concert";
           dlg.showModal?.();
         });

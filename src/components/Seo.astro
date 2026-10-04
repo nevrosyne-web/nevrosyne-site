@@ -1,16 +1,19 @@
 ---
-import { withBase } from "../utils/paths.ts";
+import { getImage } from "astro:assets";
+import { assetImage } from "../lib/images";
 const {
   title = "Nevrosyne 5ch — Site officiel",
   description = "Groupe de rock Nevrosyne : concerts, evenements et contact.",
-  image = "logo 10_sansFond.png",                      // chemin relatif à /public
+  image = "logo.png",                                  // chemin relatif à src/assets
   noindex = false,                                     // pages à exclure des moteurs (404, confirmation...)
 } = Astro.props;
 
 // Les robots et les réseaux sociaux exigent des URL absolues :
 // on part de `site` (astro.config.mjs) et du chemin de la page, qui contient déjà la base.
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const imageUrl = new URL(withBase(image), Astro.site).href;
+// PNG (et non WebP) : tous les réseaux sociaux ne lisent pas le WebP en aperçu
+const ogImage = await getImage({ src: assetImage(image), width: 1200, format: "png" });
+const imageUrl = new URL(ogImage.src, Astro.site).href;
 ---
 <title>{title}</title>
 <meta name="description" content={description} />

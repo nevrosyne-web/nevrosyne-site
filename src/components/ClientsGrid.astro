@@ -1,5 +1,6 @@
 ---
-import { withBase } from "../utils/paths";
+import { Image } from "astro:assets";
+import { assetImage, isExternal } from "../lib/images";
 
 // Le composant accepte maintenant indifféremment :
 // {logo|src, name|alt, url|href}
@@ -13,11 +14,11 @@ const items = rawItems.map((it) => {
   const name = (it.name ?? it.alt ?? "Logo").toString();
   const url  = (it.url  ?? it.href ?? "#").toString();
 
-  // si ce n'est pas une URL absolue, on préfixe avec la base (GH Pages)
-  const isExternal = /^(https?:)?\/\//i.test(logo) || /^[a-z]+:/i.test(logo);
-  const src = isExternal ? logo : withBase(logo.replace(/^\//, ""));
+  // logo local : optimisé par Astro ; URL externe : affichée telle quelle
+  let img = null;
+  if (!isExternal(logo)) img = assetImage(logo);
 
-  return { src, alt: name, href: url };
+  return { img, src: logo, alt: name, href: url };
 });
 ---
 
@@ -25,12 +26,23 @@ const items = rawItems.map((it) => {
   {items.map((c) => (
     <div class="rounded-lg border border-zinc-800 bg-coal-800/40 px-3 py-4 flex items-center justify-center">
       <a href={c.href} target="_blank" rel="noopener noreferrer" aria-label={c.alt} class="w-full">
-        <img
-          src={c.src}
-          alt={c.alt}
-          loading="lazy"
-          class="max-h-12 mx-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition"
-        />
+        {c.img ? (
+          <Image
+            src={c.img}
+            alt={c.alt}
+            height={96}
+            format="webp"
+            loading="lazy"
+            class="max-h-12 w-auto mx-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition"
+          />
+        ) : (
+          <img
+            src={c.src}
+            alt={c.alt}
+            loading="lazy"
+            class="max-h-12 mx-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition"
+          />
+        )}
       </a>
     </div>
   ))}
