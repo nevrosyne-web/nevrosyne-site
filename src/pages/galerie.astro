@@ -66,8 +66,12 @@ const items = await Promise.all((Array.isArray(photos) ? photos : []).map(async 
     dateLabel,
     metaLine: metaParts.join(" • "),
     tags: Array.isArray(p?.tags) ? p.tags : [],
+    credit: p?.credit || "",
   };
 }));
+
+// Photographes crédités, dans l'ordre d'apparition (rappel en bas de page)
+const photographers = [...new Set(items.map((p) => p.credit).filter(Boolean))];
 ---
 
 <BaseLayout
@@ -104,6 +108,7 @@ const items = await Promise.all((Array.isArray(photos) ? photos : []).map(async 
         data-venue={p.venue}
         data-date={p.dateLabel}
         data-metaline={p.metaLine}
+        data-credit={p.credit}
         aria-label={`Agrandir ${p.alt}`}
       >
         {p.img ? (
@@ -189,9 +194,16 @@ const items = await Promise.all((Array.isArray(photos) ? photos : []).map(async 
       <div class="p-4 border-t border-zinc-800 space-y-2">
         <p id="lightbox-meta" class="text-xs uppercase tracking-wide text-zinc-500"></p>
         <p id="lightbox-caption" class="text-sm text-zinc-300 leading-relaxed"></p>
+        <p id="lightbox-credit" class="text-xs text-zinc-500" hidden></p>
       </div>
     </div>
   </dialog>
+
+  {photographers.length > 0 && (
+    <p class="mt-6 text-xs text-zinc-500">
+      Photos : {photographers.join(", ")}. Merci à eux !
+    </p>
+  )}
 
   <section class="mt-12 text-zinc-400 leading-relaxed">
     <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
@@ -212,6 +224,7 @@ const items = await Promise.all((Array.isArray(photos) ? photos : []).map(async 
       const img = document.getElementById("lightbox-img");
       const caption = document.getElementById("lightbox-caption");
       const meta = document.getElementById("lightbox-meta");
+      const credit = document.getElementById("lightbox-credit");
       const closeBtn = document.getElementById("lightbox-close");
       const prevBtn = document.getElementById("lightbox-prev");
       const nextBtn = document.getElementById("lightbox-next");
@@ -228,11 +241,20 @@ const items = await Promise.all((Array.isArray(photos) ? photos : []).map(async 
         const src = item.getAttribute("data-full") || "";
         const alt = item.getAttribute("data-alt") || "";
         const metaLine = item.getAttribute("data-metaline") || "";
+        const photographer = item.getAttribute("data-credit") || "";
 
         img.src = src;
         img.alt = alt;
         caption.textContent = alt;
         meta.textContent = metaLine;
+
+        if (photographer) {
+          credit.textContent = `Photo : ${photographer}`;
+          credit.hidden = false;
+        } else {
+          credit.textContent = "";
+          credit.hidden = true;
+        }
       }
 
       links.forEach((link, index) => {

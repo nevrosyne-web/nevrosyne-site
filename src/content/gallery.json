@@ -1,6 +1,7 @@
 [
   {
     "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-1.jpg",
+    "credit": "Jr Dumoing",
     "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - chanteuse à fond",
     "location": "Aix-en-Provence",
     "venue": "6MIC",
@@ -11,6 +12,7 @@
   },
   {
     "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-2.jpg",
+    "credit": "Jr Dumoing",
     "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - bassiste en live",
     "location": "Aix-en-Provence",
     "venue": "6MIC",
@@ -21,6 +23,7 @@
   },
   {
     "src": "gallery/Nevrosyne-concert-Aix-en-Provence-6MIC-2023-3.jpg",
+    "credit": "Jr Dumoing",
     "alt": "Nevrosyne en concert au 6MIC à Aix-en-Provence le 16 juin 2023 - batteuse en live",
     "location": "Aix-en-Provence",
     "venue": "6MIC",
@@ -31,6 +34,7 @@
   },
   {
     "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-1.jpeg",
+    "credit": "Cyril Planard",
     "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste focus",
     "location": "Gardanne",
     "venue": "Gardanne Rock Fest",
@@ -41,6 +45,7 @@
   },
   {
     "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-2.jpeg",
+    "credit": "Cyril Planard",
     "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - guitariste en live",
     "location": "Gardanne",
     "venue": "Gardanne Rock Fest",
@@ -51,6 +56,7 @@
   },
   {
     "src": "gallery/Nevrosyne-concert-Gardanne-Rock-Fest-2025-3.jpeg",
+    "credit": "Cyril Planard",
     "alt": "Nevrosyne en live au Gardanne Rock Fest le 04 avril 2025 - chanteuse en live",
     "location": "Gardanne",
     "venue": "Gardanne Rock Fest",
@@ -61,6 +67,7 @@
   },
   {
     "src": "gallery/Nevrosyne-live-Aix-en-Provence-La-Duranne-2023.jpg",
+    "credit": "Jr Dumoing",
     "alt": "Nevrosyne en live à l'espace polyvalent de l'Arbois à la Duranne à Aix-en-Provence le 26 septembre 2023",
     "location": "Aix-en-Provence",
     "venue": "Espace polyvalent de l'Arbois",
