@@ -4,18 +4,7 @@ import photos from "../content/gallery.json";
 import { Image, getImage } from "astro:assets";
 import { withBase } from "../utils/paths";
 import { assetImage, isExternal } from "../lib/images";
-
-function formatKind(kind) {
-  const map = {
-    concert: "Concert",
-    festival: "Festival",
-    mariage: "Mariage",
-    evenement: "Événement",
-    anniversaire: "Anniversaire",
-    repetition: "Répétition",
-  };
-  return map[kind] || kind || "";
-}
+import { formatKind } from "../utils/kinds";
 
 function formatDate(date, year) {
   if (!date && year) return String(year);

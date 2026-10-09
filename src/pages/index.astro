@@ -7,6 +7,7 @@ import showsData from "../content/concerts.json";
 import photos from "../content/gallery.json";
 import { Image } from "astro:assets";
 import { withBase } from "../utils/paths.ts";
+import { formatDate } from "../utils/dates";
 import { assetImage, isExternal } from "../lib/images";
 
 // Prochaine(s) date(s) ; à défaut, les dernières jouées (le site montre l'activité du groupe plutôt qu'un vide)
@@ -21,21 +22,13 @@ const lastShows = allShows
   .sort((a,b) => b.date.localeCompare(a.date))
   .slice(0, 3);
 
-let showsTitle = "Prochains concerts";
+let showsTitle = "Prochains concerts publics";
 let showsTag = "#concert";
 let shows = nextShows;
 if (nextShows.length === 0) {
-  showsTitle = "Derniers concerts";
+  showsTitle = "Derniers concerts publics";
   showsTag = "#déjà joué";
   shows = lastShows;
-}
-
-// "2026-06-20" -> "20 juin 2026"
-function formatDate(iso) {
-  const [y, m, d] = String(iso).split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("fr-FR", {
-    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
-  });
 }
 
 // Galerie strip
@@ -71,7 +64,7 @@ const hrefInfos = (s) => {
       </p>
 
       <h1 class="font-display text-6xl md:text-7xl leading-none">
-        NEVROSYNE 5CH
+        NÉVROSYNE 5CH
         <span class="sr-only">, groupe de rock approximatif à Marseille, Aix-en-Provence et en région PACA</span>
       </h1>
 <!-- 
@@ -90,9 +83,8 @@ const hrefInfos = (s) => {
 
       <p class="text-lg opacity-85">
         Reprises revisitées, adaptations improbables et compos originales :
-        Névrosyne 5ch balance un live énergique et décalé.
-        Basé entre Marseille et Aix-en-Provence, le groupe joue en concert,
-        festival, mariage ou événement privé — bref, partout où il faut du son
+        Névrosyne 5ch balance un live énergique et décalé, en concert, en festival,
+        en mariage ou en soirée privée — bref, partout où il faut du son
         pour réveiller les gens.
       </p>      
 
@@ -111,7 +103,7 @@ const hrefInfos = (s) => {
       {nextShows.length > 0 && (
         <div class="mt-2 text-sm rounded-lg border border-zinc-800 bg-coal-800/50 p-3">
           <span class="opacity-70 mr-2">Prochaine date publique :</span>
-          <strong>{nextShows[0].date}</strong>
+          <strong>{formatDate(nextShows[0].date)}</strong>
           <span class="opacity-80"> — {nextShows[0].city} • {nextShows[0].venue}</span>
           <a href={withBase("concerts/")} class="ml-3 underline underline-offset-4">Tout voir</a>
         </div>
@@ -135,14 +127,8 @@ const hrefInfos = (s) => {
       </h2>
 
       <p class="text-lg opacity-85">
-        Névrosyne 5ch, c’est un groupe de rock basé entre Marseille et Aix-en-Provence,
-        qui mélange reprises, adaptations et compositions avec une seule règle :
-        faire bouger les gens.
-      </p>
-
-      <p class="text-lg opacity-80">
-        Sur scène, c’est de l’énergie !
-        Le groupe joue en concert, festival, soirée ou événement privé dans toute la région PACA.
+        Une seule règle : faire bouger les gens.
+        Sur scène, c’est de l’énergie, dans toute la région PACA !
       </p>
 
       <p class="text-lg opacity-80">
@@ -210,7 +196,7 @@ const hrefInfos = (s) => {
 
     {nextShows.length === 0 && (
       <div class="mb-6 p-4 rounded-xl border border-acid-400/40 bg-coal-800/40">
-        <p class="font-semibold">Prochaines dates en préparation.</p>
+        <p class="font-semibold">Prochains concerts publics en préparation.</p>
         <p class="mt-1 opacity-85">
           En attendant, Névrosyne joue aussi pour des soirées privées, mariages et événements.
           Tu organises quelque chose ?

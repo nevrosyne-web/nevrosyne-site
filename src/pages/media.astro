@@ -4,6 +4,7 @@ import YouTube from "../components/YouTube.astro";
 import Bandcamp from "../components/Bandcamp.astro";
 import media from "../content/media.json";
 import { withBase } from "../utils/paths";
+import { formatKind } from "../utils/kinds";
 
 const audios = Array.isArray(media.audios) ? media.audios : [];
 const lives = Array.isArray(media.lives) ? media.lives : [];
@@ -36,7 +37,7 @@ const normRepets = normalize(repets);
 
 function metaLine(item) {
   const parts = [];
-  if (item.kind) parts.push(String(item.kind));
+  if (item.kind) parts.push(formatKind(String(item.kind)));
   if (item.location) parts.push(String(item.location));
   if (item.year) parts.push(String(item.year));
   return parts.join(" • ");
@@ -53,7 +54,7 @@ function sectionDescription(id) {
     return "Découvre les compos originales de Névrosyne : du rock, de l’énergie et une petite dose de névrose maison.";
   }
   if (id === "repets") {
-    return "Quelques extraits de répétes pour voir ce qui se passe avant de monter sur scène. Spoiler : ça travaille, mais pas toujours dans le calme.";
+    return "Quelques extraits de répètes pour voir ce qui se passe avant de monter sur scène. Spoiler : ça travaille, mais pas toujours dans le calme.";
   }
   return "";
 }

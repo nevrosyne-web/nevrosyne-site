@@ -2,9 +2,9 @@
 const { rows = [] } = Astro.props as { rows: any[] };
 
 const columns = [
-  { key: "num",    label: "num" },
+  { key: "num",    label: "#" },
   { key: "Titre",  label: "Titre" },
-  { key: "Artiste",    label: "Artistes" }
+  { key: "Artiste",    label: "Artiste" }
 ].filter(col => rows.some(r => r[col.key] !== undefined));
 ---
 <div class="overflow-x-auto border border-zinc-800 rounded-xl">
