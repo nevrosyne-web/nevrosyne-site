@@ -54,7 +54,7 @@ const galleryStrip = (Array.isArray(photos) ? photos : []).map((p) => {
 // Lien infos
 const hrefInfos = (s) => {
   if (s?.link && /^(https?:)?\/\//i.test(s.link)) return s.link;
-  return withBase(String(s?.link || "concerts").replace(/^\//, ""));
+  return withBase(String(s?.link || "concerts/").replace(/^\//, ""));
 };
 ---
 
@@ -97,13 +97,13 @@ const hrefInfos = (s) => {
       </p>      
 
       <div class="flex flex-wrap gap-3">
-        <a href={withBase("concerts")} class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
+        <a href={withBase("concerts/")} class="px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
           Prochains concerts
         </a>
-        <a href={withBase("media")} class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
+        <a href={withBase("media/")} class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
           Voir les médias
         </a>
-        <a href={withBase("galerie")} class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400/80">
+        <a href={withBase("galerie/")} class="px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400/80">
           Galerie
         </a>
       </div>
@@ -113,7 +113,7 @@ const hrefInfos = (s) => {
           <span class="opacity-70 mr-2">Prochaine date publique :</span>
           <strong>{nextShows[0].date}</strong>
           <span class="opacity-80"> — {nextShows[0].city} • {nextShows[0].venue}</span>
-          <a href={withBase("concerts")} class="ml-3 underline underline-offset-4">Tout voir</a>
+          <a href={withBase("concerts/")} class="ml-3 underline underline-offset-4">Tout voir</a>
         </div>
       )}
     </div>
@@ -169,7 +169,7 @@ const hrefInfos = (s) => {
       <div id="gallery-scroll" class="gallery-scroll">
         {galleryStrip.map((p, i) => (
           <a
-            href={withBase("galerie")}
+            href={withBase("galerie/")}
             key={i}
             class="gallery-item group relative block flex-shrink-0 rounded-xl overflow-hidden border border-zinc-800"
           >
@@ -203,7 +203,7 @@ const hrefInfos = (s) => {
   <section class="mt-14">
     <div class="flex items-end justify-between mb-4">
       <h2 class="text-2xl font-bold">{showsTitle}</h2>
-      <a href={withBase("concerts")} class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">
+      <a href={withBase("concerts/")} class="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">
         Toutes les dates
       </a>
     </div>
@@ -214,7 +214,7 @@ const hrefInfos = (s) => {
         <p class="mt-1 opacity-85">
           En attendant, Névrosyne joue aussi pour des soirées privées, mariages et événements.
           Tu organises quelque chose ?
-          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact")}>Parle-nous de ton projet</a>.
+          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact/")}>Parle-nous de ton projet</a>.
         </p>
         <p class="mt-2 text-sm opacity-70">
           Pour être prévenu·e des prochains concerts : <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a>.
@@ -258,13 +258,13 @@ const hrefInfos = (s) => {
       On joue en live à Marseille, Aix-en-Provence et partout en PACA : salles, festivals, bars, mariages, événements privés, associatifs… Si tu veux du rock (même approximatif), on est là.
     </p>
 
-    <a href={withBase("prestations")} class="inline-block px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
+    <a href={withBase("prestations/")} class="inline-block px-5 py-3 rounded-xl border border-zinc-700 hover:border-acid-400">
       Voir nos prestations
     </a>
 
     <span class="opacity-60 mx-2">ou</span>
 
-    <a href={withBase("contact")} class="inline-block px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
+    <a href={withBase("contact/")} class="inline-block px-5 py-3 rounded-xl bg-coal-800 hover:bg-coal-700 border border-zinc-700">
       Écris-nous
     </a>
   </section>

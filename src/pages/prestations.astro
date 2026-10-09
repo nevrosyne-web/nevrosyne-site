@@ -18,7 +18,7 @@ const services = [
       "Balance rapide",
       "Facturation et contractualisation possibles"
     ],
-    cta: { label: "Demander un devis", href: "/contact" }
+    cta: { label: "Demander un devis", href: "/contact/" }
   },
   {
     title: "Événementiel",
@@ -28,7 +28,7 @@ const services = [
       "Adaptation au format de l’événement",
       "Coordination technique possible"
     ],
-    cta: { label: "Parler de ton projet", href: "/contact" }
+    cta: { label: "Parler de ton projet", href: "/contact/" }
   }
 ];
 ---
@@ -48,7 +48,7 @@ const services = [
     <p class="text-zinc-400 leading-relaxed">
       Tu trouveras ici un aperçu de ce qu’on propose, quelques infos techniques, des références
       et un exemple de setlist. Pour toute demande spécifique,
-      <a class="underline underline-offset-4 hover:text-zinc-200" href={withBase("contact")}> contacte-nous</a>.
+      <a class="underline underline-offset-4 hover:text-zinc-200" href={withBase("contact/")}> contacte-nous</a>.
     </p>
   </section>
 
@@ -144,11 +144,11 @@ const services = [
     <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
     <p>
       Découvre aussi nos
-      <a href={withBase("concerts")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>,
+      <a href={withBase("concerts/")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>,
       nos
-      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>
+      <a href={withBase("media/")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>
       et notre
-      <a href={withBase("contact")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
+      <a href={withBase("contact/")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
       pour nous parler de ton projet.
     </p>
   </section>

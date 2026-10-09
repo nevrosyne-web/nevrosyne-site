@@ -98,7 +98,7 @@ const placeLabel = (s) => {
         <p class="mt-1 opacity-85">
           En attendant, Névrosyne joue aussi pour des soirées privées, mariages et événements.
           Tu organises quelque chose ?
-          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact")}>Parle-nous de ton projet</a>.
+          <a class="underline underline-offset-4 text-acid-400 hover:text-acid-500" href={withBase("contact/")}>Parle-nous de ton projet</a>.
         </p>
         <p class="mt-2 text-sm opacity-70">
           Pour être prévenu·e des prochains concerts : <a class="underline underline-offset-4" href="https://facebook.com/nevrosyne" target="_blank" rel="noopener noreferrer">Facebook</a> ou <a class="underline underline-offset-4" href="https://instagram.com/nevrosyne" target="_blank" rel="noopener noreferrer">Instagram</a>.
@@ -146,7 +146,7 @@ const placeLabel = (s) => {
                 <div class="mt-3 flex flex-wrap gap-2">
                   {s.link && (
                     <a
-                      href={hrefWithBase(s.link, "concerts")}
+                      href={hrefWithBase(s.link, "concerts/")}
                       class="px-4 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700"
                     >
                       Infos
@@ -232,7 +232,7 @@ const placeLabel = (s) => {
                     <div class="mt-3 flex flex-wrap gap-2">
                       {s.link && (
                         <a
-                          href={hrefWithBase(s.link, "concerts")}
+                          href={hrefWithBase(s.link, "concerts/")}
                           class="px-3 py-2 rounded-lg bg-ink-900 hover:bg-coal-700 border border-zinc-700 text-sm"
                         >
                           Infos
@@ -253,11 +253,11 @@ const placeLabel = (s) => {
     <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
     <p>
       Découvre aussi notre
-      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> page médias</a>,
+      <a href={withBase("media/")} class="underline underline-offset-4 hover:text-zinc-200"> page médias</a>,
       notre
-      <a href={withBase("galerie")} class="underline underline-offset-4 hover:text-zinc-200"> galerie photo</a>
+      <a href={withBase("galerie/")} class="underline underline-offset-4 hover:text-zinc-200"> galerie photo</a>
       et notre
-      <a href={withBase("contact")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
+      <a href={withBase("contact/")} class="underline underline-offset-4 hover:text-zinc-200"> page contact</a>
       si tu veux nous faire jouer pour un concert, une soirée ou un événement privé.
     </p>
   </section>

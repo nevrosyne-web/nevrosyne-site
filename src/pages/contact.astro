@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../utils/paths";
 
-const successUrl = withBase("contact-success");
+const successUrl = withBase("contact-success/");
 
 // ⚠️ remplace bien par tes IDs Google Forms :
 const FORM_RESPONSE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfJjgT1u9m1VeLQzY_UIZs4qI3U9_553JfseTGmJjiJmM384w/formResponse";
@@ -133,11 +133,11 @@ const ENTRY_MESSAGE = "entry.1740234325";
     <h2 class="text-xl font-semibold text-zinc-100 mb-3">Voir aussi</h2>
     <p>
       Découvre aussi nos
-      <a href={withBase("prestations")} class="underline underline-offset-4 hover:text-zinc-200"> prestations</a>,
+      <a href={withBase("prestations/")} class="underline underline-offset-4 hover:text-zinc-200"> prestations</a>,
       nos
-      <a href={withBase("concerts")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>
+      <a href={withBase("concerts/")} class="underline underline-offset-4 hover:text-zinc-200"> prochaines dates</a>
       et nos
-      <a href={withBase("media")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>.
+      <a href={withBase("media/")} class="underline underline-offset-4 hover:text-zinc-200"> vidéos live</a>.
     </p>
   </section>
 
