@@ -9,6 +9,7 @@ export function formatKind(kind: string): string {
     anniversaire: "Anniversaire",
     composition: "Composition",
     repetition: "Répétition",
+    teaser: "Teaser",
   };
   return map[kind] || kind || "";
 }

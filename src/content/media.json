@@ -3,6 +3,15 @@
   "lives": [
     {
       "provider": "youtube",
+      "title": "Névrosyne – Teaser 2026",
+      "id": "r0LZEudrPD8",
+      "description": "Le teaser 2026 de Névrosyne, groupe de rock basé en Provence : un aperçu du groupe en live, pour vos concerts, mariages, soirées privées et événements.",
+      "location": "Provence",
+      "year": 2026,
+      "kind": "teaser"
+    },
+    {
+      "provider": "youtube",
       "title": "Névrosyne – Live à La Scène 2 à Aix-en-Provence (2024) – Bella Ciao / Smells like teen spirit",
       "id": "bEFTmfcLmTE",
       "description": "Live mix Bella Ciao et Nirvana Smells like teen spirit à La Scène 2 à Aix-en-Provence en 2024. Grosse ambiance !",
